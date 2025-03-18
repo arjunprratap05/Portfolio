@@ -24,7 +24,7 @@ const Skills = () => {
                 <div className="right-col">
                     <h2>Skills</h2>
                     <ul>
-                        <li>HTML</li>
+                        <li>HTML5</li>
                         <li>CSS</li>
                         <li>JavaScript</li>
                         <li>Asp.Net</li>
@@ -33,10 +33,12 @@ const Skills = () => {
                         <li>React Js</li>
                         <li>Java</li>
                         <li>Python</li>
+                        <li>KafKa</li>
                     </ul>
+                   
                     <p>
-                        Familiarity with Node.js, Express.js, Ejs, MongoDB,
-                        Mongoose, jQuery, Material UI, Redux, and Tailwind CSS.
+                        Familiarity with Node.js, Express.js, MongoDB,
+                        jQuery, Material UI, Redux, and Tailwind CSS.
                     </p>
                     <CallToAction
                         text="Download CV"
