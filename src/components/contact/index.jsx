@@ -8,12 +8,16 @@ const Contact = () => {
     return (
         <Section
             id="contact"
-            title="Any Questions ? fell free to contact"
+            title="Any Questions? Feel Free to Contact"
             background="light"
         >
             <div className="contact-content-wrapper">
-                <ContactInfo />
-                <Form />
+                <div className="contact-info-container">
+                    <ContactInfo />
+                </div>
+                <div className="contact-form-container">
+                    <Form />
+                </div>
             </div>
         </Section>
     );

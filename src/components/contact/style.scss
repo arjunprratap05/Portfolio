@@ -5,8 +5,80 @@
     width: 100%;
     margin-top: 25px;
     flex-direction: column;
-    // @include small-screen {
-    //     margin-top: 75px;
-    //     flex-direction: row;
-    // }
+
+    @include medium-screen {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    @include small-screen {
+        margin-top: 50px;
+        flex-direction: column;
+    }
+}
+
+// Contact Form Styles
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    @include small-screen {
+        width: 80%;
+    }
+
+    @include extra-small-screen {
+        width: 100%;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid $border-color;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 16px;
+
+        @include extra-small-screen {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: $primary-color;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        @include transition-ease(300ms);
+
+        &:hover {
+            background-color: darken($primary-color, 10%);
+        }
+
+        @include small-screen {
+            font-size: 16px;
+        }
+
+        @include extra-small-screen {
+            font-size: 14px;
+            padding: 10px;
+        }
+    }
+}
+
+// Contact Info Section
+.contact-info {
+    width: 50%;
+
+    @include small-screen {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
 }
