@@ -73,7 +73,7 @@ const IntroContent = () => {
                         <div className="icon">
                             <BsAwardFill />
                         </div>
-                        <div className="text">Frontend Devloper</div>
+                         <div className="text">Asp.Net Core Devloper</div> 
                         
                     </div>
                     
