@@ -8,7 +8,7 @@ import { AiOutlineCloudDownload } from "react-icons/ai";
 const Skills = () => {
     const handleDownload = () => {
         const link = document.createElement("a");
-        link.href = "\Arjun_Pratap_Resume_Full_Stack.pdf"; // Replace with actual CV file path
+        link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; // Replace with actual CV file path
         link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; // Set the downloaded file name
         document.body.appendChild(link);
         link.click();

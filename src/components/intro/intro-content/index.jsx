@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import handicon from "../../../images/hand.png";
 import CallToAction from "../../shared/CallToAction";
-import myimage from "../../../images/me.png";
+import myimage from "../../../images/me.jpg";
 import { BsAwardFill } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import Typewriter from "typewriter-effect";
@@ -44,7 +44,7 @@ const IntroContent = () => {
                                 Frontend Developer
                             </div>
                             <div className="i-title-item">
-                                React Js Developer
+                                React Js Develnoper
                             </div>
                             <div className="i-title-item">
                                 Asp.Net Developer
@@ -73,7 +73,7 @@ const IntroContent = () => {
                         <div className="icon">
                             <BsAwardFill />
                         </div>
-                         <div className="text">Asp.Net Core Devloper</div> 
+                         <div className="text">Mern Stack Devloper</div> 
                         
                     </div>
                     

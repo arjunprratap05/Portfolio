@@ -5,15 +5,17 @@ import Skills from "./components/skills";
 import Portfolio from "./components/portfolio";
 import Contact from "./components/contact";
 import Footer from "./components/footer";
+import Chatbot from './components/Chatbot';
 
 const App = () => {
     return (
-        <div>
+        <div className="app">
             <Intro />
             <Skills />
             <Portfolio />
             <Contact />
             <Footer />
+            <Chatbot />
         </div>
     );
 };
