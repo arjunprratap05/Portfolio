@@ -85,8 +85,13 @@
     width: calc(100vw - 20px); /* 100% viewport width minus 10px padding on each side */
     height: calc(85vh - 20px); /* 85% of viewport height, allowing space for top/bottom bars */
     bottom: 60px; /* Position above the toggle button */
-    right: 10px;  /* Maintain right padding */
-    left: 10px;   /* Set left padding to center it if width is calc(100vw - X) */
+    
+    /* --- IMPORTANT CHANGE HERE --- */
+    right: auto; /* Remove right property conflict */
+    left: 50%;   /* Center horizontally */
+    transform: translateX(-50%); /* Adjust for perfect centering */
+    /* --- END IMPORTANT CHANGE --- */
+
     border-radius: 8px; /* Slightly smaller border radius for mobile */
     transform-origin: bottom center; /* Adjust origin for mobile animation */
   }
