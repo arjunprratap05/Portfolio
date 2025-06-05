@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
-import './Chatbot.css';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import './Chatbot.css'; 
+
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;;
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isBotTyping, setIsBotTyping] = useState(false);
+  const messagesEndRef = useRef(null); 
 
-  const toggleChat = () => setIsOpen(!isOpen);
+  
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isBotTyping]);
 
-  const sendMessageToChatling = async (text) => {
+  
+  const toggleChat = useCallback(() => {
+    setIsOpen(prev => !prev);
+  
+  }, []);
+
+  
+  const sendMessageToAI = useCallback(async (text) => {
     try {
-      const res = await fetch('http://localhost:5000/api/chat', {
+      const res = await fetch(`${BACKEND_URL}/api/gemini-chat`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -19,49 +33,71 @@ const Chatbot = () => {
         body: JSON.stringify({ message: text })
       });
 
-      const data = await res.json();
-      const reply = data?.response;
-      return reply || "🤖 No response from Arjun AI.";
-    } catch (err) {
-      console.error("Chatling API error:", err);
-      return "⚠️ Failed to reach Arjun AI.";
-    }
-  };
-
-  const handleSend = async () => {
-    if (!input.trim()) return;
-
-    const userMessage = input.trim();
-    setMessages(prev => [...prev, { from: 'user', text: userMessage }]);
-    setInput('');
-    setIsBotTyping(true);
-
-    setTimeout(async () => {
-      const greetings = ['hi', 'hello', 'hey', 'yo'];
-      let botReply = '';
-
-      if (greetings.includes(userMessage.toLowerCase())) {
-        botReply = '👋 Hello! I’m Arjun’s AI. Ask me anything.';
-      } else {
-        botReply = await sendMessageToChatling(userMessage);
+      if (!res.ok) {
+      
+        const errorData = await res.json();
+        const errorMessage = errorData.error || `HTTP error! status: ${res.status}`;
+        throw new Error(errorMessage);
       }
 
-      setIsBotTyping(false);
-      setMessages(prev => [...prev, { from: 'bot', text: botReply }]);
-    }, 1200);
-  };
+      const data = await res.json();
+      
+      const reply = data?.response;
+      return reply || "🤖 I'm having trouble connecting to Arjun AI. Please try again.";
+    } catch (err) {
+      console.error("AI API Call Error:", err);
+      return `⚠️ Failed to reach Arjun AI: ${err.message}. Please try again later.`;
+    }
+  }, []); 
+
+  
+  const handleSend = useCallback(async () => {
+    if (!input.trim()) return; 
+
+    const userMessage = input.trim();
+    setMessages(prev => [...prev, { from: 'user', text: userMessage }]); 
+    setInput(''); 
+    setIsBotTyping(true); 
+
+    
+    setTimeout(async () => {
+      let botReply = '';
+      const lowerCaseMessage = userMessage.toLowerCase();
+
+      
+      if (lowerCaseMessage === 'hi' || lowerCaseMessage === 'hello' || lowerCaseMessage === 'hey') {
+        botReply = '👋 Hello! I’m Arjun’s AI. Ask me anything about Arjun or his work!';
+      } else {
+      
+        botReply = await sendMessageToAI(userMessage);
+      }
+
+      setIsBotTyping(false); 
+      setMessages(prev => [...prev, { from: 'bot', text: botReply }]); 
+    }, 1200); 
+  }, [input, sendMessageToAI]); 
+
+  
+  const handleKeyPress = useCallback((e) => {
+    if (e.key === 'Enter') {
+      handleSend();
+    }
+  }, [handleSend]);
 
   return (
     <div className="chatbot-container">
+      
       <div className="chatbot-toggle" onClick={toggleChat}>
-        <img src="/chatbot.jpg" alt="Chatbot" />
+      
+        <img src="/chatbot.jpg" alt="Chatbot Icon" />
       </div>
 
+      
       {isOpen && (
         <div className="chatbox">
           <div className="chat-header">
             Chat with Arjun AI
-            <span onClick={toggleChat}>×</span>
+            <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
           </div>
 
           <div className="chat-messages">
@@ -76,12 +112,14 @@ const Chatbot = () => {
 
             {isBotTyping && (
               <div className="chat-bubble bot typing-indicator">
-                <img src="/chatbot-typing.png" alt="Typing" className="bot-avatar" />
+                
+                <img src="/chatbot-typing.jpg" alt="Bot Typing" className="bot-avatar" />
                 <div className="typing-dots">
                   <span></span><span></span><span></span>
                 </div>
               </div>
             )}
+            <div ref={messagesEndRef} /> 
           </div>
 
           <div className="chat-input-area">
@@ -89,10 +127,19 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
+              onKeyPress={handleKeyPress} 
               placeholder="Type your message..."
               className="chat-input"
+              disabled={isBotTyping} 
+              aria-label="Message input"
             />
-            <button className="send-button" onClick={handleSend}>
+            <button
+              className="send-button"
+              onClick={handleSend}
+              disabled={isBotTyping || !input.trim()} 
+              aria-label="Send message"
+            >
+              
               <img src="/send.jpg" alt="Send" />
             </button>
           </div>
