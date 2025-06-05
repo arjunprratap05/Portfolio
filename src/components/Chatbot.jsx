@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Chatbot.css'; 
 
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;;
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
