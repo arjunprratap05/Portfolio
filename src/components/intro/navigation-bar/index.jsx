@@ -7,11 +7,7 @@ const Navigation = () => {
     return (
         <div className="top-navigation-bar">
             <div className="app-logo">
-                {/* <img
-                    src={logo}
-                    alt="logo"
-                    className="mylogo"
-                /> */}
+                
             </div>
             <div className="navigation">
                 <span className="navigation-item">Home</span>
