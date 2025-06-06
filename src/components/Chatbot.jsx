@@ -1,3 +1,5 @@
+// src/components/Chatbot/Chatbot.jsx
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Chatbot.css'; 
 
@@ -85,16 +87,19 @@ const Chatbot = () => {
   }, [handleSend]);
 
   return (
-    <div className="chatbot-container">
+    // The chatbot-container acts as a general wrapper, typically not needing fixed positioning itself
+    <div className="chatbot-wrapper"> {/* Renamed for clarity, it's just a wrapper */}
       
-      <div className="chatbot-toggle" onClick={toggleChat}>
+      {/* Changed className from chatbot-toggle to chatbot-button */}
+      <div className="chatbot-button" onClick={toggleChat}>
       
         <img src="/chatbot.jpg" alt="Chatbot Icon" />
       </div>
 
       
       {isOpen && (
-        <div className="chatbox">
+        // The chatbox is the actual visible chat window
+        <div className="chatbox"> 
           <div className="chat-header">
             Chat with Arjun AI
             <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
