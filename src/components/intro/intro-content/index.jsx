@@ -1,12 +1,12 @@
 import React from "react";
-import "./style.scss"; // Make sure this path is correct relative to this file
-import handicon from "../../../images/hand.png"; // Make sure this path is correct
-import CallToAction from "../../shared/CallToAction"; // If not used, you can remove this line and its import
-import myimage from "../../../images/me.jpg"; // Make sure this path is correct
+import "./style.scss";
+import handicon from "../../../images/hand.png"; 
+import CallToAction from "../../shared/CallToAction"; 
+import myimage from "../../../images/me.jpg"; 
 import { BsAwardFill } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
 import Typewriter from "typewriter-effect";
-import { scrollToSection } from "../../utils/helpers"; // If not used, you can remove this line and its import
+import { scrollToSection } from "../../utils/helpers"; 
 
 const IntroContent = () => {
     return (
@@ -50,11 +50,9 @@ const IntroContent = () => {
                     <p>
                         I am a full stack developer. My skills are HTML, CSS, Tailwind CSS, JS, React.Js, Git, GitHub, Asp.Net. I am looking for an in-office job for growing my skills.
                     </p>
-                    {/* If you want to add a CallToAction button inside this card, you can place it here */}
-                    {/* <CallToAction text="Learn More" icon={<Arrow />} /> */}
+                    
                 </div>
 
-                {/* Right Card */}
                 <div className="card card-right">
                     <img
                         src={myimage}
@@ -77,7 +75,7 @@ const IntroContent = () => {
                             Developer
                         </div>
                     </div>
-                    {/* If you want to add a CallToAction button inside this card, you can place it here */}
+                    
                 </div>
             </div>
         </div>

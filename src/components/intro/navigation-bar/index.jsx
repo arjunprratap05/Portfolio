@@ -27,11 +27,9 @@ const Navigation = () => {
                     className="navigation-item"
                     onClick={() => scrollToSection("contact")}
                 >
-                    Contact Me
+                Contact Me
                 </span>
-                  {/* <span onClick={() => scrollToSection("contact")}>
-                    <CallToAction text="Contact Me" /> 
-                </span>   */}
+                  
             </div>
         </div>
     );
