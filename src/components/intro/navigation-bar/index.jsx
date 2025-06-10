@@ -23,9 +23,15 @@ const Navigation = () => {
                 >
                     Portfolio
                 </span>
-                  <span onClick={() => scrollToSection("contact")}>
+                <span
+                    className="navigation-item"
+                    onClick={() => scrollToSection("contact")}
+                >
+                    Contact Me
+                </span>
+                  {/* <span onClick={() => scrollToSection("contact")}>
                     <CallToAction text="Contact Me" /> 
-                </span>  
+                </span>   */}
             </div>
         </div>
     );

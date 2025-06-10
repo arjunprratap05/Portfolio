@@ -1,167 +1,224 @@
-@import "../../../style-config/variable.scss";
-@import "../../../style-config/mixins.scss";
-
 .intro-content {
-    flex-grow: 1;
+    padding: 50px 20px; // Overall padding for the section
+    min-height: 100vh; // Ensure it takes full viewport height if content is short
     display: flex;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5; // Light background for the page
+
     .layout {
         display: flex;
-        .left-col {
-            width: 45%;
-            @include medium-screen {
-                padding-top: 55px;
-            }
-            @include large-screen {
-                padding-top: 0;
-                width: 37%;
-            }
+        gap: 30px; // Space between the cards
+        flex-wrap: wrap; // Allow cards to wrap to the next line on smaller screens
+        justify-content: center; // Center cards in the available space
+        width: 100%; // Take full width of its container
+        max-width: 1200px; // Max width for the layout
+        padding: 20px; // Inner padding for the layout container
+        background-color: #f0f2f5;
+    }
+
+    .card {
+        background-color: #ffffff; // Card background color
+        border-radius: 15px; // More rounded corners
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); // Stronger, smoother shadow
+        padding: 40px; // More inner padding
+        flex: 1; // Allows cards to grow and shrink
+        min-width: 320px; // Minimum width before wrapping
+        max-width: 550px; // Maximum width for individual cards
+        display: flex;
+        flex-direction: column; // Stack content vertically within the card
+        align-items: center; // Center items horizontally within the card
+        text-align: center; // Center text
+        background-color: #f0f2f5;
+
+        // Specific styles for the left card
+        &.card-left {
+            // Add any unique styles for the left card here
             .title {
-                display: flex;
-                flex-direction: column;
-                color: $white;
-                .small-text {
-                    @include typography(42px, 400, 48px);
-                    display: flex;
-                    align-items: center;
-                    .icon {
-                        margin-left: 10px;
-                    }
-                }
-                .big-text {
-                    @include typography(62px, 400, 72px);
-                }
-            }
-
-            .i-title-item {
-                height: 50px;
-                font-size: 30px;
-                font-weight: bold;
-                color: $yellow;
-                display: flex;
-                align-items: center;
-            }
-            .i-title {
-                height: 50px;
-                overflow: hidden;
-            }
-
-            .i-title-wrapper {
-                height: 100%;
-                animation: move 14s ease-in-out infinite alternate;
-            }
-            @keyframes move {
-                25% {
-                    transform: translateY(-50px);
-                }
-                50% {
-                    transform: translateY(-100px);
-                }
-                75% {
-                    transform: translateY(-150px);
-                }
-                100% {
-                    transform: translateY(-200px);
-                }
+                margin-bottom: 25px; // Space after the title
             }
             p {
-                color: $white;
-                @include typography(18px, 400, 24px);
-                margin: 25px 0;
+                line-height: 1.7;
+                color: #555;
+                font-size: 1.1em;
+                margin-top: 25px; // Space above the paragraph
             }
         }
-        .right-col {
-            width: 55%;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-            @include large-screen {
-                width: 63%;
+
+        // Specific styles for the right card
+        &.card-right {
+            // Add any unique styles for the right card here
+            justify-content: center; // Center content vertically too if needed
+            .profile-image {
+                width: 200px; // Larger image size
+                height: 200px;
+                border-radius: 50%; // Perfect circle
+                object-fit: cover; // Ensure image covers the area
+                margin-bottom: 30px;
+                border: 5px solid #61dafb; // Vibrant border color for React feel
+                box-shadow: 0 0 15px rgba(97, 218, 251, 0.6); // Glow effect
+                background-color: #f0f2f5;
             }
-            img {
-                width: 100%;
-                display: block;
-                margin-bottom: 40px;
-                @include large-screen {
-                    margin-bottom: 50px;
-                    position: relative;
-                    right: -100px;
-                }
-            }
+
             .highlights {
-                position: absolute;
-                border-radius: 6px;
-                @include glassmorphism-effect;
+                display: flex;
+                align-items: center;
+                gap: 15px; // More space between icon and text
+                margin-top: 20px; // Space between highlights
+                padding: 10px 20px;
+                background-color: #f0f2f5;
+                 background-color: #ffe6f2; // Light background for highlights
+                border-radius: 8px;
                 .icon {
-                    width: 55px;
-                    height: 55px;
-                    min-width: 55px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-radius: 50%;
-                    background-color: $yellow;
-                    font-size: 24px;
-                    color: $black-light;
+                    font-size: 30px; // Larger icons
+                    color: #007bff; // Primary blue color
                 }
                 .text {
-                    padding: 0 10px;
-                    @include typography(18px, 400, 24px);
-                    color: $black-light;
+                    font-weight: 600; // Semi-bold text
+                    font-size: 1.1em;
+                    color: #333;
                     span {
-                        @include typography(18px, 400, 24px);
+                        font-weight: bold;
+                        color: #0056b3;
                     }
                 }
-
-                &.horizontal {
-                    width: 208px;
-                    height: 95px;
-                    display: flex;
-                    align-items: center;
-                    top: 250px;
-                    left: 0;
-                    padding: 20px 10px 20px 20px;
-                    @include medium-screen {
-                        top: 250px;
-                        left: 0;
-                    }
-                    @include large-screen {
-                        top: 270px;
-                        left: 120px;
-                    }
-                }
+                
                 &.verticle {
-                    width: 135px;
-                    height: 165px;
-                    min-height: 165px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    top: 50px;
-                    right: 60px;
-                    padding: 20px;
-                    padding-bottom: 10px;
-                    text-align: center;
-                    @include medium-screen {
-                        top: 50px;
-                        right: 60px;
-                    }
-                    @include large-screen {
-                        top: 85px;
-                        right: -10px;
-                    }
+                    // Specific styles for vertical highlight if needed
+                    flex-direction: column; // Stack icon and text vertically
                     .text {
-                        padding: 0 10px;
-                        @include typography(14px, 400, 18px);
-                        color: $black-light;
-                        margin-top: 10px;
-                        span {
-                            @include typography(18px, 700, 24px);
-                            display: block;
-                        }
+                        margin-top: 5px;
+                        background-color: #f0f2f5;
                     }
                 }
             }
         }
     }
+
+    /* Your existing styles for internal elements, refined */
+    .title {
+        font-size: 3.5em; // Larger main title
+        color: #2c3e50; // Darker title color
+        .small-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6em; // Smaller "Hello, I am"
+            color: #7f8c8d; // Lighter color for small text
+            .text {
+                margin: 0 5px;
+            }
+            .icon {
+                img {
+                    height: 30px; // Adjust hand icon size
+                    width: auto;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+
+    /* Typewriter specific styles */
+    .Typewriter {
+        font-size: 2.5em !important; // Important to override inline style if necessary
+        font-weight: bold;
+        color: #3498db; // Blue for the name
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .i-title {
+        height: 60px; // Taller for better readability
+        overflow: hidden;
+        margin-bottom: 30px; // More space below title
+        font-family: 'Montserrat', sans-serif; // Example font
+        font-weight: 500;
+
+        .i-title-wrapper {
+            animation: move 10s infinite cubic-bezier(0.55, 0.085, 0.68, 0.53); // Same animation, adjust timing if needed
+            .i-title-item {
+                height: 60px;
+                font-size: 24px; // Larger item text
+                color: #2ecc71; // Green for skills
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                // border-bottom: 1px solid #eee; // Subtle separator
+            }
+        }
+    }
+}
+
+/* Keyframe for the typewriter animation */
+@keyframes move {
+    0% { transform: translateY(0); }
+    16% { transform: translateY(-60px); } // First item
+    33% { transform: translateY(-120px); } // Second item
+    50% { transform: translateY(-180px); } // Third item
+    66% { transform: translateY(-240px); } // Fourth item
+    83% { transform: translateY(-300px); } // Fifth item
+    100% { transform: translateY(0); }
+}
+
+
+/* Media queries for responsiveness */
+@media (max-width: 992px) {
+    .intro-content .layout {
+        flex-direction: column; // Stack cards vertically on medium screens
+        align-items: center; // Center stacked cards
+    }
+    .intro-content .card {
+        max-width: 90%; // Allow cards to take more width on medium screens
+        margin-bottom: 20px; // Add space between stacked cards
+    }
+}
+
+@media (max-width: 576px) {
+    .intro-content {
+        padding: 30px 15px; // Less padding on small screens
+    }
+    .intro-content .card {
+        padding: 25px; // Less padding inside cards
+        min-width: unset; // Remove min-width to let it shrink more
+        max-width: 100%;
+    }
+    .intro-content .title {
+        font-size: 2.5em; // Smaller title
+    }
+    .intro-content .title .small-text {
+        font-size: 0.7em;
+    }
+    .intro-content .title .small-text .icon img {
+        height: 24px;
+    }
+    .intro-content .Typewriter {
+        font-size: 2em !important;
+    }
+    .intro-content .i-title {
+        height: 50px;
+        .i-title-wrapper .i-title-item {
+            font-size: 20px;
+            height: 50px;
+        }
+    }
+    @keyframes move {
+        // Adjust keyframe values if i-title-item height changes
+        0% { transform: translateY(0); }
+        16% { transform: translateY(-50px); }
+        33% { transform: translateY(-100px); }
+        50% { transform: translateY(-150px); }
+        66% { transform: translateY(-200px); }
+        83% { transform: translateY(-250px); }
+        100% { transform: translateY(0); }
+    }
+    .intro-content .card-right .profile-image {
+        width: 500px;
+        height: 500px;
+    }
+    .intro-content .card-right .highlights .icon {
+        font-size: 24px;
+    }
+    .intro-content .card-right .highlights .text {
+        font-size: 1em;
+    }
+
 }
