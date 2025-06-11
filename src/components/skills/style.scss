@@ -2,7 +2,7 @@
 @import "../../style-config/mixins.scss"; 
 
 #skills {
-    padding: 96px 0; 
+    padding: 96px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +70,7 @@
 
 .skill-categories-wrapper {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: center; 
     gap: 20px; 
 
@@ -97,7 +97,7 @@
     border-radius: 16px; 
     border: 1px solid rgba($white, 0.1); 
     box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3); 
-    padding: 40px;
+    padding: 40px; 
     width: calc(33.33% - 20px); 
     max-width: 380px; 
     min-width: 280px; 
@@ -140,12 +140,12 @@
     gap: 12px; 
 
     @include sm { 
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
-        gap: 10px; 
-    }
-    @include xs {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
         gap: 8px; 
+    }
+    @include xs { 
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
+        gap: 6px; 
     }
 }
 
@@ -154,6 +154,7 @@
     border: 1px solid rgba($white, 0.2); 
     border-radius: 20px; 
     padding: 10px 15px; 
+
     display: flex;
     align-items: center; 
     justify-content: flex-start; 
@@ -198,10 +199,10 @@
         text-align: left; 
 
         @include sm { 
-            font-size: 0.8em;
+            font-size: 0.75em; 
         }
         @include xs { 
-            font-size: 0.75em;
+            font-size: 0.7em; 
         }
     }
 }
