@@ -6,14 +6,14 @@ import CallToAction from "../shared/CallToAction";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 
 const Skills = () => {
-    const handleDownload = () => {
-        const link = document.createElement("a");
-        link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; // Replace with actual CV file path
-        link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; // Set the downloaded file name
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    // const handleDownload = () => {
+    //     const link = document.createElement("a");
+    //     link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; // Replace with actual CV file path
+    //     link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; // Set the downloaded file name
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    // };
 
     return (
         <Section background="dark" id="skills">
@@ -35,16 +35,16 @@ const Skills = () => {
                         <li>Python</li>
                         <li>KafKa</li>
                     </ul>
-                   
+
                     <p>
                         Familiarity with Node.js, Express.js, MongoDB,
                         jQuery, Material UI, Redux, and Tailwind CSS.
                     </p>
-                    <CallToAction
+                    {/* <CallToAction
                         text="Download CV"
                         icon={<AiOutlineCloudDownload />}
                         action={handleDownload}
-                    />
+                    /> */}
                 </div>
             </div>
         </Section>
