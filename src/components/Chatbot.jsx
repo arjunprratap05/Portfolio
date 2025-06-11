@@ -11,7 +11,6 @@ const Chatbot = () => {
   const [isBotTyping, setIsBotTyping] = useState(false);
   const messagesEndRef = useRef(null); 
 
-  // Function to format timestamp
   const formatTimestamp = (date) => {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -55,7 +54,6 @@ const Chatbot = () => {
     if (!input.trim()) return; 
 
     const userMessage = input.trim();
-    // Add timestamp when adding user message
     setMessages(prev => [...prev, { from: 'user', text: userMessage, timestamp: new Date() }]); 
     setInput(''); 
     setIsBotTyping(true); 
