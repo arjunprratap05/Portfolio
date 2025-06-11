@@ -1,5 +1,9 @@
 @import "./variable.scss";
 
+$breakpoint-xs: 480px;  
+$breakpoint-sm: 768px;  
+$breakpoint-md: 992px;  
+
 @mixin typography($size: 18px, $weight: 400, $lineHeight: 24px) {
     font-style: normal;
     font-weight: $weight;
@@ -15,15 +19,34 @@
 
 @mixin extra-small-screen {
     @media (max-width: 480px) { @content; }
-  }
-  
-  @mixin small-screen {
+}
+
+@mixin small-screen {
     @media (max-width: 768px) { @content; }
-  }
-  
-  @mixin medium-screen {
+}
+
+@mixin medium-screen {
     @media (max-width: 1024px) { @content; }
-  }
+}
+
+@mixin xs {
+    @media (max-width: #{$breakpoint-xs}) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media (max-width: #{$breakpoint-sm}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media (max-width: #{$breakpoint-md}) {
+        @content;
+    }
+}
+
 
 @mixin glassmorphism-effect {
     background: rgba(255, 255, 255, 0.35);

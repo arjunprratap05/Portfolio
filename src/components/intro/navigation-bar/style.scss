@@ -1,21 +1,33 @@
 @import "../../../style-config/variable.scss";
 @import "../../../style-config/mixins.scss";
+
 .top-navigation-bar {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
     margin-top: 30px;
+    padding: 0 20px; 
+
     .app-logo {
         width: 133px;
+        @include md { 
+            width: 100px;
+        }
+        @include sm { 
+            width: 80px; 
+        }
         img {
             width: 100%;
             display: block;
         }
     }
+
     .navigation {
         display: flex;
         align-items: center;
+        flex-wrap: nowrap; 
+
         .navigation-item {
             color: $white;
             @include typography(18px, 400, 1);
@@ -25,13 +37,58 @@
             border-radius: 6px;
             transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             cursor: pointer;
+            white-space: nowrap; 
+
+            &:first-child {
+                margin-left: 0; 
+            }
+
             &:hover {
                 box-shadow: inset 200px 0 0 0 $white;
                 color: $black;
             }
         }
     }
+
     .call-to-action {
         margin-left: 25px;
+        
+        @include sm {
+            margin-left: 10px; 
+        }
+    }
+
+    @include sm { 
+        padding: 0 10px; 
+        margin-top: 20px; 
+
+        .navigation {
+            flex-grow: 1; 
+            justify-content: flex-end; 
+            overflow-x: auto; 
+            -webkit-overflow-scrolling: touch; 
+            scrollbar-width: none; 
+            -ms-overflow-style: none;  
+            &::-webkit-scrollbar { 
+                display: none;
+            }
+
+            .navigation-item {
+                @include typography(16px, 400, 1); 
+                margin-left: 10px; 
+                padding: 3px 5px; 
+            }
+        }
+
+    }
+
+    @include xs { 
+        padding: 0 5px;
+        .navigation {
+            .navigation-item {
+                @include typography(14px, 400, 1); 
+                margin-left: 8px; 
+            }
+        }
     }
 }
