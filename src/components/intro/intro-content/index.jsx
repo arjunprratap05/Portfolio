@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.scss";
 import handicon from "../../../images/hand.png"; 
-//import CallToAction from "../../shared/CallToAction"; 
 import myimage from "../../../images/me.jpg"; 
 import { BsAwardFill } from "react-icons/bs";
 import { FaReact } from "react-icons/fa";
@@ -12,8 +11,8 @@ import { AiOutlineCloudDownload } from "react-icons/ai";
 
 const handleDownload = () => {
         const link = document.createElement("a");
-        link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; // Replace with actual CV file path
-        link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; // Set the downloaded file name
+        link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; 
+        link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; 
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

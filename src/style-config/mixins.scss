@@ -1,8 +1,9 @@
 @import "./variable.scss";
 
-$breakpoint-xs: 480px;  
-$breakpoint-sm: 768px;  
-$breakpoint-md: 992px;  
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px; 
 
 @mixin typography($size: 18px, $weight: 400, $lineHeight: 24px) {
     font-style: normal;
@@ -47,6 +48,11 @@ $breakpoint-md: 992px;
     }
 }
 
+@mixin lg { // <--- ADD THIS MIXIN BLOCK
+    @media (min-width: #{$breakpoint-lg}) { 
+        @content;
+    }
+}
 
 @mixin glassmorphism-effect {
     background: rgba(255, 255, 255, 0.35);

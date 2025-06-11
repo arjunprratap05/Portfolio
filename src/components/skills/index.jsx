@@ -1,40 +1,40 @@
 import React from "react";
 import Section from "../shared/section";
 import "./style.scss";
-import Skill from "../../images/tech-icons.png";
-import CallToAction from "../shared/CallToAction";
-import { AiOutlineCloudDownload } from "react-icons/ai";
+
+
+import { SkillsInfo } from "../../constants"; 
 
 const Skills = () => {
-   
-
     return (
         <Section background="dark" id="skills">
-            <div className="skills-content-wrapper">
-                <div className="left-col">
-                    <img src={Skill} alt="imageJsReact" />
-                </div>
-                <div className="right-col">
-                    <h2>Skills</h2>
-                    <ul>
-                        <li>HTML5</li>
-                        <li>CSS</li>
-                        <li>JavaScript</li>
-                        <li>Asp.Net</li>
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>React Js</li>
-                        <li>Java</li>
-                        <li>Python</li>
-                        <li>KafKa</li>
-                    </ul>
+            
+            <div className="skills-section-title">
+                <h2>SKILLS</h2>
+                <div className="separator"></div> 
+                <p>
+                    A collection of my technical skills and expertise honed through various projects
+                </p>
+            </div>
 
-                    <p>
-                        Familiarity with Node.js, Express.js, MongoDB,
-                        jQuery, Material UI, Redux, and Tailwind CSS.
-                    </p>
-                   
-                </div>
+            <div className="skill-categories-wrapper">
+                {SkillsInfo.map((category) => (
+                    <div key={category.title} className="skill-category-card">
+                        <h3>{category.title}</h3>
+                        <div className="skill-items-grid">
+                            {category.skills.map((skill) => (
+                                <div key={skill.name} className="skill-item">
+                                    <img
+                                        src={skill.logo}
+                                        alt={`${skill.name} logo`}
+                                        className="skill-logo"
+                                    />
+                                    <span className="skill-name">{skill.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                ))}
             </div>
         </Section>
     );
