@@ -10,7 +10,6 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-// Typography
 p {
     @include typography(18px, 400, 24px);
 
@@ -61,7 +60,6 @@ h4 {
     }
 }
 
-// Container & Layout Adjustments
 .container {
     width: 85%;
     max-width: 1200px;
@@ -77,7 +75,6 @@ h4 {
     }
 }
 
-// Global Button Styles
 .button {
     padding: 12px 24px;
     border-radius: 5px;
