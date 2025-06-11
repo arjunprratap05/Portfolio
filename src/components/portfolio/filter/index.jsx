@@ -1,44 +1,29 @@
-import React, { useState } from "react";
-import "./style.scss";
+// src/components/portfolio/filter/index.js (Filters.jsx)
+import React, { useState } from 'react';
 
-const filtersData = [
-    {
-        name: "All",
-        id: "all",
-    },
-    {
-        name: "Products",
-        id: "product",
-    },
-    {
-        name: "Web Pages",
-        id: "web-page",
-    },
-];
 const Filters = ({ filterProjects }) => {
-    const [active, setActive] = useState("");
-    const clickHandler = (id) => {
-        setActive(id);
-        filterProjects(id);
+    // Define all possible tags from your projectsData to create filter buttons
+    const allTags = ['all', 'web-app', 'product', 'web-page', 'mobile-app']; // Extend as needed
+
+    const [activeFilter, setActiveFilter] = useState('all');
+
+    const handleFilterClick = (tag) => {
+        setActiveFilter(tag);
+        filterProjects(tag);
     };
 
     return (
-        <ul className="filters-menu-items">
-            {filtersData.map((curElem, i) => {
-                return (
-                    <li
-                        id={curElem.id}
-                        key={i}
-                        className={`filter-menu-item ${
-                            active === curElem.id ? "active" : ""
-                        }`}
-                        onClick={() => clickHandler(curElem.id)}
-                    >
-                        {curElem.name}
-                    </li>
-                );
-            })}
-        </ul>
+        <div className="filters-container">
+            {allTags.map((tag) => (
+                <span
+                    key={tag}
+                    className={`filter-btn ${activeFilter === tag ? 'active' : ''}`}
+                    onClick={() => handleFilterClick(tag)}
+                >
+                    {tag.replace('-', ' ')}
+                </span>
+            ))}
+        </div>
     );
 };
 

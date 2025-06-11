@@ -1,7 +1,324 @@
 @import "../../style-config/mixins.scss", "../../style-config/variable.scss";
 
+// Styles for the overall portfolio section (controlled by Section component background="dark")
+#portfolio {
+    padding: 100px 0; // Standard padding for the section
+    background-color: $black-light; // Dark background for the section [cite: variable.scss content]
+    text-align: center; // Center text for title and subtitle
+    color: $white; // Default text color for this section [cite: variable.scss content]
+
+    @include md {
+        padding: 80px 0;
+    }
+    @include sm {
+        padding: 60px 0;
+    }
+
+    // Since Section component handles the main title, we'll style the subtitle here
+    .section-title { // Assuming Section component uses this class for its title
+        margin-bottom: 20px;
+        h2 {
+            font-size: 3em;
+            font-weight: bold;
+            color: $white;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+
+            @include sm {
+                font-size: 2.2em;
+            }
+            @include xs {
+                font-size: 1.8em;
+            }
+        }
+        .separator { // If Section doesn't generate this, you'd add it in portfolio/index.js
+            width: 96px;
+            height: 4px;
+            background-color: #8245ec;
+            margin: 0 auto 20px;
+            border-radius: 2px;
+        }
+    }
+
+    .portfolio-subtitle { // Added subtitle container
+        color: $gray; // Subtitle color [cite: variable.scss content]
+        font-size: 1.1em;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto 50px; // Centered with margin below
+        padding: 0 20px; // Add horizontal padding for smaller screens
+
+        @include sm {
+            font-size: 0.95em;
+            margin-bottom: 30px;
+        }
+        @include xs {
+            font-size: 0.85em;
+            margin-bottom: 25px;
+        }
+    }
+}
+
 .portfolio-content-wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 1200px; // Max width for content within the section
+    margin: 0 auto;
+    padding: 0 20px; // Ensure content has horizontal padding
+
+    @include md {
+        padding: 0 10px;
+    }
+    @include sm {
+        padding: 0 5px;
+    }
+}
+
+/* Filters Component Styling (for filters/index.js) */
+.filters-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; // Allow filters to wrap on smaller screens
+    gap: 15px; // Space between filter buttons
+    margin-bottom: 50px; // Space between filters and projects grid
+    padding: 0 10px; // Padding to prevent buttons from touching screen edges
+
+    @include sm {
+        gap: 10px;
+        margin-bottom: 30px;
+        justify-content: flex-start; // Align left on small screens
+        overflow-x: auto; // Enable horizontal scrolling for filters
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE and Edge */
+        &::-webkit-scrollbar { /* Chrome, Safari, Opera */
+            display: none;
+        }
+    }
+    @include xs {
+        gap: 8px;
+        padding: 0 5px;
+    }
+
+    .filter-btn {
+        background-color: $black-lighter; // Darker background for buttons [cite: variable.scss content]
+        color: $gray; // Text color [cite: variable.scss content]
+        border: 1px solid rgba($white, 0.2); // Subtle border
+        padding: 10px 20px;
+        border-radius: 25px; // Rounded pills
+        font-size: 1em;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        white-space: nowrap; // Prevent text wrapping in filter buttons
+
+        &:hover {
+            background-color: #8245ec; // Purple hover effect [cite: image_3fd0b2.jpg]
+            color: $white;
+            border-color: #8245ec;
+        }
+
+        &.active {
+            background-color: #8245ec; // Active state purple
+            color: $white;
+            border-color: #8245ec;
+            cursor: default;
+        }
+
+        @include sm {
+            padding: 8px 15px;
+            font-size: 0.9em;
+        }
+        @include xs {
+            padding: 7px 12px;
+            font-size: 0.8em;
+        }
+    }
+}
+
+/* Showcase Component Styling (for showcase/index.js) */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Responsive grid, minimum 300px per column
+    gap: 30px; // Space between project cards
+
+    @include md { // For tablets and smaller laptops
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Adjusted min-width
+        gap: 25px;
+    }
+    @include sm { // For phones
+        grid-template-columns: 1fr; // Single column layout on mobile
+        gap: 20px;
+    }
+}
+
+.project-card {
+    background-color: $black-lighter; // Card background [cite: variable.scss content]
+    border-radius: 15px; // Rounded corners
+    overflow: hidden; // Ensures images/content don't overflow corners
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); // Subtle shadow
+    transition: transform 0.3s ease-in-out;
+    border: 1px solid rgba($white, 0.1); // Subtle border
+
+    &:hover {
+        transform: translateY(-5px); // Lift effect on hover
+    }
+
+    .project-thumbnail-container {
+        position: relative;
+        width: 100%;
+        padding-top: 60%; /* Aspect ratio 5:3 or similar for images, adjust as needed */
+        background-color: rgba($white, 0.05); // Placeholder background if image not loaded
+        overflow: hidden;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Cover the container without distortion
+            display: block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover img {
+            transform: scale(1.05); // Slight zoom on image hover
+        }
+
+        .thumbnail-overlay { // To give a subtle dark overlay on images if desired
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+            pointer-events: none; // Allows clicks to pass through to the image
+        }
+    }
+
+    .project-info {
+        padding: 25px; // Padding inside the card around text and buttons
+        text-align: left; // Align text to the left
+        color: $white;
+
+        @include sm {
+            padding: 20px;
+        }
+        @include xs {
+            padding: 15px;
+        }
+    }
+
+    .project-title {
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: $white;
+
+        @include sm {
+            font-size: 1.4em;
+        }
+        @include xs {
+            font-size: 1.2em;
+        }
+    }
+
+    .project-description {
+        font-size: 0.95em;
+        color: $gray; // Description text color [cite: variable.scss content]
+        line-height: 1.5;
+        margin-bottom: 20px;
+
+        @include sm {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        @include xs {
+            font-size: 0.85em;
+        }
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px; // Space between tags
+        margin-bottom: 20px;
+
+        .project-tag-item {
+            background-color: rgba($white, 0.1); // Slightly transparent background
+            color: $white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            text-transform: capitalize; // Capitalize first letter of tag
+            white-space: nowrap; // Prevent tags from wrapping internally
+        }
+    }
+
+    .project-buttons {
+        display: flex;
+        gap: 15px; // Space between buttons
+        margin-top: 20px;
+        justify-content: flex-start; // Align buttons to the left
+
+        @include sm {
+            gap: 10px;
+            flex-direction: column; // Stack buttons vertically on small screens
+        }
+    }
+
+    .view-code-btn,
+    .view-live-btn {
+        display: inline-flex; // Use flex for alignment if needed, but acts like block for full width
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px;
+        border-radius: 8px; // Rounded corners for buttons
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95em;
+
+        @include sm {
+            width: 100%; // Full width buttons on small screens
+            padding: 12px; // Slightly larger padding
+            font-size: 0.9em;
+        }
+    }
+
+    .view-code-btn {
+        background-color: transparent; // Transparent background
+        color: #8245ec; // Purple text [cite: image_3fd0b2.jpg]
+        border: 2px solid #8245ec; // Purple border
+
+        &:hover {
+            background-color: #8245ec;
+            color: $white;
+        }
+    }
+
+    .view-live-btn {
+        background-color: #8245ec; // Purple background
+        color: $white;
+        border: 2px solid #8245ec;
+
+        &:hover {
+            background-color: transparent;
+            color: #8245ec;
+        }
+    }
+}
+
+/* Animations for Filters and Showcase (from your original code) */
+.projects-grid.zoomout {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.2s ease-in-out;
+}
+
+.projects-grid.zoomin {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.4s ease-in-out;
 }
