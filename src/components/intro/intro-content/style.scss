@@ -1,8 +1,10 @@
+/* Existing styles */
+
 .intro-content {
     padding: 50px 20px;
     min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Changed to column to stack layout and button vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #f0f2f5;
@@ -15,7 +17,7 @@
         width: 100%;
         max-width: 1200px;
         padding: 20px;
-        background-color: #f0f2f5; /* This should ideally be inherited or card-specific */
+        background-color: #f0f2f5;
     }
 
     .card {
@@ -30,8 +32,6 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        /* Remove background-color: #f0f2f5; from .card if you want the card background to be white as per background-color: #ffffff; */
-
 
         &.card-left {
             .title {
@@ -55,7 +55,6 @@
                 margin-bottom: 30px;
                 border: 5px solid #61dafb;
                 box-shadow: 0 0 15px rgba(97, 218, 251, 0.6);
-                /* background-color: #f0f2f5; /* This seems redundant if card background is white */
             }
 
             .highlights {
@@ -64,7 +63,6 @@
                 gap: 15px;
                 margin-top: 20px;
                 padding: 10px 20px;
-                /* background-color: #f0f2f5; /* This seems redundant if card background is white */
                 background-color: #ffe6f2;
                 border-radius: 8px;
                 .icon {
@@ -85,57 +83,42 @@
                     flex-direction: column;
                     .text {
                         margin-top: 5px;
-                        /* background-color: #f0f2f5; /* This seems redundant if highlight background is #ffe6f2 */
                     }
                 }
             }
         }
     }
 
+    .download-cv-button {
+        margin-top: 70px !important;
+        margin-bottom: 20px;
+        width: 180px;
+        height: 180px;
+        border-radius: 50% !important;
+        background-color: #007bff !important;
+        color: white;
+        border: none !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
 
-    .download-cv-button { /* Target the specific class added to CallToAction */
-    margin-top: 40px; /* Add space between cards and button */
-    margin-bottom: 20px; /* Space below if needed */
-    width: 180px; /* Fixed width for round shape */
-    height: 180px; /* Fixed height for round shape */
-    border-radius: 50% !important; /* Make it round - added !important */
-    background-color: #007bff !important; /* Blue background - added !important */
-    color: white; /* White text/icon */
-    border: none !important; /* Ensure no default border is showing */
-    display: flex;
-    flex-direction: column; /* Stack icon and text */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.2em; /* Adjust text size */
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4); /* Optional: add a subtle shadow */
+        &:hover {
+            background-color: #0056b3 !important;
+            transform: translateY(-2px);
+        }
 
-    &:hover {
-        background-color: #0056b3 !important; /* Darker blue on hover - added !important */
-        transform: translateY(-2px); /* Slight lift on hover */
+        .icon {
+            font-size: 3em;
+            margin-bottom: 5px;
+        }
     }
-
-    .icon { /* Assuming CallToAction renders an icon inside an element with class 'icon' */
-        font-size: 3em; /* Larger icon */
-        margin-bottom: 5px; /* Space between icon and text */
-    }
-}
-
-/* Also check your CallToAction component's internal styles if it has any,
-   it might be rendering its own button with conflicting styles.
-   If CallToAction renders a <button> element, you might need to target it like this:
-*/
-.download-cv-button button {
-    border-radius: 50% !important;
-    background-color: #007bff !important;
-    border: none !important; /* Ensure no default border is showing */
-    // You might need to copy other styles like width, height, display properties here too
-    // if the CallToAction component itself isn't passing down styles correctly.
-}
-
 
     .title {
         font-size: 3.5em;
@@ -147,7 +130,7 @@
             font-size: 0.6em;
             color: #7f8c8d;
             .text {
-                margin: 100px;
+                margin: 0 5px;
             }
             .icon {
                 img {
@@ -182,7 +165,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-
             }
         }
     }
@@ -198,17 +180,18 @@
     100% { transform: translateY(0); }
 }
 
+/* Media Queries for Responsiveness */
+
 @media (max-width: 992px) {
     .intro-content .layout {
         flex-direction: column;
         align-items: center;
     }
     .intro-content .card {
-        max-width: 90%;
+        max-width: 90%; /* Keep this, but also make sure min-width doesn't cause issues */
         margin-bottom: 20px;
     }
 
-    /* Adjust button size for smaller screens if needed */
     .intro-content .download-cv-button {
         width: 140px;
         height: 140px;
@@ -221,60 +204,68 @@
 
 @media (max-width: 576px) {
     .intro-content {
-        padding: 30px 15px;
+        padding: 30px 15px; /* Increased horizontal padding for small screens */
+    }
+    .intro-content .layout {
+        gap: 20px; /* Reduce gap between cards on very small screens */
     }
     .intro-content .card {
         padding: 25px;
-        min-width: unset;
-        max-width: 100%;
+        min-width: unset; /* Allow cards to shrink below 320px if needed */
+        max-width: 100%; /* Ensure cards don't overflow */
     }
     .intro-content .title {
-        font-size: 2.5em;
+        font-size: 2em; /* Smaller font size for the main title */
     }
     .intro-content .title .small-text {
-        font-size: 0.7em;
+        font-size: 0.6em; /* Even smaller for "Hello, I am" */
     }
     .intro-content .title .small-text .icon img {
-        height: 24px;
+        height: 20px; /* Smaller hand icon */
     }
     .intro-content .Typewriter {
-        font-size: 2em !important;
+        font-size: 1.8em !important; /* Significantly smaller for Typewriter text */
     }
     .intro-content .i-title {
-        height: 50px;
+        height: 40px; /* Adjust height for the rotating titles */
+        margin-bottom: 20px; /* Less margin */
         .i-title-wrapper .i-title-item {
-            font-size: 20px;
-            height: 50px;
+            font-size: 18px; /* Smaller font for rotating titles */
+            height: 40px; /* Match height */
         }
     }
-    @keyframes move {
-        0% { transform: translateY(0); }
-        16% { transform: translateY(-50px); }
-        33% { transform: translateY(-100px); }
-        50% { transform: translateY(-150px); }
-        66% { transform: translateY(-200px); }
-        83% { transform: translateY(-250px); }
-        100% { transform: translateY(0); }
-    }
+    /* IMPORTANT FIX: Profile image size on mobile */
     .intro-content .card-right .profile-image {
-        /* This seems too large for mobile */
-        width: 150px; /* Adjusted from 500px for mobile */
-        height: 150px; /* Adjusted from 500px for mobile */
+        width: 120px; /* Much smaller and appropriate for mobile */
+        height: 120px; /* Much smaller and appropriate for mobile */
+        margin-bottom: 20px; /* Reduce margin */
     }
     .intro-content .card-right .highlights .icon {
-        font-size: 24px;
+        font-size: 20px; /* Smaller icons in highlights */
     }
     .intro-content .card-right .highlights .text {
-        font-size: 1em;
+        font-size: 0.9em; /* Smaller text in highlights */
     }
 
-    /* Further adjust button size for very small screens */
+    /* Adjust button size for very small screens */
     .intro-content .download-cv-button {
-        width: 120px;
-        height: 120px;
-        font-size: 0.9em;
+        width: 100px; /* Even smaller button for very small screens */
+        height: 100px;
+        font-size: 0.8em;
+        margin-top: 50px !important; /* Adjust margin if needed after card size changes */
         .icon {
-            font-size: 2em;
+            font-size: 1.8em;
         }
+    }
+
+    /* Adjust keyframes for the new i-title-item height */
+    @keyframes move {
+        0% { transform: translateY(0); }
+        16% { transform: translateY(-40px); } /* Changed from -50px to -40px */
+        33% { transform: translateY(-80px); } /* Changed from -100px to -80px */
+        50% { transform: translateY(-120px); } /* Changed from -150px to -120px */
+        66% { transform: translateY(-160px); } /* Changed from -200px to -160px */
+        83% { transform: translateY(-200px); } /* Changed from -250px to -200px */
+        100% { transform: translateY(0); }
     }
 }
