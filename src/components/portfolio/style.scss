@@ -1,11 +1,10 @@
 @import "../../style-config/mixins.scss", "../../style-config/variable.scss";
 
-// Styles for the overall portfolio section (controlled by Section component background="dark")
 #portfolio {
-    padding: 100px 0; // Standard padding for the section
-    background-color: $black-light; // Dark background for the section [cite: variable.scss content]
-    text-align: center; // Center text for title and subtitle
-    color: $white; // Default text color for this section [cite: variable.scss content]
+    padding: 100px 0; 
+    background-color: $black-light; 
+    text-align: center; 
+    color: $white; 
 
     @include md {
         padding: 80px 0;
@@ -14,8 +13,7 @@
         padding: 60px 0;
     }
 
-    // Since Section component handles the main title, we'll style the subtitle here
-    .section-title { // Assuming Section component uses this class for its title
+    .section-title { 
         margin-bottom: 20px;
         h2 {
             font-size: 3em;
@@ -31,7 +29,7 @@
                 font-size: 1.8em;
             }
         }
-        .separator { // If Section doesn't generate this, you'd add it in portfolio/index.js
+        .separator { 
             width: 96px;
             height: 4px;
             background-color: #8245ec;
@@ -40,13 +38,13 @@
         }
     }
 
-    .portfolio-subtitle { // Added subtitle container
-        color: $gray; // Subtitle color [cite: variable.scss content]
+    .portfolio-subtitle { 
+        color: $gray; 
         font-size: 1.1em;
         line-height: 1.6;
         max-width: 800px;
-        margin: 0 auto 50px; // Centered with margin below
-        padding: 0 20px; // Add horizontal padding for smaller screens
+        margin: 0 auto 50px; 
+        padding: 0 20px; 
 
         @include sm {
             font-size: 0.95em;
@@ -63,9 +61,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1200px; // Max width for content within the section
+    max-width: 1200px; 
     margin: 0 auto;
-    padding: 0 20px; // Ensure content has horizontal padding
+    padding: 0 20px; 
 
     @include md {
         padding: 0 10px;
@@ -75,24 +73,23 @@
     }
 }
 
-/* Filters Component Styling (for filters/index.js) */
 .filters-container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap; // Allow filters to wrap on smaller screens
-    gap: 15px; // Space between filter buttons
-    margin-bottom: 50px; // Space between filters and projects grid
-    padding: 0 10px; // Padding to prevent buttons from touching screen edges
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin-bottom: 50px; 
+    padding: 0 10px; 
 
     @include sm {
         gap: 10px;
         margin-bottom: 30px;
-        justify-content: flex-start; // Align left on small screens
-        overflow-x: auto; // Enable horizontal scrolling for filters
+        justify-content: flex-start; 
+        overflow-x: auto; 
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none;  /* IE and Edge */
-        &::-webkit-scrollbar { /* Chrome, Safari, Opera */
+        scrollbar-width: none; 
+        -ms-overflow-style: none;  
+        &::-webkit-scrollbar { 
             display: none;
         }
     }
@@ -102,24 +99,24 @@
     }
 
     .filter-btn {
-        background-color: $black-lighter; // Darker background for buttons [cite: variable.scss content]
-        color: $gray; // Text color [cite: variable.scss content]
-        border: 1px solid rgba($white, 0.2); // Subtle border
+        background-color: $black-lighter; 
+        color: $gray; 
+        border: 1px solid rgba($white, 0.2); 
         padding: 10px 20px;
-        border-radius: 25px; // Rounded pills
+        border-radius: 25px; 
         font-size: 1em;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-        white-space: nowrap; // Prevent text wrapping in filter buttons
+        white-space: nowrap; 
 
         &:hover {
-            background-color: #8245ec; // Purple hover effect [cite: image_3fd0b2.jpg]
+            background-color: #8245ec; 
             color: $white;
             border-color: #8245ec;
         }
 
         &.active {
-            background-color: #8245ec; // Active state purple
+            background-color: #8245ec; 
             color: $white;
             border-color: #8245ec;
             cursor: default;
@@ -136,39 +133,38 @@
     }
 }
 
-/* Showcase Component Styling (for showcase/index.js) */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); // Responsive grid, minimum 300px per column
-    gap: 30px; // Space between project cards
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
 
-    @include md { // For tablets and smaller laptops
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // Adjusted min-width
+    @include md { 
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
         gap: 25px;
     }
-    @include sm { // For phones
-        grid-template-columns: 1fr; // Single column layout on mobile
+    @include sm { 
+        grid-template-columns: 1fr; 
         gap: 20px;
     }
 }
 
 .project-card {
-    background-color: $black-lighter; // Card background [cite: variable.scss content]
-    border-radius: 15px; // Rounded corners
-    overflow: hidden; // Ensures images/content don't overflow corners
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); // Subtle shadow
+    background-color: $black-lighter; 
+    border-radius: 15px; 
+    overflow: hidden; 
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); 
     transition: transform 0.3s ease-in-out;
-    border: 1px solid rgba($white, 0.1); // Subtle border
+    border: 1px solid rgba($white, 0.1); 
 
     &:hover {
-        transform: translateY(-5px); // Lift effect on hover
+        transform: translateY(-5px); 
     }
 
     .project-thumbnail-container {
         position: relative;
         width: 100%;
-        padding-top: 60%; /* Aspect ratio 5:3 or similar for images, adjust as needed */
-        background-color: rgba($white, 0.05); // Placeholder background if image not loaded
+        padding-top: 60%; 
+        background-color: rgba($white, 0.05); 
         overflow: hidden;
 
         img {
@@ -177,29 +173,29 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; // Cover the container without distortion
+            object-fit: cover; 
             display: block;
             transition: transform 0.3s ease-in-out;
         }
 
         &:hover img {
-            transform: scale(1.05); // Slight zoom on image hover
+            transform: scale(1.05); 
         }
 
-        .thumbnail-overlay { // To give a subtle dark overlay on images if desired
+        .thumbnail-overlay { 
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
-            pointer-events: none; // Allows clicks to pass through to the image
+            pointer-events: none; 
         }
     }
 
     .project-info {
-        padding: 25px; // Padding inside the card around text and buttons
-        text-align: left; // Align text to the left
+        padding: 25px; 
+        text-align: left; 
         color: $white;
 
         @include sm {
@@ -226,7 +222,7 @@
 
     .project-description {
         font-size: 0.95em;
-        color: $gray; // Description text color [cite: variable.scss content]
+        color: $gray; 
         line-height: 1.5;
         margin-bottom: 20px;
 
@@ -246,51 +242,51 @@
         margin-bottom: 20px;
 
         .project-tag-item {
-            background-color: rgba($white, 0.1); // Slightly transparent background
+            background-color: rgba($white, 0.1); 
             color: $white;
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 0.8em;
-            text-transform: capitalize; // Capitalize first letter of tag
-            white-space: nowrap; // Prevent tags from wrapping internally
+            text-transform: capitalize; 
+            white-space: nowrap; 
         }
     }
 
     .project-buttons {
         display: flex;
-        gap: 15px; // Space between buttons
+        gap: 15px; 
         margin-top: 20px;
-        justify-content: flex-start; // Align buttons to the left
+        justify-content: flex-start; 
 
         @include sm {
             gap: 10px;
-            flex-direction: column; // Stack buttons vertically on small screens
+            flex-direction: column; 
         }
     }
 
     .view-code-btn,
     .view-live-btn {
-        display: inline-flex; // Use flex for alignment if needed, but acts like block for full width
+        display: inline-flex; 
         align-items: center;
         justify-content: center;
         padding: 10px 20px;
-        border-radius: 8px; // Rounded corners for buttons
+        border-radius: 8px; 
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
         font-size: 0.95em;
 
         @include sm {
-            width: 100%; // Full width buttons on small screens
-            padding: 12px; // Slightly larger padding
+            width: 100%; 
+            padding: 12px; 
             font-size: 0.9em;
         }
     }
 
     .view-code-btn {
-        background-color: transparent; // Transparent background
-        color: #8245ec; // Purple text [cite: image_3fd0b2.jpg]
-        border: 2px solid #8245ec; // Purple border
+        background-color: transparent; 
+        color: #8245ec; 
+        border: 2px solid #8245ec; 
 
         &:hover {
             background-color: #8245ec;
@@ -299,7 +295,7 @@
     }
 
     .view-live-btn {
-        background-color: #8245ec; // Purple background
+        background-color: #8245ec; 
         color: $white;
         border: 2px solid #8245ec;
 
@@ -310,7 +306,6 @@
     }
 }
 
-/* Animations for Filters and Showcase (from your original code) */
 .projects-grid.zoomout {
     opacity: 0;
     transform: scale(0.8);

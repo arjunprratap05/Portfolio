@@ -1,9 +1,7 @@
-// src/components/portfolio/filter/index.js (Filters.jsx)
 import React, { useState } from 'react';
 
 const Filters = ({ filterProjects }) => {
-    // Define all possible tags from your projectsData to create filter buttons
-    const allTags = ['all', 'web-app', 'product', 'web-page', 'mobile-app']; // Extend as needed
+    const allTags = ['all', 'web-app', 'product', 'web-page', 'mobile-app']; 
 
     const [activeFilter, setActiveFilter] = useState('all');
 

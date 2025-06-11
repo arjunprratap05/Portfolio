@@ -1,4 +1,3 @@
-// src/components/portfolio/showcase/index.js (Showcase.jsx)
 import React from 'react';
 
 const Showcase = ({ data, transition }) => {
@@ -8,7 +7,7 @@ const Showcase = ({ data, transition }) => {
                 <div key={project.id} className="project-card">
                     <div className="project-thumbnail-container">
                         <img src={project.media.thumbnail} alt={project.name} />
-                        <div className="thumbnail-overlay"></div> {/* Optional overlay */}
+                        <div className="thumbnail-overlay"></div> 
                     </div>
                     <div className="project-info">
                         <h4 className="project-title">{project.name}</h4>
@@ -21,10 +20,10 @@ const Showcase = ({ data, transition }) => {
                             ))}
                         </div>
                         <div className="project-buttons">
-                            {project.codeUrl && ( // Conditionally render View Code button
+                            {project.codeUrl && ( 
                                 <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="view-code-btn">View Code</a>
                             )}
-                            {project.liveUrl && ( // Conditionally render View Live button
+                            {project.liveUrl && ( 
                                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="view-live-btn">View Live</a>
                             )}
                         </div>

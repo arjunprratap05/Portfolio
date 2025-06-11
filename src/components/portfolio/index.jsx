@@ -4,7 +4,7 @@ import Section from "../shared/section";
 import Filters from "./filter";
 import Showcase from "./showcase";
 
-const rawProjectsData = [ // Renamed to rawProjectsData before filtering
+const rawProjectsData = [ 
     {
         id: 1,
         name: "Mega-Blog",
@@ -68,18 +68,14 @@ const rawProjectsData = [ // Renamed to rawProjectsData before filtering
             thumbnail: require("../../images/portfolio/DbAttributes.png"),
         },
     },
-    // Removed Todo, TodoList, Todos-details as requested
 ];
 
-// Add specific URLs to each project and filter out unwanted ones
 const projectsData = rawProjectsData
-    // .filter(project =>
-    //     !['Todo', 'TodoList', 'Todos-details'].includes(project.name)
-    // )
+   
     .map(project => ({
         ...project,
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", // New Code URL
-        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",   // New Live URL
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",   
     }));
 
 
