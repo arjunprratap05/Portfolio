@@ -48,7 +48,7 @@ $breakpoint-lg: 1200px;
     }
 }
 
-@mixin lg { // <--- ADD THIS MIXIN BLOCK
+@mixin lg { 
     @media (min-width: #{$breakpoint-lg}) { 
         @content;
     }
