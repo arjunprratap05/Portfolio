@@ -1,5 +1,5 @@
 import React from "react";
-import { FaYoutube, FaGithub, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaYoutube, FaGithub, FaLinkedinIn, FaInstagram ,FaFacebook} from "react-icons/fa";
 import Typewriter from "typewriter-effect";
 import Section from "../shared/section";
 import SocialIcon from "./social-icon";
@@ -75,6 +75,11 @@ const Footer = () => {
                         color="#E84C88"
                         icon={<FaInstagram />}
                         link="https://www.instagram.com/arjun.prratap05/"
+                    />
+                    <SocialIcon
+                        color="#E84C88"
+                        icon={<FaFacebook />}
+                        link="https://www.facebook.com/arjun.prratap05/"
                     />
                 </div>
                 <div className="bottom-bar">
