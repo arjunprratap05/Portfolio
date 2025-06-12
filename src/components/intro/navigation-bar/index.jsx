@@ -42,12 +42,7 @@ const Navigation = () => {
                 >
                     Portfolio
                 </span>
-                <span
-                    className="navigation-item"
-                    onClick={() => scrollToSection("contact")}
-                >
-                    Contact Me
-                </span>
+                
             </div>
 
             <CallToAction text="Resume" action={handleDownload} />

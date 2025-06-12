@@ -50,14 +50,7 @@ const Footer = () => {
                         Portfolio
                     </li>
 
-                     <li
-                        className="footer-menu-item"
-                        onClick={() => {
-                            scrollToSection("contact");
-                        }}
-                    >
-                        Contact me
-                    </li> 
+                    
                 </ul>
                 <div className="social-icons">
                     <SocialIcon
