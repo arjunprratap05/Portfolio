@@ -20,7 +20,7 @@ const Navigation = () => {
             
             <div className="app-logo" onClick={() => scrollToSection("home")}>
                 
-                <span className="logo-text">Arjun's Portfolio</span> 
+        
             </div>
 
             <div className="navigation">
