@@ -15,18 +15,13 @@ const Intro = () => {
                 className="vector-bg"
                 id="parallax"
             ></div>
-            {/* <img
-                src={cloud}
-                alt="cloud"
-                className="cloud"
-            /> */}
+            
             <img
                 src={cloudSoft}
                 alt="cloudSoft"
                 className="cloud-soft"
             />
             <div className="content">
-                <Navigation />
                 <IntroContent />
             </div>
         </div>

@@ -9,14 +9,6 @@ import { scrollToSection } from "../../utils/helpers";
 import CallToAction from "../../shared/CallToAction";
 import { AiOutlineCloudDownload } from "react-icons/ai";
 
-const handleDownload = () => {
-        const link = document.createElement("a");
-        link.href = "\Arjun_Pratap_SoftwareDeveloper_Resume.pdf"; 
-        link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
 
 const IntroContent = () => {
     return (
@@ -88,11 +80,7 @@ const IntroContent = () => {
                     
                 </div>
             </div>
-            <CallToAction
-                        text="Download CV"
-                        icon={<AiOutlineCloudDownload />}
-                        action={handleDownload}
-                    />
+           
         </div>
     );
 };

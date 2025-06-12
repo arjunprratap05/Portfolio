@@ -12,11 +12,5 @@ const CallToAction = ({ text, action, icon }) => {
     );
 };
 
-const handleDownload = () => {
-    const resumeUrl = "/path/to/your/resume.pdf"; 
-    const link = document.createElement("a");
-    link.href = resumeUrl;
-    link.download = "My_Resume.pdf";
-}
 
 export default CallToAction;

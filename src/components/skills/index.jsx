@@ -1,8 +1,6 @@
 import React from "react";
 import Section from "../shared/section";
 import "./style.scss";
-
-
 import { SkillsInfo } from "../../constants"; 
 
 const Skills = () => {

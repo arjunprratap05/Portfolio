@@ -88,7 +88,7 @@ const Chatbot = () => {
       {isOpen && (
         <div className="chatbox"> 
           <div className="chat-header">
-            Chat with Arjun AI
+            Arjun's AI Chatbot
             <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
           </div>
 
