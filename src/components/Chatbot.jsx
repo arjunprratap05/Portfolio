@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Chatbot.css'; 
 
-
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
 const Chatbot = () => {
@@ -16,12 +15,11 @@ const Chatbot = () => {
         const minutes = date.getMinutes().toString().padStart(2, '0');
         return `${hours}:${minutes}`;
     };
-    
+
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, isBotTyping]);
 
-   
     const toggleChat = useCallback(() => {
         setIsOpen(prev => !prev);
     }, []);
@@ -60,13 +58,30 @@ const Chatbot = () => {
         setInput(''); 
         setIsBotTyping(true); 
 
-        
         setTimeout(async () => {
+            let botReply = '';
+            const lowerCaseMessage = userMessage.toLowerCase();
             
-            const botReply = await sendMessageToAI(userMessage);
+            const now = new Date();
+            const currentHour = now.getHours();
+            let timeOfDayGreeting = "";
+            if (currentHour >= 5 && currentHour < 12) {
+                timeOfDayGreeting = "Good Morning!";
+            } else if (currentHour >= 12 && currentHour < 18) {
+                timeOfDayGreeting = "Good Afternoon!";
+            } else {
+                timeOfDayGreeting = "Good Evening!";
+            }
+
+            
+            if (lowerCaseMessage === 'hi' || lowerCaseMessage === 'hello' || lowerCaseMessage === 'hey') {
+                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s AI. Ask me anything about Arjun or his work!`;
+            } else {
+                
+                botReply = await sendMessageToAI(userMessage);
+            }
 
             setIsBotTyping(false); 
-            
             setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: new Date() }]); 
         }, 1200); 
     }, [input, sendMessageToAI]); 
