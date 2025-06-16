@@ -62,6 +62,7 @@ const Chatbot = () => {
             let botReply = '';
             const lowerCaseMessage = userMessage.toLowerCase();
             
+            
             const now = new Date();
             const currentHour = now.getHours();
             let timeOfDayGreeting = "";
@@ -73,15 +74,21 @@ const Chatbot = () => {
                 timeOfDayGreeting = "Good Evening!";
             }
 
-            
-            if (lowerCaseMessage === 'hi' || lowerCaseMessage === 'hello' || lowerCaseMessage === 'hey') {
-                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s AI. Ask me anything about Arjun or his work!`;
+            if (lowerCaseMessage === 'hi' || 
+                lowerCaseMessage === 'hello' || 
+                lowerCaseMessage === 'hey' ||
+                lowerCaseMessage === 'hello arjun\'s verse ai' || 
+                lowerCaseMessage === 'hi arjun\'s verse ai' ||    
+                lowerCaseMessage === 'hey arjun\'s verse ai'    
+            ) {
+                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI. Ask me anything about Arjun or his work!`; // Updated bot's self-introduction
             } else {
                 
                 botReply = await sendMessageToAI(userMessage);
             }
 
             setIsBotTyping(false); 
+
             setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: new Date() }]); 
         }, 1200); 
     }, [input, sendMessageToAI]); 
@@ -101,7 +108,7 @@ const Chatbot = () => {
             {isOpen && (
                 <div className="chatbox"> 
                     <div className="chat-header">
-                        Arjun's Verse AI
+                        Arjun's Verse AI Chatbot 
                         <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
                     </div>
 
