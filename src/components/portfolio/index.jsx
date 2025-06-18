@@ -13,6 +13,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/appwrite.png"),
         },
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 2,
@@ -22,6 +24,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/appwriteLogin.png"),
         },
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 3,
@@ -31,6 +35,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/appwritesignIN.png"),
         },
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 4,
@@ -40,6 +46,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/MegaBlogPost.png"),
         },
+         codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 5,
@@ -49,6 +57,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/BlogPost.png"),
         },
+         codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 6,
@@ -58,6 +68,8 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/DbData.png"),
         },
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
         id: 7,
@@ -67,16 +79,24 @@ const rawProjectsData = [
         media: {
             thumbnail: require("../../images/portfolio/DbAttributes.png"),
         },
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
+    },
+    {
+        id: 8,
+        name: "GitHub Profile Detective",
+        tags: ["web-page", "web-app", "mobile-app", "product"],
+        description: "A github profile analysis tool that provides insights into user contributions, repositories, and activity patterns.",
+        media: {
+            thumbnail: require("../../images/portfolio/GitHub-Profile-Search-App.png"),
+        },
+        codeUrl: "https://github.com/arjunprratap05/SocialMedia", 
+        liveUrl: "https://social-media-kappa-pearl.vercel.app/",          
     },
 ];
 
-const projectsData = rawProjectsData
-   
-    .map(project => ({
-        ...project,
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
-        liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",   
-    }));
+
+const projectsData = rawProjectsData; 
 
 
 const Portfolio = () => {
