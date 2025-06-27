@@ -28,7 +28,7 @@ const IntroContent = () => {
                             <span className="text">, I am</span>
                         </span>
                         <div
-                            style={{ fontSize: "30px", paddingBottom: "5px" }}
+                            style={{ fontSize: "35px", paddingBottom: "5px" }}
                         >
                             <Typewriter
                                 options={{
