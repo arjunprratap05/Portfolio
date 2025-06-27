@@ -14,7 +14,7 @@ const IntroContent = () => {
     return (
         <div className="intro-content">
             <div className="layout">
-                {/* Left Card */}
+    
                 <div className="card card-left">
                     <h1 className="title">
                         <span className="small-text">
@@ -28,7 +28,7 @@ const IntroContent = () => {
                             <span className="text">, I am</span>
                         </span>
                         <div
-                            style={{ fontSize: "50px", paddingBottom: "20px" }}
+                            style={{ fontSize: "30px", paddingBottom: "5px" }}
                         >
                             <Typewriter
                                 options={{
