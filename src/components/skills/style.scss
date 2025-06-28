@@ -1,3 +1,6 @@
+// File: src/components/skills/style.scss (COPY AND PASTE THIS ENTIRE CONTENT)
+
+// Corrected import path for variable.scss assuming it's in style-config
 @import "../../style-config/variable.scss";
 @import "../../style-config/mixins.scss";
 
@@ -15,18 +18,20 @@
     @include md {
         padding: 96px 10vw;
     }
+    // Adjusted padding for smaller screens to give more content width
     @include sm {
-        padding: 96px 5vw;
+        padding: 96px 3vw; // Reduced from 5vw
     }
     @include xs {
-        padding: 60px 4vw;
+        padding: 60px 2vw; // Reduced from 4vw
     }
 }
 
 .skills-section-title {
     text-align: center;
     margin-bottom: 50px;
-    padding: 0 20px;
+    // We are deliberately NOT setting a fixed padding here to allow flexibility
+    // Its width will be controlled by the #skills padding and its content.
 
     h2 {
         font-size: 3em;
@@ -48,21 +53,21 @@
         font-size: 1.1em;
         font-weight: 500;
         line-height: 1.6;
-        max-width: 700px;
+        max-width: 700px; // Default max-width for larger screens
         margin: 0 auto;
         
-        white-space: normal; 
-        word-wrap: break-word; 
+        white-space: normal;
+        word-wrap: break-word; // Or overflow-wrap: break-word;
 
         @include sm {
-            font-size: 0.45em;
-            max-width: 90%; 
-            padding: 0 5px;
+            font-size: 0.95em; 
+            max-width: 100%; // Ensure it takes full width of its parent
+            padding: 0 5px; // Very minimal internal padding for text
         }
         @include xs {
-            font-size: 0.85em;
-            max-width: 95%; 
-            padding: 0 10px;
+            font-size: 0.85em; 
+            max-width: 100%; // Ensure it takes full width of its parent
+            padding: 0 2px; // Even more minimal internal padding for text
         }
     }
 
