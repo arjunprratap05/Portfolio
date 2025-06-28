@@ -3,31 +3,13 @@
 $breakpoint-xs: 480px;
 $breakpoint-sm: 768px;
 $breakpoint-md: 992px;
-$breakpoint-lg: 1200px; 
+$breakpoint-lg: 1200px;
 
 @mixin typography($size: 18px, $weight: 400, $lineHeight: 24px) {
     font-style: normal;
     font-weight: $weight;
     font-size: $size;
     line-height: $lineHeight;
-}
-
-@mixin large-screen {
-    @media only screen and (min-width: 1441px) {
-        @content;
-    }
-}
-
-@mixin extra-small-screen {
-    @media (max-width: 480px) { @content; }
-}
-
-@mixin small-screen {
-    @media (max-width: 768px) { @content; }
-}
-
-@mixin medium-screen {
-    @media (max-width: 1024px) { @content; }
 }
 
 @mixin xs {
@@ -48,8 +30,8 @@ $breakpoint-lg: 1200px;
     }
 }
 
-@mixin lg { 
-    @media (min-width: #{$breakpoint-lg}) { 
+@mixin lg {
+    @media (min-width: #{$breakpoint-lg}) {
         @content;
     }
 }

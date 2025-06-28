@@ -66,11 +66,11 @@ const Chatbot = () => {
             const now = new Date();
             const currentHour = now.getHours();
             let timeOfDayGreeting = "";
-            if (currentHour >= 5 && currentHour < 12) {
+            if (currentHour >= 0 && currentHour < 12) {
                 timeOfDayGreeting = "Good Morning!";
             } else if (currentHour >= 12 && currentHour < 18) {
                 timeOfDayGreeting = "Good Afternoon!";
-            } else {
+            } else if(currentHour >= 18 && currentHour < 24) {
                 timeOfDayGreeting = "Good Evening!";
             }
 
