@@ -1,63 +1,63 @@
 @import "../../style-config/variable.scss";
-@import "../../style-config/mixins.scss"; 
+@import "../../style-config/mixins.scss";
 
 #skills {
     padding: 96px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $black-light; 
-    position: relative; 
+    background-color: $black-light;
+    position: relative;
 
-    @include lg { 
+    @include lg {
         padding: 96px 15vw;
     }
-    @include md { 
+    @include md {
         padding: 96px 10vw;
     }
-    @include sm { 
+    @include sm {
         padding: 96px 5vw;
     }
-    @include xs { 
-        padding: 60px 4vw; 
+    @include xs {
+        padding: 60px 4vw;
     }
 }
 
 .skills-section-title {
     text-align: center;
-    margin-bottom: 50px; 
-    padding: 0 20px; 
+    margin-bottom: 50px;
+    padding: 0 20px;
 
     h2 {
-        font-size: 3em; 
+        font-size: 3em;
         font-weight: bold;
-        color: $white; 
-        text-transform: uppercase; 
-        margin-bottom: 10px; 
+        color: $white;
+        text-transform: uppercase;
+        margin-bottom: 10px;
 
         @include sm {
-            font-size: 2.2em; 
+            font-size: 2.2em;
         }
         @include xs {
-            font-size: 1.8em; 
+            font-size: 1.8em;
         }
     }
 
     .separator {
-        width: 96px; 
-        height: 4px; 
-        background-color: #8245ec; 
-        margin: 0 auto 20px; 
-        border-radius: 2px; 
+        width: 96px;
+        height: 4px;
+        background-color: #8245ec;
+        margin: 0 auto 20px;
+        border-radius: 2px;
     }
 
     p {
-        color: $gray; 
+        color: $gray;
         font-size: 1.1em;
         font-weight: 500;
         line-height: 1.6;
-        max-width: 700px; 
-        margin: 0 auto; 
+        max-width: 700px;
+        margin: 0 auto;
 
         @include sm {
             font-size: 0.95em;
@@ -71,58 +71,67 @@
 .skill-categories-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
-    gap: 20px; 
+    justify-content: center;
+    gap: 20px;
 
-    width: 100%; 
-    max-width: 1200px; 
-    margin: 0 auto; 
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 
-    @include md { 
+    @include md {
+        
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
         gap: 20px;
     }
-    @include sm { 
+    @include sm {
         gap: 15px;
     }
-    @include xs { 
+    @include xs {
         gap: 15px;
     }
 }
 
 .skill-category-card {
-    background-color: $black-lighter; 
-    backdrop-filter: blur(8px); 
-    border-radius: 16px; 
-    border: 1px solid rgba($white, 0.1); 
-    box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3); 
-    padding: 40px; 
-    width: calc(33.33% - 20px); 
-    max-width: 380px; 
+    background-color: $black-lighter;
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    border: 1px solid rgba($white, 0.1);
+    box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3);
+    padding: 40px;
+    
+    width: calc(33.33% - 20px);
+    max-width: 380px;
     min-width: 280px; 
 
     box-sizing: border-box; 
 
-    @include md { 
-        width: 90%; 
+    @include md {
+        
+        width: 90%;
         max-width: 500px; 
         padding: 30px;
     }
-    @include sm { 
-        width: 95%; 
+    @include sm {
+        
+        width: 95%;
+        max-width: 400px; 
         padding: 25px;
+        min-width: unset; 
     }
-    @include xs { 
-        padding: 20px;
+    @include xs {
+        
+        width: 98%; 
+        max-width: 320px; 
+        padding: 20px 15px; 
     }
 
     h3 {
-        font-size: 2.2em; 
+        font-size: 2.2em;
         font-weight: 600;
-        color: $gray; 
+        color: $gray;
         text-align: center;
-        margin-bottom: 30px; 
+        margin-bottom: 30px;
 
         @include sm {
             font-size: 1.8em;
@@ -136,51 +145,51 @@
 
 .skill-items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
-    gap: 12px; 
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
 
-    @include sm { 
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); 
-        gap: 8px; 
+    @include sm {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
     }
-    @include xs { 
-        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); 
-        gap: 6px; 
+    @include xs {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 6px;
     }
 }
 
 .skill-item {
-    background-color: transparent; 
-    border: 1px solid rgba($white, 0.2); 
-    border-radius: 20px; 
+    background-color: transparent;
+    border: 1px solid rgba($white, 0.2);
+    border-radius: 20px;
     padding: 10px 15px; 
 
     display: flex;
-    align-items: center; 
-    justify-content: flex-start; 
-    cursor: default; 
-    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out; 
-    min-height: 45px; 
-    overflow: hidden; 
-    box-sizing: border-box; 
+    align-items: center;
+    justify-content: flex-start;
+    cursor: default;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    min-height: 45px;
+    overflow: hidden;
+    box-sizing: border-box;
 
     &:hover {
-        transform: translateY(-3px); 
-        background-color: rgba($white, 0.05); 
+        transform: translateY(-3px);
+        background-color: rgba($white, 0.05);
     }
 
     .skill-logo {
-        flex-shrink: 0; 
-        width: 24px; 
+        flex-shrink: 0;
+        width: 24px;
         height: 24px;
-        margin-right: 8px; 
+        margin-right: 8px;
 
-        @include sm { 
+        @include sm {
             width: 20px;
             height: 20px;
             margin-right: 6px;
         }
-        @include xs { 
+        @include xs {
             width: 18px;
             height: 18px;
             margin-right: 5px;
@@ -188,21 +197,22 @@
     }
 
     .skill-name {
-        flex-grow: 1; 
-        min-width: 0; 
-        white-space: nowrap; 
-        overflow: hidden; 
-        text-overflow: ellipsis; 
-        color: $white; 
-        font-size: 0.9em; 
+        flex-grow: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: $white;
+        font-size: 0.9em;
         font-weight: 500;
-        text-align: left; 
+        text-align: left;
 
-        @include sm { 
-            font-size: 0.75em; 
+        @include sm {
+            font-size: 0.75em;
         }
-        @include xs { 
-            font-size: 0.7em; 
+        @include xs {
+            font-size: 0.7em;
+            
         }
     }
 }
