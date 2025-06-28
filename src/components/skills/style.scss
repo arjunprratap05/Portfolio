@@ -43,14 +43,6 @@
         }
     }
 
-    .separator {
-        width: 96px;
-        height: 4px;
-        background-color: #8245ec;
-        margin: 0 auto 20px;
-        border-radius: 2px;
-    }
-
     p {
         color: $gray;
         font-size: 1.1em;
@@ -58,17 +50,28 @@
         line-height: 1.6;
         max-width: 700px;
         margin: 0 auto;
+        
+        white-space: normal; 
+        word-wrap: break-word; 
 
         @include sm {
             font-size: 0.95em;
-            max-width: 90%;
+            max-width: 90%; 
             padding: 0 15px;
         }
         @include xs {
             font-size: 0.85em;
-            max-width: 95%;
+            max-width: 95%; 
             padding: 0 10px;
         }
+    }
+
+    .separator {
+        width: 96px;
+        height: 4px;
+        background-color: #8245ec;
+        margin: 0 auto 20px;
+        border-radius: 2px;
     }
 }
 
