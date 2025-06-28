@@ -52,10 +52,10 @@
         margin: 0 auto;
         
         white-space: normal; 
-      //  word-wrap: break-word; 
+        word-wrap: break-word; 
 
         @include sm {
-            font-size: 0.95em;
+            font-size: 0.45em;
             max-width: 90%; 
             padding: 0 15px;
         }
