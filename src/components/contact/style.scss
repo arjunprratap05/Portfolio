@@ -6,13 +6,13 @@
     margin-top: 25px;
     flex-direction: column;
 
-    @include medium-screen {
+    @include md { 
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
     }
 
-    @include small-screen {
+    @include sm { 
         margin-top: 50px;
         flex-direction: column;
     }
@@ -23,11 +23,11 @@
     flex-direction: column;
     width: 50%;
 
-    @include small-screen {
+    @include sm { 
         width: 80%;
     }
 
-    @include extra-small-screen {
+    @include xs { 
         width: 100%;
     }
 
@@ -39,7 +39,7 @@
         margin-bottom: 10px;
         font-size: 16px;
 
-        @include extra-small-screen {
+        @include xs { 
             font-size: 14px;
             padding: 10px;
         }
@@ -60,11 +60,11 @@
             background-color: darken($primary-color, 10%);
         }
 
-        @include small-screen {
+        @include sm { 
             font-size: 16px;
         }
 
-        @include extra-small-screen {
+        @include xs { 
             font-size: 14px;
             padding: 10px;
         }
@@ -74,7 +74,7 @@
 .contact-info {
     width: 50%;
 
-    @include small-screen {
+    @include sm { 
         width: 100%;
         text-align: center;
         margin-bottom: 20px;

@@ -26,7 +26,7 @@
 .skills-section-title {
     text-align: center;
     margin-bottom: 50px;
-    padding: 0 20px; 
+    padding: 0 20px;
 
     h2 {
         font-size: 3em;
@@ -56,18 +56,18 @@
         font-size: 1.1em;
         font-weight: 500;
         line-height: 1.6;
-        max-width: 700px; 
+        max-width: 700px;
         margin: 0 auto;
 
         @include sm {
             font-size: 0.95em;
-            max-width: 90%; 
-            padding: 0 15px; 
+            max-width: 90%;
+            padding: 0 15px;
         }
         @include xs {
             font-size: 0.85em;
-            max-width: 95%; 
-            padding: 0 10px; 
+            max-width: 95%;
+            padding: 0 10px;
         }
     }
 }
@@ -104,25 +104,25 @@
     padding: 40px;
     width: calc(33.33% - 20px);
     max-width: 380px;
-    min-width: 280px; 
+    min-width: 280px;
 
-    box-sizing: border-box; 
+    box-sizing: border-box;
 
     @include md {
         width: 90%;
-        max-width: 500px; 
+        max-width: 500px;
         padding: 30px;
     }
     @include sm {
         width: 95%;
-        max-width: 400px; 
+        max-width: 400px;
         padding: 25px;
-        min-width: unset; 
+        min-width: unset;
     }
     @include xs {
-        width: 98%; 
-        max-width: 320px; 
-        padding: 20px 15px; 
+        width: 98%;
+        max-width: 320px;
+        padding: 20px 15px;
     }
 
     h3 {
@@ -148,11 +148,10 @@
     gap: 12px;
 
     @include sm {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 8px;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
     }
     @include xs {
-        
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
         gap: 6px;
     }
@@ -162,7 +161,7 @@
     background-color: transparent;
     border: 1px solid rgba($white, 0.2);
     border-radius: 20px;
-    padding: 10px 15px; 
+    padding: 10px 15px;
 
     display: flex;
     align-items: center;
