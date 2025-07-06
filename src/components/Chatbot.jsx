@@ -10,6 +10,7 @@ const Chatbot = () => {
     const [input, setInput] = useState('');
     const [isBotTyping, setIsBotTyping] = useState(false);
     const [showInactivityPrompt, setShowInactivityPrompt] = useState(false);
+    const [showAssistPrompt, setShowAssistPrompt] = useState(false);
     const inactivityTimerRef = useRef(null);
     const messagesEndRef = useRef(null);
 
@@ -21,31 +22,30 @@ const Chatbot = () => {
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages, isBotTyping, showInactivityPrompt]); 
+    }, [messages, isBotTyping, showInactivityPrompt, showAssistPrompt]); 
 
     const resetInactivityTimer = useCallback(() => {
         if (inactivityTimerRef.current) {
             clearTimeout(inactivityTimerRef.current);
         }
-        if (isOpen && !showInactivityPrompt) { 
+
+        if (isOpen && !showInactivityPrompt && !showAssistPrompt && !isBotTyping) {
             inactivityTimerRef.current = setTimeout(() => {
                 setShowInactivityPrompt(true);
-                
-                setMessages(prev => [...prev, { from: 'bot', text: 'Do you want to continue?', isPrompt: true, timestamp: new Date() }]);
+                setMessages(prev => [...prev, { from: 'bot', text: 'Do you want to continue the conversation?', isPrompt: true, type: 'continue', timestamp: new Date() }]);
             }, INACTIVITY_TIMEOUT_MS);
         }
-    }, [isOpen, showInactivityPrompt]);
+    }, [isOpen, showInactivityPrompt, showAssistPrompt, isBotTyping]);
 
-    
     useEffect(() => {
         if (isOpen) {
             resetInactivityTimer();
         } else {
-            
             if (inactivityTimerRef.current) {
                 clearTimeout(inactivityTimerRef.current);
             }
             setShowInactivityPrompt(false); 
+            setShowAssistPrompt(false); 
         }
         return () => { 
             if (inactivityTimerRef.current) {
@@ -63,6 +63,7 @@ const Chatbot = () => {
                     clearTimeout(inactivityTimerRef.current);
                 }
                 setShowInactivityPrompt(false);
+                setShowAssistPrompt(false);
             }
             return !prev;
         });
@@ -102,6 +103,7 @@ const Chatbot = () => {
         setInput('');
         setIsBotTyping(true);
         setShowInactivityPrompt(false); 
+        setShowAssistPrompt(false); 
         resetInactivityTimer(); 
 
         setTimeout(async () => {
@@ -135,7 +137,7 @@ const Chatbot = () => {
             setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: new Date() }]);
             resetInactivityTimer(); 
         }, 1200);
-    }, [input, sendMessageToAI, resetInactivityTimer]); 
+    }, [input, sendMessageToAI, resetInactivityTimer]);
 
     const handleKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
@@ -143,21 +145,32 @@ const Chatbot = () => {
         }
     }, [handleSend]);
 
-    const handleInactivityResponse = useCallback((choice) => {
-        if (choice === 'yes') {
+    const handlePromptResponse = useCallback((type, choice) => {
+        setMessages(prev => prev.filter(msg => !(msg.isPrompt && msg.type === type)));
+
+        if (type === 'continue') {
             setShowInactivityPrompt(false);
-            resetInactivityTimer(); 
-            setMessages(prev => prev.filter(msg => !msg.isPrompt)); 
-        } else { 
-            setMessages(prev => [...prev.filter(msg => !msg.isPrompt), { from: 'bot', text: 'Thank you!', timestamp: new Date() }]);
-            setShowInactivityPrompt(false);
-            setIsOpen(false); 
-            if (inactivityTimerRef.current) {
-                clearTimeout(inactivityTimerRef.current);
+            if (choice === 'yes') {
+                resetInactivityTimer(); 
+            } else { 
+                setShowAssistPrompt(true);
+                setMessages(prev => [...prev, { from: 'bot', text: 'Thank you. Can I assist with something else?', isPrompt: true, type: 'assist', timestamp: new Date() }]);
+            }
+        } else if (type === 'assist') { 
+            setShowAssistPrompt(false);
+            if (choice === 'yes') {
+                resetInactivityTimer(); 
+            } else { 
+                setMessages(prev => [...prev, { from: 'bot', text: 'Thank you!', timestamp: new Date() }]);
+                setIsOpen(false); 
+                if (inactivityTimerRef.current) {
+                    clearTimeout(inactivityTimerRef.current);
+                }
+                
+                console.log("Chat ended. Storing conversation:", messages);
             }
         }
-    }, [resetInactivityTimer, setIsOpen]);
-
+    }, [resetInactivityTimer, setIsOpen, messages]); 
 
     return (
         <div className="chatbot-wrapper">
@@ -184,10 +197,17 @@ const Chatbot = () => {
                                         {formatTimestamp(msg.timestamp)}
                                     </div>
                                 )}
-                                {msg.isPrompt && (
+                                
+                                {msg.isPrompt && msg.type === 'continue' && (
                                     <div className="prompt-options">
-                                        <button onClick={() => handleInactivityResponse('yes')}>Yes</button>
-                                        <button onClick={() => handleInactivityResponse('no')}>No</button>
+                                        <button onClick={() => handlePromptResponse('continue', 'yes')}>Yes</button>
+                                        <button onClick={() => handlePromptResponse('continue', 'no')}>No</button>
+                                    </div>
+                                )}
+                                {msg.isPrompt && msg.type === 'assist' && (
+                                    <div className="prompt-options">
+                                        <button onClick={() => handlePromptResponse('assist', 'yes')}>Yes</button>
+                                        <button onClick={() => handlePromptResponse('assist', 'no')}>No</button>
                                     </div>
                                 )}
                             </div>
@@ -212,13 +232,13 @@ const Chatbot = () => {
                             onKeyPress={handleKeyPress}
                             placeholder="Type your message..."
                             className="chat-input"
-                            disabled={isBotTyping || showInactivityPrompt} 
+                            disabled={isBotTyping || showInactivityPrompt || showAssistPrompt} 
                             aria-label="Message input"
                         />
                         <button
                             className="send-button"
                             onClick={handleSend}
-                            disabled={isBotTyping || !input.trim() || showInactivityPrompt} 
+                            disabled={isBotTyping || !input.trim() || showInactivityPrompt || showAssistPrompt} 
                             aria-label="Send message"
                         >
                             <img src="/send.jpg" alt="Send" />
