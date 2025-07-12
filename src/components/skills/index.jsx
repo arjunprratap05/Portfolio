@@ -11,7 +11,7 @@ const Skills = () => {
                 <h2>SKILLS</h2>
                 <div className="separator"></div> 
                 <p>
-                    A collection of my technical skills and expertise honed through various projects
+                    A collection of my technical skills
                 </p>
             </div>
 
