@@ -248,6 +248,7 @@
     transition: background-color 0.2s ease;
 }
 
+
 .inactivity-prompt-message .prompt-options button:hover {
     background-color: #0056b3;
 }

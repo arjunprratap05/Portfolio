@@ -50,7 +50,7 @@ const IntroContent = () => {
                         </div>
                     </div>
                     <p>
-                        I am a full stack developer. My skills are HTML, CSS, Tailwind CSS, JS, React.Js, Git, GitHub, Asp.Net. I am looking for an in-office job for growing my skills.
+                        I am a full stack developer. My skills are HTML, CSS, Tailwind CSS, JS, React.Js, Git, GitHub, Asp.Net,Kafka.
                     </p>
                     
                 </div>
@@ -65,7 +65,7 @@ const IntroContent = () => {
                         <div className="icon">
                             <BsAwardFill />
                         </div>
-                        <div className="text">Mern Stack Developer</div>
+                        <div className="text">Full Stack Developer</div>
                     </div>
 
                     <div className="highlights verticle">
@@ -85,4 +85,4 @@ const IntroContent = () => {
     );
 };
 
-export default IntroContent;
+export default IntroContent;

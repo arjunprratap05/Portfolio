@@ -12,5 +12,4 @@ const CallToAction = ({ text, action, icon }) => {
     );
 };
 
-
 export default CallToAction;

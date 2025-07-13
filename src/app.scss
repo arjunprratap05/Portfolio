@@ -96,7 +96,6 @@ h4 {
     color: $white;
     border: none;
     @include transition-ease(300ms);
-
     &:hover {
         background-color: darken($primary-color, 10%);
     }

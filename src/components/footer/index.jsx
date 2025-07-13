@@ -77,7 +77,7 @@ const Footer = () => {
                 </div>
                 <div className="bottom-bar">
                     <div className="copyright-text">
-                        Copyright All Rights Reserverd,2025 | Arjun Pratap
+                        Copyright All Rights Reserverd, 2025 | Arjun Pratap
                     </div>
                 </div>
             </div>
