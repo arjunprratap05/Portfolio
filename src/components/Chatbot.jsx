@@ -115,20 +115,21 @@ const Chatbot = () => {
             let timeOfDayGreeting = "";
             if (currentHour >= 0 && currentHour < 12) {
                 timeOfDayGreeting = "Good Morning!";
-            } else if (currentHour >= 12 && currentHour < 18) {
+            } else if (currentHour >= 12 && currentHour < 17) {
                 timeOfDayGreeting = "Good Afternoon!";
-            } else if (currentHour >= 18 && currentHour < 24) {
+            } else if (currentHour >= 17 && currentHour < 21) {
                 timeOfDayGreeting = "Good Evening!";
+            } else if(currentHour >= 21 || currentHour < 0) {
+                timeOfDayGreeting = "Good Night!";
             }
 
             if (lowerCaseMessage === 'hi' ||
                 lowerCaseMessage === 'hello' ||
                 lowerCaseMessage === 'hey' ||
                 lowerCaseMessage === 'hello arjun\'s verse ai' ||
-                lowerCaseMessage === 'hi arjun\'s verse ai' ||
-                lowerCaseMessage === 'hey arjun\'s verse ai'
+                lowerCaseMessage === 'hi arjun\'s verse ai' 
             ) {
-                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI. Ask me anything about Arjun or his work!`;
+                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI!`;
             } else {
                 botReply = await sendMessageToAI(userMessage);
             }
@@ -146,9 +147,8 @@ const Chatbot = () => {
     }, [handleSend]);
 
     const handlePromptResponse = useCallback((type, choice) => {
-        setMessages(prev => prev.filter(msg => !(msg.isPrompt && msg.type === type)));
-
         if (type === 'continue') {
+            setMessages(prev => [...prev, { from: 'user', text: choice === 'yes' ? 'Yes' : 'No', timestamp: new Date() }]);
             setShowInactivityPrompt(false);
             if (choice === 'yes') {
                 resetInactivityTimer(); 
@@ -157,20 +157,21 @@ const Chatbot = () => {
                 setMessages(prev => [...prev, { from: 'bot', text: 'Thank you. Can I assist with something else?', isPrompt: true, type: 'assist', timestamp: new Date() }]);
             }
         } else if (type === 'assist') { 
+            setMessages(prev => [...prev, { from: 'user', text: choice === 'yes' ? 'Yes' : 'No', timestamp: new Date() }]);
             setShowAssistPrompt(false);
             if (choice === 'yes') {
                 resetInactivityTimer(); 
             } else { 
                 setMessages(prev => [...prev, { from: 'bot', text: 'Thank you!', timestamp: new Date() }]);
-                setIsOpen(false); 
-                if (inactivityTimerRef.current) {
-                    clearTimeout(inactivityTimerRef.current);
-                }
-                
-                console.log("Chat ended. Storing conversation:", messages);
+                setTimeout(() => {
+                    setIsOpen(false); 
+                    if (inactivityTimerRef.current) {
+                        clearTimeout(inactivityTimerRef.current);
+                    }
+                }, 1000); 
             }
         }
-    }, [resetInactivityTimer, setIsOpen, messages]); 
+    }, [resetInactivityTimer, setIsOpen]); 
 
     return (
         <div className="chatbot-wrapper">
@@ -181,7 +182,7 @@ const Chatbot = () => {
             {isOpen && (
                 <div className="chatbox">
                     <div className="chat-header">
-                        Arjun's Verse AI Chatbot
+                        Arjun's AI Verse Chatbot
                         <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
                     </div>
 
