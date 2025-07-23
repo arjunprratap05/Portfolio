@@ -4,7 +4,6 @@
     padding: 100px 0;
     background-color: $black-light;
     color: $white;
-    
     text-align: center; 
 
     @include md {
@@ -13,12 +12,12 @@
     @include sm {
         padding: 60px 0;
     }
-    @include xs { 
+    @include xs {
         padding: 40px 0;
     }
 }
 
-.contact-content-wrapper {
+.contact-content-wrapper { 
     display: flex;
     flex-wrap: wrap;
     gap: 40px; 
@@ -36,46 +35,46 @@
         padding: 0 10px;
     }
     @include xs {
-        gap: 20px; 
-        padding: 0 8px; 
+        gap: 20px;
+        padding: 0 8px;
     }
 }
 
-.contact-info-container,
+.contact-info-container, 
 .contact-form-container {
     flex: 1;
-    min-width: 300px; 
+    min-width: 300px;
     background-color: $black-lighter;
     border-radius: 16px;
     padding: 40px; 
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     border: 1px solid rgba($white, 0.1);
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     justify-content: center; 
 
     @include md {
-        padding: 30px; 
-        min-width: unset; 
+        padding: 30px;
+        min-width: unset;
     }
     @include sm {
-        padding: 25px; 
+        padding: 25px;
     }
     @include xs {
-        padding: 20px; 
+        padding: 20px;
     }
 }
 
-.contact-info-container {
-    
+.contact-info-box {
     text-align: left; 
+    width: 100%; 
 
-    .info-title {
-        font-size: 1.8em; 
+    h4 { 
+        font-size: 1.8em;
         font-weight: 700;
         color: $white;
-        margin-bottom: 25px; 
-        line-height: 1.35; 
+        margin-bottom: 25px;
+        line-height: 1.35;
 
         @include md {
             font-size: 1.6em;
@@ -91,15 +90,15 @@
         }
     }
 
-    .contact-detail {
-        display: flex; 
+    .contact-option {
+        display: flex;
         align-items: center; 
         margin-bottom: 15px; 
         font-size: 1.1em;
-        color: $white; 
+        
 
         &:last-child {
-            margin-bottom: 0;
+            margin-bottom: 0; 
         }
 
         @include md {
@@ -115,30 +114,35 @@
             margin-bottom: 8px;
         }
 
-        .icon {
-            margin-right: 12px; 
+        svg { 
+            margin-right: 12px;
             font-size: 1.2em; 
             color: #8245ec; 
             min-width: 25px; 
-            text-align: center; 
+            height: 1.2em; 
+            flex-shrink: 0; 
 
             @include sm {
                 margin-right: 10px;
                 font-size: 1.1em;
+                height: 1.1em;
             }
             @include xs {
                 margin-right: 8px;
                 font-size: 1em;
+                height: 1em;
             }
         }
 
-        a {
-            color: $white; 
-            text-decoration: none; 
-            transition: color 0.3s ease;
+        .text {
+            a {
+                color: $white; 
+                text-decoration: none; 
+                transition: color 0.3s ease; 
 
-            &:hover {
-                color: #8245ec; 
+                &:hover {
+                    color: #8245ec; 
+                }
             }
         }
     }
@@ -153,7 +157,7 @@
         color: $white;
         margin-bottom: 30px;
         line-height: 1.4;
-        text-align: center; 
+        text-align: center;
 
         @include md {
             font-size: 1.4em;
@@ -189,7 +193,7 @@
 
             &::placeholder {
                 color: $gray;
-                opacity: 0.7; 
+                opacity: 0.7;
             }
 
             @include sm {
@@ -201,7 +205,7 @@
         textarea {
             resize: vertical;
             min-height: 120px;
-            max-height: 300px; 
+            max-height: 300px;
         }
     }
 
@@ -223,7 +227,7 @@
             transform: translateY(-2px);
         }
 
-        &:active { 
+        &:active {
             transform: translateY(0);
             background-color: darken(#8245ec, 15%);
         }
