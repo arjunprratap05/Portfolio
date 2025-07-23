@@ -9,11 +9,11 @@ const ContactInfo = () => {
             <h4>I would be happy to answer your questions </h4>
             <div className="contact-option">
                 <FaPhoneAlt />
-                <span className="text">+91 9820903458</span>
+                <span className="text"> +91 9820903458</span>
             </div>
             <div className="contact-option">
                 <MdEmail />
-                <span className="text">arjun.pratap05@gmail.com</span>
+                <span className="text"> arjun.pratap05@gmail.com</span>
             </div>
         </div>
     );
