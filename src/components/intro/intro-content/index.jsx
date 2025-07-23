@@ -74,7 +74,7 @@ const IntroContent = () => {
                         </div>
                         <div className="text">
                             <span>React Js</span>
-                            Developer
+                                Developer
                         </div>
                     </div>
                     
