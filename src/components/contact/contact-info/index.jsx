@@ -6,7 +6,7 @@ import "./style.scss";
 const ContactInfo = () => {
     return (
         <div className="contact-info-box">
-            <h4>Let's bridge the gap from screen to connection - looking forward to hearing from you! </h4>
+            <h4>Let's bridge the gap from screen to connection - looking forward to hearing from you ! </h4>
             
             <div className="contact-option">
                 <FaPhoneAlt />
