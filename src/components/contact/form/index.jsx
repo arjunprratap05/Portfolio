@@ -53,12 +53,12 @@ const Form = () => {
 
     return (
         <div className="contact-form">
-            <h4 className="form-title">Send me a message!</h4>
+            <h4 className="form-title">Curious to connect? So am I! Let's chat !</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input
                         type="text"
-                        placeholder="Your Name"
+                        placeholder="Name"
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
@@ -68,7 +68,7 @@ const Form = () => {
                 <div className="form-group">
                     <input
                         type="email"
-                        placeholder="Your Email"
+                        placeholder="Email"
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -79,7 +79,7 @@ const Form = () => {
                 <div className="form-group">
                     <input
                         type="tel" 
-                        placeholder="Your Mobile Number"
+                        placeholder="Mobile Number"
                         required 
                         value={mobile}
                         onChange={(e) => setMobile(e.target.value)}
