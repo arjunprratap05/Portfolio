@@ -73,8 +73,8 @@ const IntroContent = () => {
                             <FaReact />
                         </div>
                         <div className="text">
-                            <span>React Js</span>
-                                Developer
+                            <span>React Js </span>
+                            Developer
                         </div>
                     </div>
                     
