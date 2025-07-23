@@ -50,7 +50,7 @@ const IntroContent = () => {
                         </div>
                     </div>
                     <p>
-                        I am a full stack developer. My skills are HTML, CSS, Tailwind CSS, JS, React.Js, Git, GitHub, Asp.Net,Kafka.
+                        I'm a Full Stack Developer who genuinely loves bringing digital ideas to life. My sweet spot is taking a concept and building it out completely, from crafting pixel-perfect front-ends with HTML, CSS, Tailwind CSS, JavaScript, and React.js, to engineering robust back-end systems using ASP.NET ,Node.Js and Kafka. I'm all about creating clean, scalable, and user-friendly applications that truly make an impact, and I rely on Git and GitHub to keep everything running smoothly.
                     </p>
                     
                 </div>
