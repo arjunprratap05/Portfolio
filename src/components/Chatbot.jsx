@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './Chatbot.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
-const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000; 
+const INACTIVITY_TIMEOUT_MS = 5 * 60 * 1000;
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +11,11 @@ const Chatbot = () => {
     const [isBotTyping, setIsBotTyping] = useState(false);
     const [showInactivityPrompt, setShowInactivityPrompt] = useState(false);
     const [showAssistPrompt, setShowAssistPrompt] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [conversationStarted, setConversationStarted] = useState(false);
+    const [awaitingNameInput, setAwaitingNameInput] = useState(false);
+    const [conversationHistory, setConversationHistory] = useState([]); 
+
     const inactivityTimerRef = useRef(null);
     const messagesEndRef = useRef(null);
 
@@ -22,52 +27,120 @@ const Chatbot = () => {
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages, isBotTyping, showInactivityPrompt, showAssistPrompt]); 
+    }, [messages, isBotTyping, showInactivityPrompt, showAssistPrompt]);
+
+    useEffect(() => {
+        if (isOpen && !conversationStarted && messages.length === 0) {
+            setIsBotTyping(true);
+            setTimeout(() => {
+                const now = new Date();
+                const currentHour = now.getHours();
+                let timeOfDayGreeting = "";
+                if (currentHour >= 0 && currentHour < 12) {
+                    timeOfDayGreeting = "Good Morning!";
+                } else if (currentHour >= 12 && currentHour < 17) {
+                    timeOfDayGreeting = "Good Afternoon!";
+                } else if (currentHour >= 17 && currentHour < 21) {
+                    timeOfDayGreeting = "Good Evening!";
+                } else {
+                    timeOfDayGreeting = "Good Night!";
+                }
+
+                const initialBotMessage = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI. To start, could you please tell me your name?`;
+                setMessages([{ from: 'bot', text: initialBotMessage, timestamp: new Date() }]);
+                setAwaitingNameInput(true); 
+                setIsBotTyping(false);
+                
+            }, 1000);
+        }
+    }, [isOpen, conversationStarted, messages.length]);
 
     const resetInactivityTimer = useCallback(() => {
         if (inactivityTimerRef.current) {
             clearTimeout(inactivityTimerRef.current);
         }
 
-        if (isOpen && !showInactivityPrompt && !showAssistPrompt && !isBotTyping) {
+        if (isOpen && !showInactivityPrompt && !showAssistPrompt && !isBotTyping && conversationStarted) {
             inactivityTimerRef.current = setTimeout(() => {
                 setShowInactivityPrompt(true);
                 setMessages(prev => [...prev, { from: 'bot', text: 'Do you want to continue the conversation?', isPrompt: true, type: 'continue', timestamp: new Date() }]);
             }, INACTIVITY_TIMEOUT_MS);
         }
-    }, [isOpen, showInactivityPrompt, showAssistPrompt, isBotTyping]);
+    }, [isOpen, showInactivityPrompt, showAssistPrompt, isBotTyping, conversationStarted]);
 
     useEffect(() => {
         if (isOpen) {
             resetInactivityTimer();
         } else {
+            
             if (inactivityTimerRef.current) {
                 clearTimeout(inactivityTimerRef.current);
             }
-            setShowInactivityPrompt(false); 
-            setShowAssistPrompt(false); 
+            setShowInactivityPrompt(false);
+            setShowAssistPrompt(false);
+            
+            setUserName('');
+            setConversationStarted(false);
+            setAwaitingNameInput(false);
+            setMessages([]); 
+            setConversationHistory([]); 
         }
         return () => { 
             if (inactivityTimerRef.current) {
                 clearTimeout(inactivityTimerRef.current);
             }
         };
-    }, [isOpen, resetInactivityTimer, messages]); 
+    }, [isOpen, resetInactivityTimer]);
 
     const toggleChat = useCallback(() => {
         setIsOpen(prev => {
-            if (!prev) { 
-                resetInactivityTimer();
-            } else { 
+            if (!prev) {
+                
+            } else {
                 if (inactivityTimerRef.current) {
                     clearTimeout(inactivityTimerRef.current);
                 }
                 setShowInactivityPrompt(false);
                 setShowAssistPrompt(false);
+                setUserName('');
+                setConversationStarted(false);
+                setAwaitingNameInput(false);
+                setMessages([]);
+                setConversationHistory([]);
             }
             return !prev;
         });
-    }, [resetInactivityTimer]);
+    }, []); 
+
+    const sendConversationEmail = useCallback(async (name, history) => {
+        console.log("Attempting to send email...", { name, history });
+        try {
+            const res = await fetch(`${BACKEND_URL}/api/send-chat-summary-email`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userName: name, conversation: history })
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                const errorMessage = errorData.error || `HTTP error! status: ${res.status}`;
+                throw new Error(errorMessage);
+            }
+
+            console.log("Email sent successfully!");
+            
+            setMessages(prev => [...prev, { from: 'bot', text: 'Thank you for your conversation! I\'ve sent a summary to Arjun.', timestamp: new Date() }]);
+
+            setMessages([]);
+            setConversationHistory([]);
+
+        } catch (err) {
+            console.error("Failed to send conversation email:", err);
+            setMessages(prev => [...prev, { from: 'bot', text: 'Failed to send conversation summary. Please inform Arjun directly.', timestamp: new Date() }]);
+        }
+    }, []);
 
     const sendMessageToAI = useCallback(async (text) => {
         try {
@@ -98,47 +171,47 @@ const Chatbot = () => {
         if (!input.trim()) return;
 
         const userMessage = input.trim();
+        const userTimestamp = new Date();
 
-        setMessages(prev => [...prev, { from: 'user', text: userMessage, timestamp: new Date() }]);
+        
+        setMessages(prev => [...prev, { from: 'user', text: userMessage, timestamp: userTimestamp }]);
+        
+        setConversationHistory(prev => [...prev, { from: 'User', text: userMessage, timestamp: userTimestamp.toLocaleString() }]);
+
         setInput('');
         setIsBotTyping(true);
-        setShowInactivityPrompt(false); 
-        setShowAssistPrompt(false); 
-        resetInactivityTimer(); 
+        setShowInactivityPrompt(false);
+        setShowAssistPrompt(false);
+        
+        if (conversationStarted) {
+            resetInactivityTimer();
+        }
 
         setTimeout(async () => {
             let botReply = '';
-            const lowerCaseMessage = userMessage.toLowerCase();
+            const botTimestamp = new Date();
 
-            const now = new Date();
-            const currentHour = now.getHours();
-            let timeOfDayGreeting = "";
-            if (currentHour >= 0 && currentHour < 12) {
-                timeOfDayGreeting = "Good Morning!";
-            } else if (currentHour >= 12 && currentHour < 17) {
-                timeOfDayGreeting = "Good Afternoon!";
-            } else if (currentHour >= 17 && currentHour < 21) {
-                timeOfDayGreeting = "Good Evening!";
-            } else if(currentHour >= 21 || currentHour < 0) {
-                timeOfDayGreeting = "Good Night!";
-            }
-
-            if (lowerCaseMessage === 'hi' ||
-                lowerCaseMessage === 'hello' ||
-                lowerCaseMessage === 'hey' ||
-                lowerCaseMessage === 'hello arjun\'s verse ai' ||
-                lowerCaseMessage === 'hi arjun\'s verse ai' 
-            ) {
-                botReply = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI!`;
+            if (awaitingNameInput) {
+                setUserName(userMessage);
+                setAwaitingNameInput(false);
+                setConversationStarted(true); 
+                botReply = `Thanks, ${userMessage}! How can I assist you today? Feel free to ask about Arjun's skills, projects, or anything else about his work.`;
+                resetInactivityTimer(); 
             } else {
+               
                 botReply = await sendMessageToAI(userMessage);
             }
 
             setIsBotTyping(false);
-            setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: new Date() }]);
-            resetInactivityTimer(); 
+            setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: botTimestamp }]);
+            
+            setConversationHistory(prev => [...prev, { from: 'Bot', text: botReply, timestamp: botTimestamp.toLocaleString() }]);
+            
+            if (conversationStarted || awaitingNameInput) { 
+                resetInactivityTimer();
+            }
         }, 1200);
-    }, [input, sendMessageToAI, resetInactivityTimer]);
+    }, [input, awaitingNameInput, conversationStarted, sendMessageToAI, resetInactivityTimer]);
 
     const handleKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
@@ -146,32 +219,48 @@ const Chatbot = () => {
         }
     }, [handleSend]);
 
-    const handlePromptResponse = useCallback((type, choice) => {
+    const handlePromptResponse = useCallback(async (type, choice) => { 
+        const userChoiceMessage = choice === 'yes' ? 'Yes' : 'No';
+        const userChoiceTimestamp = new Date();
+
+        setMessages(prev => [...prev, { from: 'user', text: userChoiceMessage, timestamp: userChoiceTimestamp }]);
+        
+        setConversationHistory(prev => [...prev, { from: 'User', text: userChoiceMessage, timestamp: userChoiceTimestamp.toLocaleString() }]);
+
         if (type === 'continue') {
-            setMessages(prev => [...prev, { from: 'user', text: choice === 'yes' ? 'Yes' : 'No', timestamp: new Date() }]);
             setShowInactivityPrompt(false);
             if (choice === 'yes') {
-                resetInactivityTimer(); 
-            } else { 
+                resetInactivityTimer();
+            } else {
                 setShowAssistPrompt(true);
-                setMessages(prev => [...prev, { from: 'bot', text: 'Thank you. Can I assist with something else?', isPrompt: true, type: 'assist', timestamp: new Date() }]);
+                const botAssistMessage = 'Thank you. Can I assist with something else?';
+                setMessages(prev => [...prev, { from: 'bot', text: botAssistMessage, isPrompt: true, type: 'assist', timestamp: new Date() }]);
+                setConversationHistory(prev => [...prev, { from: 'Bot', text: botAssistMessage, timestamp: new Date().toLocaleString() }]);
             }
-        } else if (type === 'assist') { 
-            setMessages(prev => [...prev, { from: 'user', text: choice === 'yes' ? 'Yes' : 'No', timestamp: new Date() }]);
+        } else if (type === 'assist') {
             setShowAssistPrompt(false);
             if (choice === 'yes') {
-                resetInactivityTimer(); 
-            } else { 
-                setMessages(prev => [...prev, { from: 'bot', text: 'Thank you!', timestamp: new Date() }]);
+                resetInactivityTimer();
+            } else {
+                const botFarewellMessage = 'Thank you! Ending the conversation now.';
+                setMessages(prev => [...prev, { from: 'bot', text: botFarewellMessage, timestamp: new Date() }]);
+                setConversationHistory(prev => [...prev, { from: 'Bot', text: botFarewellMessage, timestamp: new Date().toLocaleString() }]);
+
+                await sendConversationEmail(userName, conversationHistory);
+
                 setTimeout(() => {
-                    setIsOpen(false); 
+                    setIsOpen(false);
                     if (inactivityTimerRef.current) {
                         clearTimeout(inactivityTimerRef.current);
                     }
-                }, 1000); 
+                    
+                    setUserName('');
+                    setConversationStarted(false);
+                    setAwaitingNameInput(false);
+                }, 2000);
             }
         }
-    }, [resetInactivityTimer, setIsOpen]); 
+    }, [resetInactivityTimer, userName, conversationHistory, sendConversationEmail]); 
 
     return (
         <div className="chatbot-wrapper">
@@ -198,7 +287,7 @@ const Chatbot = () => {
                                         {formatTimestamp(msg.timestamp)}
                                     </div>
                                 )}
-                                
+
                                 {msg.isPrompt && msg.type === 'continue' && (
                                     <div className="prompt-options">
                                         <button onClick={() => handlePromptResponse('continue', 'yes')}>Yes</button>
@@ -231,15 +320,15 @@ const Chatbot = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            placeholder="Type your message..."
+                            placeholder={awaitingNameInput ? "Type your name here..." : "Type your message..."} 
                             className="chat-input"
-                            disabled={isBotTyping || showInactivityPrompt || showAssistPrompt} 
+                            disabled={isBotTyping || showInactivityPrompt || showAssistPrompt}
                             aria-label="Message input"
                         />
                         <button
                             className="send-button"
                             onClick={handleSend}
-                            disabled={isBotTyping || !input.trim() || showInactivityPrompt || showAssistPrompt} 
+                            disabled={isBotTyping || !input.trim() || showInactivityPrompt || showAssistPrompt}
                             aria-label="Send message"
                         >
                             <img src="/send.jpg" alt="Send" />

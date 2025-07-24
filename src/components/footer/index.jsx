@@ -26,7 +26,7 @@ const Footer = () => {
                             autoStart: true,
                             loop: true,
                             delay: 40,
-                            strings: ["Thank You. I hope you like it!"],
+                            strings: ["Thank you for visiting!", "Feel free to connect with me!"],
                         }}
                     />
                 </div>
