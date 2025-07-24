@@ -53,7 +53,7 @@ const Form = () => {
 
     return (
         <div className="contact-form">
-            <h4 className="form-title">Curious to connect !</h4>
+            <h4 className="form-title">I'd love to hear your thoughts -reach out below</h4>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <input
