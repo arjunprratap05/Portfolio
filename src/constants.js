@@ -31,7 +31,7 @@ import netlifyLogo from './assets/tech_logo/netlify.png';
 import vercelLogo from './assets/tech_logo/vercel.png';
 import postgreLogo from './assets/tech_logo/postgre.png';
 import csharpLogo from './assets/tech_logo/csharp.png';
-
+import cursorLogo from './assets/tech_logo/cursor.png';
 
 export const SkillsInfo = [
   {
@@ -79,6 +79,7 @@ export const SkillsInfo = [
       { name: 'Compass', logo: mcLogo, percentage: 70 },
       { name: 'Vercel', logo: vercelLogo, percentage: 75 },
       { name: 'Netlify', logo: netlifyLogo, percentage: 72 },
+      {name: 'Cursor', logo: cursorLogo, percentage: 80},
     ],
   },
 ];
