@@ -104,21 +104,20 @@
     border-radius: 16px;
     border: 1px solid rgba($white, 0.1);
     box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3);
-    padding: 30px;
+    padding: 30px; 
     box-sizing: border-box;
 
-    display: flex;
+    display: flex; 
     flex-direction: column;
-    align-items: center;
-
-    width: calc(33.33% - 20px);
-    max-width: unset;
-    height: auto;
-    overflow: visible;
+    align-items: center; 
+    width: calc(33.33% - 20px); 
+    max-width: unset; 
+    height: auto; 
+    overflow: visible; 
 
     @include md {
-        width: 90%;
-        max-width: 500px;
+        width: 90%; 
+        max-width: 500px; 
         padding: 25px;
     }
     @include sm {
@@ -155,10 +154,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 15px;
-    justify-content: center;
-    justify-items: center;
-    width: 100%;
-    margin: 0 auto;
+    justify-content: center; 
+    justify-items: center; 
+    width: 100%; 
+    margin: 0 auto; 
 
     @include md {
         grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
@@ -176,9 +175,10 @@
 
 .skill-item {
     position: relative;
-    width: 100%;
-    padding-bottom: 100%;
-    height: 0;
+    width: 100%; 
+    padding-bottom: 100%; 
+    height: 0; 
+    
 
     display: flex;
     flex-direction: column;
@@ -201,7 +201,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -209,19 +209,8 @@
     padding: 5px;
     box-sizing: border-box;
 
-    opacity: 1;
-
     .skill-item:hover & {
-        opacity: 0; 
-    }
-
-    @include sm {
-        opacity: 0 !important; 
-        display: none !important; 
-    }
-    @include xs {
-        opacity: 0 !important; 
-        display: none !important; 
+        opacity: 0;
     }
 }
 
@@ -279,27 +268,17 @@
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: rgba($black-light, 0.9);
     border-radius: inherit;
+    opacity: 0;
     transition: opacity 0.3s ease-in-out;
     z-index: 1;
 
-    opacity: 0;
-
     .skill-item:hover & {
-        opacity: 1; 
-    }
-
-    @include sm {
-        opacity: 1 !important; 
-        display: flex !important; 
-    }
-    @include xs {
-        opacity: 1 !important; 
-        display: flex !important; 
+        opacity: 1;
     }
 }
 
