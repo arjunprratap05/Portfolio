@@ -17,10 +17,10 @@
     }
 
     @include sm {
-        padding: 96px 2vw;
+        padding: 96px 5vw;
     }
     @include xs {
-        padding: 60px 1vw;
+        padding: 60px 2vw;
     }
 }
 
@@ -69,7 +69,7 @@
     .separator {
         width: 96px;
         height: 4px;
-        background-color: #8245ec; 
+        background-color: #8245ec;
         margin: 0 auto 20px;
         border-radius: 2px;
     }
@@ -104,28 +104,31 @@
     border-radius: 16px;
     border: 1px solid rgba($white, 0.1);
     box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3);
-    padding: 40px;
-    width: calc(33.33% - 20px);
-    max-width: 380px;
-    min-width: 280px;
-
+    padding: 30px; 
     box-sizing: border-box;
 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    width: calc(33.33% - 20px); 
+    max-width: unset; 
+    height: auto; 
+    overflow: visible; 
+
     @include md {
-        width: 90%;
-        max-width: 500px;
-        padding: 30px;
+        width: 90%; 
+        max-width: 500px; 
+        padding: 25px;
     }
     @include sm {
         width: 95%;
         max-width: 400px;
-        padding: 25px;
-        min-width: unset;
+        padding: 20px;
     }
     @include xs {
         width: 98%;
         max-width: 320px;
-        padding: 20px 15px;
+        padding: 15px;
     }
 
     h3 {
@@ -133,232 +136,191 @@
         font-weight: 600;
         color: $gray;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
+        width: 100%;
 
         @include sm {
             font-size: 1.8em;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
         @include xs {
             font-size: 1.5em;
+            margin-bottom: 15px;
         }
     }
 }
 
 .skill-items-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 15px; 
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 15px;
+    justify-content: center; 
+    justify-items: center; 
+    width: 100%; 
+    margin: 0 auto; 
 
+    @include md {
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+        gap: 12px;
+    }
     @include sm {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
         gap: 10px;
     }
     @include xs {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(65px, 1fr));
         gap: 8px;
     }
 }
 
-.skill-card {
-    width: 140px;
-    height: 140px;
-    perspective: 1000px; 
-    cursor: pointer;
-    border-radius: 12px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    transition: transform 0.2s ease-in-out; 
-    box-sizing: border-box; 
-
-    border: 1px solid rgba($white, 0.2);
-
-    &:hover {
-        transform: translateY(-5px); 
-    }
-
-    @include sm {
-        width: 120px;
-        height: 120px;
-    }
-    @include xs {
-        width: 100px;
-        height: 100px;
-    }
-}
-
-.skill-card-inner {
+.skill-item {
     position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95); 
-    transform-style: preserve-3d; 
-    border-radius: inherit; 
-}
+    width: 100%; 
+    padding-bottom: 100%; 
+    height: 0; 
+    
 
-.skill-card:hover .skill-card-inner {
-    transform: rotateY(180deg); 
-}
-
-.skill-card-front,
-.skill-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden; 
-    backface-visibility: hidden; 
-    border-radius: inherit; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    border: 1px solid rgba($white, 0.2);
+    background-color: $black;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.skill-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    padding: 5px;
     box-sizing: border-box;
-}
 
-.skill-card-front {
-    background-color: $black; 
-    color: $white;
-}
-
-.skill-card-back {
-    background-color: $black-light; 
-    color: $white;
-    transform: rotateY(180deg);
-    padding: 15px; 
+    .skill-item:hover & {
+        opacity: 0;
+    }
 }
 
 .skill-logo {
-    width: 20px; 
-    height: 50px;
+    width: 50%;
+    height: 50%;
+    max-width: 50px;
+    max-height: 50px;
     object-fit: contain;
     margin-bottom: 8px;
-    filter: drop-shadow(0 0 5px rgba($purple, 0.5)); 
-    transition: transform 0.3s ease; 
+    filter: drop-shadow(0 0 5px rgba($purple, 0.5));
+    transition: transform 0.3s ease;
 
-    .skill-card-front & {
-        .skill-card:hover & {
-            transform: scale(0.9);
-        }
+    @include md {
+        max-width: 45px;
+        max-height: 45px;
     }
-
     @include sm {
-        width: 40px;
-        height: 40px;
+        max-width: 40px;
+        max-height: 40px;
+        margin-bottom: 6px;
     }
     @include xs {
-        width: 35px;
-        height: 35px;
+        max-width: 35px;
+        max-height: 35px;
+        margin-bottom: 4px;
     }
 }
 
 .skill-name {
-    font-size: 1.1em;
+    font-size: 1.0em;
     font-weight: 500;
     color: $white;
     text-align: center;
-    padding: 0 5px; 
+    padding: 0 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 100%;
 
-    @include sm {
+    @include md {
         font-size: 0.9em;
     }
-    @include xs {
-        font-size: 0.8em;
-    }
-}
-
-.skill-name-back {
-    font-size: 0.85em;
-    color: $gray;
-    margin-top: 10px;
-    text-align: center;
-    padding: 0 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
     @include sm {
-        font-size: 0.75em;
+        font-size: 0.8em;
     }
     @include xs {
         font-size: 0.7em;
     }
 }
 
-.circular-percentage-container {
-    width: 90px; 
-    height: 90px;
-    position: relative;
+.skill-percentage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px; 
+    background-color: rgba($black-light, 0.9);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
 
-    @include sm {
-        width: 70px;
-        height: 70px;
-    }
-    @include xs {
-        width: 60px;
-        height: 60px;
+    .skill-item:hover & {
+        opacity: 1;
     }
 }
 
 .circular-chart {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
-    
+    width: 80%;
+    height: 80%;
     transform: rotate(-90deg);
     transform-origin: center;
 }
 
 .circle-bg {
     fill: none;
-    stroke: rgba($white, 0.2); 
+    stroke: rgba($white, 0.2);
     stroke-width: 3.8;
 }
 
 .circle {
     fill: none;
-    stroke: $purple; 
+    stroke: $purple;
     stroke-width: 2.8;
     stroke-linecap: round;
-    
-    transition: stroke-dasharray 1s ease-out; 
-}
-
-.skill-card:hover .circle {
-    animation: progress 1s ease-out forwards;
+    transition: stroke-dashoffset 1s ease-out;
 }
 
 .percentage-text {
-    fill: $white; 
-    font-family: 'Poppins', sans-serif; 
-    font-size: 0.9em; 
+    fill: $white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9em;
     font-weight: 600;
-    text-anchor: middle; 
-    dominant-baseline: middle; 
-    
+    text-anchor: middle;
+    dominant-baseline: middle;
     transform: rotate(90deg);
     transform-origin: center;
 
-    @include sm {
+    @include md {
         font-size: 0.8em;
     }
-    @include xs {
+    @include sm {
         font-size: 0.7em;
     }
-}
-
-@keyframes progress {
-    0% {
-        stroke-dasharray: 0 100;
-    }
-    100% {
-       
+    @include xs {
+        font-size: 0.6em;
     }
 }

@@ -32,6 +32,12 @@ import vercelLogo from './assets/tech_logo/vercel.png';
 import postgreLogo from './assets/tech_logo/postgre.png';
 import csharpLogo from './assets/tech_logo/csharp.png';
 import cursorLogo from './assets/tech_logo/cursor.png';
+import dockerLogo from './assets/tech_logo/docker.png';
+import awsLogo from './assets/tech_logo/aws.png';
+import kubernetesLogo from './assets/tech_logo/kubernetes.png';
+import jiraLogo from './assets/tech_logo/jira.png';
+import aspnetLogo from './assets/tech_logo/aspnet.png';
+import aspnetcoreLogo from './assets/tech_logo/aspnetcore.png';
 
 export const SkillsInfo = [
   {
@@ -45,6 +51,9 @@ export const SkillsInfo = [
       { name: 'Tailwind CSS', logo: tailwindcssLogo, percentage: 82 },
       { name: 'Material UI', logo: materialuiLogo, percentage: 75 },
       { name: 'Bootstrap', logo: bootstrapLogo, percentage: 70 },
+      {name: 'Angular', logo: angularLogo, percentage: 70},
+      {name: 'Next JS', logo: nextjsLogo, percentage: 70},
+      {name: 'TypeScript', logo: typescriptLogo, percentage: 70},     
     ],
   },
   {
@@ -56,6 +65,7 @@ export const SkillsInfo = [
       { name: 'MongoDB', logo: mongodbLogo, percentage: 65 },
       { name: 'Firebase', logo: firebaseLogo, percentage: 60 },
       { name: 'PostgreSQL', logo: postgreLogo, percentage: 68 },
+      {name: 'Spring Boot', logo: springbootLogo, percentage: 70},
     ],
   },
   {
@@ -66,7 +76,9 @@ export const SkillsInfo = [
       { name: 'Java', logo: javaLogo, percentage: 70 },
       { name: 'Python', logo: pythonLogo, percentage: 80 },
       { name: 'C-Sharp', logo: csharpLogo, percentage: 55 },
-      { name: 'JavaScript', logo: javascriptLogo, percentage: 85 }
+      { name: 'JavaScript', logo: javascriptLogo, percentage: 85 },
+      {name:  'Asp.net', logo: aspnetLogo, percentage: 70},
+      {name: 'Asp.net Core', logo: aspnetcoreLogo, percentage: 70},
     ],
   },
   {
@@ -80,6 +92,10 @@ export const SkillsInfo = [
       { name: 'Vercel', logo: vercelLogo, percentage: 75 },
       { name: 'Netlify', logo: netlifyLogo, percentage: 72 },
       {name: 'Cursor', logo: cursorLogo, percentage: 80},
+      {name: 'Docker', logo: dockerLogo, percentage: 70},
+      {name: 'AWS', logo: awsLogo, percentage: 70},
+      {name: 'Kubernetes', logo: kubernetesLogo, percentage: 70},
+      {name: 'Jira', logo: jiraLogo, percentage: 70},
     ],
   },
 ];

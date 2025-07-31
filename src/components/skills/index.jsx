@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import Section from "../shared/section";
 import "./style.scss";
 import { SkillsInfo } from "../../constants";
@@ -21,26 +21,53 @@ const Skills = () => {
                     <div key={category.title} className="skill-category-card">
                         <h3>{category.title}</h3>
                         <div className="skill-items-grid">
-                            {category.skills.map((skill) => (
-                                <div
-                                    key={skill.name}
-                                    className="skill-item"
-                                    onMouseEnter={() => setHoveredSkill(skill.name)} 
-                                    onMouseLeave={() => setHoveredSkill(null)} 
-                                >
-                                    <img
-                                        src={skill.logo}
-                                        alt={`${skill.name} logo`}
-                                        className="skill-logo"
-                                    />
-                                    <span className="skill-name">{skill.name}</span>
-                                    {hoveredSkill === skill.name && skill.percentage && (
-                                        <div className="skill-percentage">
-                                            {skill.percentage}%
+                            {category.skills.map((skill) => {
+                                const radius = 40; 
+                                const circumference = 2 * Math.PI * radius;
+                                const strokeDashoffset = circumference - (skill.percentage / 100) * circumference;
+
+                                return (
+                                    <div
+                                        key={skill.name}
+                                        className="skill-item"
+                                        onMouseEnter={() => setHoveredSkill(skill.name)}
+                                        onMouseLeave={() => setHoveredSkill(null)}
+                                    >
+                                        <div className="skill-content">
+                                            <img
+                                                src={skill.logo}
+                                                alt={`${skill.name} logo`}
+                                                className="skill-logo"
+                                            />
+                                            <span className="skill-name">{skill.name}</span>
                                         </div>
-                                    )}
-                                </div>
-                            ))}
+
+                                        {hoveredSkill === skill.name && skill.percentage && (
+                                            <div className="skill-percentage-overlay">
+                                                <svg className="circular-chart" viewBox="0 0 100 100">
+                                                    <circle
+                                                        className="circle-bg"
+                                                        cx="50"
+                                                        cy="50"
+                                                        r={radius}
+                                                    />
+                                                    <circle
+                                                        className="circle"
+                                                        cx="50"
+                                                        cy="50"
+                                                        r={radius}
+                                                        strokeDasharray={circumference}
+                                                        strokeDashoffset={strokeDashoffset}
+                                                    />
+                                                    <text x="50" y="50" className="percentage-text">
+                                                        {skill.percentage}%
+                                                    </text>
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                 ))}
