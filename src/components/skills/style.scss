@@ -104,20 +104,21 @@
     border-radius: 16px;
     border: 1px solid rgba($white, 0.1);
     box-shadow: 0 0 20px 1px rgba(130, 69, 236, 0.3);
-    padding: 30px; 
+    padding: 30px;
     box-sizing: border-box;
 
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    align-items: center; 
-    width: calc(33.33% - 20px); 
-    max-width: unset; 
-    height: auto; 
-    overflow: visible; 
+    align-items: center;
+
+    width: calc(33.33% - 20px);
+    max-width: unset;
+    height: auto;
+    overflow: visible;
 
     @include md {
-        width: 90%; 
-        max-width: 500px; 
+        width: 90%;
+        max-width: 500px;
         padding: 25px;
     }
     @include sm {
@@ -154,10 +155,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 15px;
-    justify-content: center; 
-    justify-items: center; 
-    width: 100%; 
-    margin: 0 auto; 
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    margin: 0 auto;
 
     @include md {
         grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
@@ -175,10 +176,9 @@
 
 .skill-item {
     position: relative;
-    width: 100%; 
-    padding-bottom: 100%; 
-    height: 0; 
-    
+    width: 100%;
+    padding-bottom: 100%;
+    height: 0;
 
     display: flex;
     flex-direction: column;
@@ -209,8 +209,19 @@
     padding: 5px;
     box-sizing: border-box;
 
+    // Default: visible on desktop, hidden on mobile/iPad unless explicitly shown
+    opacity: 1; /* Default to visible */
+
     .skill-item:hover & {
-        opacity: 0;
+        opacity: 0; /* Hide content on hover for desktop */
+    }
+
+    // On smaller screens, keep content visible by default
+    @include sm {
+        opacity: 1 !important; // Force content to be always visible
+    }
+    @include xs {
+        opacity: 1 !important; // Force content to be always visible
     }
 }
 
@@ -273,12 +284,22 @@
     align-items: center;
     background-color: rgba($black-light, 0.9);
     border-radius: inherit;
-    opacity: 0;
     transition: opacity 0.3s ease-in-out;
     z-index: 1;
 
+    // Default: hidden unless hovered (desktop)
+    opacity: 0;
+
     .skill-item:hover & {
-        opacity: 1;
+        opacity: 1; /* Show on hover for desktop */
+    }
+
+    // On smaller screens, always show the percentage overlay
+    @include sm {
+        opacity: 1 !important; // Force percentage to be always visible
+    }
+    @include xs {
+        opacity: 1 !important; // Force percentage to be always visible
     }
 }
 
