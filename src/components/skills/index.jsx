@@ -1,10 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Section from "../shared/section";
 import "./style.scss";
 import { SkillsInfo } from "../../constants";
 
 const Skills = () => {
     const [hoveredSkill, setHoveredSkill] = useState(null);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
+    const [tappedSkill, setTappedSkill] = useState(null);
+
+    useEffect(() => {
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+            setIsTouchDevice(true);
+        }
+    }, []);
+
+    const handleTap = (skillName) => {
+        setTappedSkill(tappedSkill === skillName ? null : skillName);
+    };
 
     return (
         <Section background="dark" id="skills">
@@ -22,18 +34,22 @@ const Skills = () => {
                         <h3>{category.title}</h3>
                         <div className="skill-items-grid">
                             {category.skills.map((skill) => {
-                                const radius = 40; 
+                                const radius = 40;
                                 const circumference = 2 * Math.PI * radius;
                                 const strokeDashoffset = circumference - (skill.percentage / 100) * circumference;
+
+                                const isHovered = hoveredSkill === skill.name;
+                                const isTapped = tappedSkill === skill.name;
 
                                 return (
                                     <div
                                         key={skill.name}
                                         className="skill-item"
-                                        onMouseEnter={() => setHoveredSkill(skill.name)}
-                                        onMouseLeave={() => setHoveredSkill(null)}
+                                        onMouseEnter={() => !isTouchDevice && setHoveredSkill(skill.name)}
+                                        onMouseLeave={() => !isTouchDevice && setHoveredSkill(null)}
+                                        onClick={() => isTouchDevice && handleTap(skill.name)}
                                     >
-                                        <div className="skill-content">
+                                        <div className={`skill-content ${isTouchDevice && isTapped ? 'hidden-on-tap' : ''}`}>
                                             <img
                                                 src={skill.logo}
                                                 alt={`${skill.name} logo`}
@@ -42,8 +58,8 @@ const Skills = () => {
                                             <span className="skill-name">{skill.name}</span>
                                         </div>
 
-                                        {hoveredSkill === skill.name && skill.percentage && (
-                                            <div className="skill-percentage-overlay">
+                                        {skill.percentage && (
+                                            <div className={`skill-percentage-overlay ${isTouchDevice && !isTapped ? 'hidden-on-tap' : ''}`}>
                                                 <svg className="circular-chart" viewBox="0 0 100 100">
                                                     <circle
                                                         className="circle-bg"
