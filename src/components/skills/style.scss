@@ -178,16 +178,12 @@
     width: 100%; 
     padding-bottom: 100%; 
     height: 0; 
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease-in-out;
     border: 1px solid rgba($white, 0.2);
     background-color: $black;
+    cursor: pointer;
 
     &:hover {
         transform: translateY(-5px);
@@ -265,69 +261,53 @@
     }
 }
 
-.skill-percentage-overlay {
+.skill-details-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-color: rgba($black, 0.95);
+    color: $white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba($black-light, 0.9);
-    border-radius: inherit;
-    opacity: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0; 
     transition: opacity 0.3s ease-in-out;
-    z-index: 1;
-
-    .skill-item:hover & {
-        opacity: 1;
-    }
-
-    &.hidden-on-tap {
-        opacity: 0;
-    }
+    border-radius: 12px;
 }
 
-.circular-chart {
-    display: block;
-    width: 80%;
-    height: 80%;
-    transform: rotate(-90deg);
-    transform-origin: center;
+.skill-item:hover .skill-details-overlay,
+.skill-item.tapped .skill-details-overlay {
+    opacity: 1; 
 }
 
-.circle-bg {
-    fill: none;
-    stroke: rgba($white, 0.2);
-    stroke-width: 3.8;
-}
-
-.circle {
-    fill: none;
-    stroke: $purple;
-    stroke-width: 2.8;
-    stroke-linecap: round;
-    transition: stroke-dashoffset 1s ease-out;
-}
-
-.percentage-text {
-    fill: $white;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9em;
+.skill-details-overlay h4 {
+    font-size: 1.2em;
     font-weight: 600;
-    text-anchor: middle;
-    dominant-baseline: middle;
-    transform: rotate(90deg);
-    transform-origin: center;
+    margin: 0 0 5px 0;
+    color: $purple;
+}
 
-    @include md {
-        font-size: 0.8em;
-    }
-    @include sm {
-        font-size: 0.7em;
-    }
-    @include xs {
-        font-size: 0.6em;
-    }
+.skill-details-overlay ul {
+    margin: 0;
+    padding: 0 10px;
+    list-style: none;
+    font-size: 0.8em;
+    font-weight: 400;
+    max-height: 80px; 
+    overflow-y: auto;
+    text-align: left;
+    width: 100%;
+}
+
+.skill-details-overlay li {
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
