@@ -38,6 +38,7 @@ import kubernetesLogo from './assets/tech_logo/kubernetes.png';
 import jiraLogo from './assets/tech_logo/jira.png';
 import aspnetLogo from './assets/tech_logo/aspnet.png';
 import aspnetcoreLogo from './assets/tech_logo/aspnetcore.png';
+import powerBiLogo from './assets/tech_logo/powerBi.png';
 
 export const SkillsInfo = [
   {
@@ -76,7 +77,6 @@ export const SkillsInfo = [
       { name: 'Java', logo: javaLogo, percentage: 70 },
       { name: 'Python', logo: pythonLogo, percentage: 80 },
       { name: 'C-Sharp', logo: csharpLogo, percentage: 55 },
-      { name: 'JavaScript', logo: javascriptLogo, percentage: 85 },
       {name:  'Asp.net', logo: aspnetLogo, percentage: 70},
       {name: 'Asp.net Core', logo: aspnetcoreLogo, percentage: 70},
     ],
@@ -96,6 +96,7 @@ export const SkillsInfo = [
       {name: 'AWS', logo: awsLogo, percentage: 70},
       {name: 'Kubernetes', logo: kubernetesLogo, percentage: 70},
       {name: 'Jira', logo: jiraLogo, percentage: 70},
+      {name : 'PowerBi',logo: powerBiLogo,percentage:70}
     ],
   },
 ];
