@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Section from "../shared/section";
 import "./style.scss";
 import { SkillsInfo } from "../../constants";
@@ -10,6 +9,22 @@ const Skills = () => {
     const [tappedSkill, setTappedSkill] = useState(null);
     const [skillsData, setSkillsData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [popupPosition, setPopupPosition] = useState('right');
+
+    const skillItemRef = useRef(null);
+
+    const setNodeRef = useCallback(node => {
+        if (node) {
+            skillItemRef.current = node;
+            const rect = node.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
+            if (rect.right + 350 > viewportWidth) { 
+                setPopupPosition('left');
+            } else {
+                setPopupPosition('right');
+            }
+        }
+    }, []);
 
     useEffect(() => {
         if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -20,7 +35,6 @@ const Skills = () => {
         
         const fetchSkills = async () => {
             let mergedSkills = [...SkillsInfo];
-
             try {
                 const response = await fetch(`${apiUrl}/skills`);
                 if (!response.ok) {
@@ -31,7 +45,6 @@ const Skills = () => {
                 if (Array.isArray(dataFromApi)) {
                     mergedSkills = SkillsInfo.map(category => {
                         const apiCategory = dataFromApi.find(ac => ac.title === category.title);
-                        
                         if (apiCategory && Array.isArray(apiCategory.skills)) {
                             return {
                                 ...category,
@@ -47,13 +60,11 @@ const Skills = () => {
                                 })
                             };
                         }
-                        
                         return category;
                     });
                 } else {
                     console.warn("API response is not an array, using local data.");
                 }
-
             } catch (err) {
                 console.error("Failed to fetch skills data from API, using fallback data:", err);
             } finally {
@@ -61,7 +72,6 @@ const Skills = () => {
                 setLoading(false);
             }
         };
-
         fetchSkills();
     }, []);
 
@@ -97,6 +107,7 @@ const Skills = () => {
                                         onMouseEnter={() => !isTouchDevice && setHoveredSkill(skill.name)}
                                         onMouseLeave={() => !isTouchDevice && setHoveredSkill(null)}
                                         onClick={() => isTouchDevice && handleTap(skill.name)}
+                                        ref={isHovered || isTapped ? setNodeRef : null}
                                     >
                                         <div className="skill-content">
                                             <img
@@ -106,20 +117,26 @@ const Skills = () => {
                                             />
                                             <span className="skill-name">{skill.name}</span>
                                         </div>
-
+                                        
                                         {(isHovered || isTapped) && (
-                                            <div className="skill-details-overlay">
-                                                <h4>Progress: {skill.percentage}%</h4>
-                                                {skill.topics.length > 0 ? (
-                                                    <ul>
-                                                        {skill.topics.map((topic, index) => (
-                                                            <li key={index}>{topic}</li>
-                                                        ))}
-                                                    </ul>
-                                                ) : (
-                                                    <p>No topics tracked yet.</p>
+                                            <>
+                                                <div className="skill-percentage-overlay">
+                                                    <span className="percentage-text">
+                                                        {skill.percentage}%
+                                                    </span>
+                                                </div>
+
+                                                {skill.topics.length > 0 && (
+                                                    <div className={`skill-topics-overlay ${popupPosition}`}>
+                                                        <h4>Topics Covered:</h4>
+                                                        <ul>
+                                                            {skill.topics.map((topic, index) => (
+                                                                <li key={index}>{topic}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
                                                 )}
-                                            </div>
+                                            </>
                                         )}
                                     </div>
                                 );
