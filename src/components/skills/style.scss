@@ -102,7 +102,7 @@
     width: calc(33.33% - 20px);
     max-width: unset;
     height: auto;
-    overflow: visible; 
+    overflow: visible;
     @include md {
         width: 90%;
         max-width: 500px;
@@ -171,7 +171,7 @@
     cursor: pointer;
     &:hover {
         transform: translateY(-5px);
-        z-index: 10; 
+        z-index: 10;
     }
 }
 
@@ -275,7 +275,8 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%) scale(0.9);
-    width: 200px;
+    max-width: 200px; 
+    width: 80vw; 
     background-color: $black-lighter;
     border-radius: 8px;
     border: 1px solid rgba($white, 0.1);
@@ -284,7 +285,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
-    z-index: 20; 
+    z-index: 20;
 
     &::before {
         content: '';
@@ -313,6 +314,25 @@
             border-left: 10px solid rgba($white, 0.1);
         }
     }
+
+    @media (max-width: 768px) {
+        position: fixed; 
+        top: auto;
+        bottom: 10px; 
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) scale(0.9);
+        width: 90%; 
+        max-width: 400px;
+        &.right, &.left {
+            left: 50%;
+            right: auto;
+            transform: translateX(-50%) scale(0.9);
+        }
+        &::before {
+            display: none; 
+        }
+    }
 }
 
 .skill-item:hover .skill-topics-overlay,
@@ -320,6 +340,10 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%) scale(1);
+
+    @media (max-width: 768px) {
+        transform: translateX(-50%) scale(1);
+    }
 }
 
 .skill-topics-overlay h4 {
