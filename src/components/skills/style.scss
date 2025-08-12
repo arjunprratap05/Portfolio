@@ -275,8 +275,9 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%) scale(0.9);
-    max-width: 200px; 
-    width: 80vw; 
+    width: 200px;
+    max-height: 250px; 
+    overflow-y: auto;  
     background-color: $black-lighter;
     border-radius: 8px;
     border: 1px solid rgba($white, 0.1);
@@ -296,7 +297,7 @@
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
     }
-    
+
     &.right {
         left: 110%;
         &::before {
@@ -305,7 +306,7 @@
             border-right: 10px solid rgba($white, 0.1);
         }
     }
-    
+
     &.left {
         right: 110%;
         &::before {
@@ -316,21 +317,22 @@
     }
 
     @media (max-width: 768px) {
-        position: fixed; 
-        top: auto;
-        bottom: 10px; 
+        position: fixed;
         left: 50%;
-        right: auto;
-        transform: translateX(-50%) scale(0.9);
-        width: 90%; 
+        bottom: 10px;
+        transform: translateX(-50%);
+        top: auto;
+        width: 90vw;
         max-width: 400px;
+        max-height: 30vh; 
+
         &.right, &.left {
             left: 50%;
             right: auto;
-            transform: translateX(-50%) scale(0.9);
         }
+
         &::before {
-            display: none; 
+            display: none;
         }
     }
 }
@@ -340,10 +342,6 @@
     opacity: 1;
     visibility: visible;
     transform: translateY(-50%) scale(1);
-
-    @media (max-width: 768px) {
-        transform: translateX(-50%) scale(1);
-    }
 }
 
 .skill-topics-overlay h4 {
