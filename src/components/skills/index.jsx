@@ -9,22 +9,88 @@ const Skills = () => {
     const [tappedSkill, setTappedSkill] = useState(null);
     const [skillsData, setSkillsData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [popupPosition, setPopupPosition] = useState('right');
+    const [popupStyle, setPopupStyle] = useState({});
+    const [popupContent, setPopupContent] = useState([]);
 
     const skillItemRef = useRef(null);
 
-    const setNodeRef = useCallback(node => {
-        if (node) {
-            skillItemRef.current = node;
-            const rect = node.getBoundingClientRect();
-            const viewportWidth = window.innerWidth;
-            if (rect.right + 350 > viewportWidth) { 
-                setPopupPosition('left');
-            } else {
-                setPopupPosition('right');
-            }
+    const updatePopupPosition = useCallback((node, topics) => {
+        if (!node || !topics || topics.length === 0) {
+            setPopupStyle({});
+            setPopupContent([]);
+            return;
         }
+
+        const rect = node.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        const popupWidth = 250; 
+        const popupHeight = Math.min(topics.length * 20 + 70, 300);
+
+        let newStyle = {};
+
+        if (viewportWidth <= 768) {
+            newStyle = {
+                left: '50%',
+                bottom: '10px',
+                transform: 'translateX(-50%)',
+                opacity: 1,
+                visibility: 'visible',
+            };
+        } 
+        
+        else {
+            let leftPos = rect.right + 20;
+            let topPos = rect.top + rect.height / 2 - popupHeight / 2;
+
+            if (leftPos + popupWidth > viewportWidth) {
+                leftPos = rect.left - popupWidth - 20;
+            }
+
+            if (topPos < 0) {
+                topPos = 10; 
+            } else if (topPos + popupHeight > viewportHeight) {
+                topPos = viewportHeight - popupHeight - 10; 
+            }
+
+            newStyle = {
+                left: `${leftPos}px`,
+                top: `${topPos}px`,
+                transform: 'none',
+                opacity: 1,
+                visibility: 'visible',
+            };
+        }
+
+        setPopupStyle(newStyle);
+        setPopupContent(topics);
     }, []);
+
+    const handleMouseEnter = useCallback((skill, node) => {
+        if (isTouchDevice || !node) return;
+        setHoveredSkill(skill.name);
+        updatePopupPosition(node, skill.topics);
+    }, [isTouchDevice, updatePopupPosition]);
+
+    const handleMouseLeave = useCallback(() => {
+        if (isTouchDevice) return;
+        setHoveredSkill(null);
+        setPopupStyle({});
+        setPopupContent([]);
+    }, [isTouchDevice]);
+
+    const handleTap = useCallback((skill, node) => {
+        if (!isTouchDevice) return;
+        if (tappedSkill === skill.name) {
+            setTappedSkill(null);
+            setPopupStyle({});
+            setPopupContent([]);
+        } else {
+            setTappedSkill(skill.name);
+            updatePopupPosition(node, skill.topics);
+        }
+    }, [isTouchDevice, tappedSkill, updatePopupPosition]);
 
     useEffect(() => {
         if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
@@ -75,10 +141,6 @@ const Skills = () => {
         fetchSkills();
     }, []);
 
-    const handleTap = (skillName) => {
-        setTappedSkill(tappedSkill === skillName ? null : skillName);
-    };
-
     if (loading) {
         return <Section background="dark" id="skills">Loading skills...</Section>;
     }
@@ -104,10 +166,12 @@ const Skills = () => {
                                     <div
                                         key={skill.name}
                                         className={`skill-item ${isTapped ? 'tapped' : ''}`}
-                                        onMouseEnter={() => !isTouchDevice && setHoveredSkill(skill.name)}
-                                        onMouseLeave={() => !isTouchDevice && setHoveredSkill(null)}
-                                        onClick={() => isTouchDevice && handleTap(skill.name)}
-                                        ref={isHovered || isTapped ? setNodeRef : null}
+                                        ref={el => {
+                                            if (el) skillItemRef.current = el;
+                                        }}
+                                        onMouseEnter={() => handleMouseEnter(skill, skillItemRef.current)}
+                                        onMouseLeave={handleMouseLeave}
+                                        onClick={() => handleTap(skill, skillItemRef.current)}
                                     >
                                         <div className="skill-content">
                                             <img
@@ -119,24 +183,11 @@ const Skills = () => {
                                         </div>
                                         
                                         {(isHovered || isTapped) && (
-                                            <>
-                                                <div className="skill-percentage-overlay">
-                                                    <span className="percentage-text">
-                                                        {skill.percentage}%
-                                                    </span>
-                                                </div>
-
-                                                {skill.topics.length > 0 && (
-                                                    <div className={`skill-topics-overlay ${popupPosition}`}>
-                                                        <h4>Topics Covered:</h4>
-                                                        <ul>
-                                                            {skill.topics.map((topic, index) => (
-                                                                <li key={index}>{topic}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-                                            </>
+                                            <div className="skill-percentage-overlay">
+                                                <span className="percentage-text">
+                                                    {skill.percentage}%
+                                                </span>
+                                            </div>
                                         )}
                                     </div>
                                 );
@@ -145,6 +196,17 @@ const Skills = () => {
                     </div>
                 ))}
             </div>
+
+            {popupContent.length > 0 && (
+                <div className="skill-topics-fixed-overlay" style={popupStyle}>
+                    <h4>Topics Covered:</h4>
+                    <ul>
+                        {popupContent.map((topic, index) => (
+                            <li key={index}>{topic}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </Section>
     );
 };
