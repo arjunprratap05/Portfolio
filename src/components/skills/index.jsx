@@ -11,12 +11,12 @@ const Skills = () => {
     const [loading, setLoading] = useState(true);
     const [popupStyle, setPopupStyle] = useState({});
     const [popupContent, setPopupContent] = useState([]);
+    
     const skillRefs = useRef({});
 
     useEffect(() => {
         const handleOutsideTap = (event) => {
             if (tappedSkill) {
-                // Check if the tap occurred outside any skill item or the popup
                 let isInsideSkillsSection = event.target.closest("#skills");
                 let isInsidePopup = event.target.closest(".skill-topics-fixed-overlay");
 
@@ -48,42 +48,45 @@ const Skills = () => {
 
         const rect = node.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        const popupWidth = 250;
+        const popupHeight = Math.min(topics.length * 20 + 70, 300);
 
         let newStyle = {};
+        
+        let leftPos = rect.right + 20;
+        let topPos = rect.top + rect.height / 2 - popupHeight / 2;
 
-        if (viewportWidth <= 768) {
+        if (leftPos + popupWidth > viewportWidth) {
+            leftPos = rect.left - popupWidth - 20;
+            if (leftPos < 0 && viewportWidth <= 768) {
+                leftPos = '50%';
+                newStyle.transform = 'translateX(-50%)';
+            }
+        }
+
+        if (topPos < 0) {
+            topPos = 10;
+        } else if (topPos + popupHeight > viewportHeight) {
+            topPos = viewportHeight - popupHeight - 10;
+        }
+
+        newStyle = {
+            ...newStyle,
+            left: typeof leftPos === 'string' ? leftPos : `${leftPos}px`,
+            top: `${topPos}px`,
+            opacity: 1,
+            visibility: 'visible',
+        };
+
+        if (viewportWidth <= 480) {
             newStyle = {
+                ...newStyle,
                 left: '50%',
                 bottom: '10px',
+                top: 'auto',
                 transform: 'translateX(-50%)',
-                opacity: 1,
-                visibility: 'visible',
-            };
-        } 
-        else {
-            const viewportHeight = window.innerHeight;
-            const popupWidth = 250;
-            const popupHeight = Math.min(topics.length * 20 + 70, 300);
-
-            let leftPos = rect.right + 20;
-            let topPos = rect.top + rect.height / 2 - popupHeight / 2;
-
-            if (leftPos + popupWidth > viewportWidth) {
-                leftPos = rect.left - popupWidth - 20;
-            }
-
-            if (topPos < 0) {
-                topPos = 10; 
-            } else if (topPos + popupHeight > viewportHeight) {
-                topPos = viewportHeight - popupHeight - 10; 
-            }
-
-            newStyle = {
-                left: `${leftPos}px`,
-                top: `${topPos}px`,
-                transform: 'none',
-                opacity: 1,
-                visibility: 'visible',
             };
         }
 
