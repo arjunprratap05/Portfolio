@@ -11,8 +11,8 @@ const Skills = () => {
     const [loading, setLoading] = useState(true);
     const [popupStyle, setPopupStyle] = useState({});
     const [popupContent, setPopupContent] = useState([]);
-
-    const skillItemRef = useRef(null);
+    
+    const skillRefs = useRef({});
 
     const updatePopupPosition = useCallback((node, topics) => {
         if (!node || !topics || topics.length === 0) {
@@ -38,9 +38,7 @@ const Skills = () => {
                 opacity: 1,
                 visibility: 'visible',
             };
-        } 
-        
-        else {
+        } else {
             let leftPos = rect.right + 20;
             let topPos = rect.top + rect.height / 2 - popupHeight / 2;
 
@@ -67,10 +65,13 @@ const Skills = () => {
         setPopupContent(topics);
     }, []);
 
-    const handleMouseEnter = useCallback((skill, node) => {
-        if (isTouchDevice || !node) return;
-        setHoveredSkill(skill.name);
-        updatePopupPosition(node, skill.topics);
+    const handleMouseEnter = useCallback((skill, name) => {
+        if (isTouchDevice) return;
+        const node = skillRefs.current[name];
+        if (node) {
+            setHoveredSkill(name);
+            updatePopupPosition(node, skill.topics);
+        }
     }, [isTouchDevice, updatePopupPosition]);
 
     const handleMouseLeave = useCallback(() => {
@@ -80,14 +81,17 @@ const Skills = () => {
         setPopupContent([]);
     }, [isTouchDevice]);
 
-    const handleTap = useCallback((skill, node) => {
+    const handleTap = useCallback((skill, name) => {
         if (!isTouchDevice) return;
-        if (tappedSkill === skill.name) {
+        const node = skillRefs.current[name];
+        if (!node) return;
+
+        if (tappedSkill === name) {
             setTappedSkill(null);
             setPopupStyle({});
             setPopupContent([]);
         } else {
-            setTappedSkill(skill.name);
+            setTappedSkill(name);
             updatePopupPosition(node, skill.topics);
         }
     }, [isTouchDevice, tappedSkill, updatePopupPosition]);
@@ -159,19 +163,17 @@ const Skills = () => {
                         <h3>{category.title}</h3>
                         <div className="skill-items-grid">
                             {category.skills.map((skill) => {
-                                const isHovered = hoveredSkill === skill.name;
                                 const isTapped = tappedSkill === skill.name;
                                 
                                 return (
                                     <div
                                         key={skill.name}
                                         className={`skill-item ${isTapped ? 'tapped' : ''}`}
-                                        ref={el => {
-                                            if (el) skillItemRef.current = el;
-                                        }}
-                                        onMouseEnter={() => handleMouseEnter(skill, skillItemRef.current)}
+                                        
+                                        ref={el => (skillRefs.current[skill.name] = el)}
+                                        onMouseEnter={() => handleMouseEnter(skill, skill.name)}
                                         onMouseLeave={handleMouseLeave}
-                                        onClick={() => handleTap(skill, skillItemRef.current)}
+                                        onClick={() => handleTap(skill, skill.name)}
                                     >
                                         <div className="skill-content">
                                             <img
@@ -182,7 +184,7 @@ const Skills = () => {
                                             <span className="skill-name">{skill.name}</span>
                                         </div>
                                         
-                                        {(isHovered || isTapped) && (
+                                        {(hoveredSkill === skill.name || isTapped) && (
                                             <div className="skill-percentage-overlay">
                                                 <span className="percentage-text">
                                                     {skill.percentage}%
