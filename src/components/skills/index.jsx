@@ -11,8 +11,33 @@ const Skills = () => {
     const [loading, setLoading] = useState(true);
     const [popupStyle, setPopupStyle] = useState({});
     const [popupContent, setPopupContent] = useState([]);
-    
     const skillRefs = useRef({});
+
+    useEffect(() => {
+        const handleOutsideTap = (event) => {
+            if (tappedSkill) {
+                // Check if the tap occurred outside any skill item or the popup
+                let isInsideSkillsSection = event.target.closest("#skills");
+                let isInsidePopup = event.target.closest(".skill-topics-fixed-overlay");
+
+                if (!isInsideSkillsSection || isInsidePopup) {
+                    setTappedSkill(null);
+                    setPopupStyle({});
+                    setPopupContent([]);
+                }
+            }
+        };
+
+        if (isTouchDevice) {
+            document.addEventListener("touchstart", handleOutsideTap);
+        }
+
+        return () => {
+            if (isTouchDevice) {
+                document.removeEventListener("touchstart", handleOutsideTap);
+            }
+        };
+    }, [tappedSkill, isTouchDevice]);
 
     const updatePopupPosition = useCallback((node, topics) => {
         if (!node || !topics || topics.length === 0) {
@@ -23,10 +48,6 @@ const Skills = () => {
 
         const rect = node.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        const popupWidth = 250; 
-        const popupHeight = Math.min(topics.length * 20 + 70, 300);
 
         let newStyle = {};
 
@@ -38,7 +59,12 @@ const Skills = () => {
                 opacity: 1,
                 visibility: 'visible',
             };
-        } else {
+        } 
+        else {
+            const viewportHeight = window.innerHeight;
+            const popupWidth = 250;
+            const popupHeight = Math.min(topics.length * 20 + 70, 300);
+
             let leftPos = rect.right + 20;
             let topPos = rect.top + rect.height / 2 - popupHeight / 2;
 
@@ -100,7 +126,7 @@ const Skills = () => {
         if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
             setIsTouchDevice(true);
         }
-
+        
         const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000/api'; 
         
         const fetchSkills = async () => {
@@ -169,7 +195,6 @@ const Skills = () => {
                                     <div
                                         key={skill.name}
                                         className={`skill-item ${isTapped ? 'tapped' : ''}`}
-                                        
                                         ref={el => (skillRefs.current[skill.name] = el)}
                                         onMouseEnter={() => handleMouseEnter(skill, skill.name)}
                                         onMouseLeave={handleMouseLeave}
