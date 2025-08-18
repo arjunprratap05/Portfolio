@@ -73,6 +73,7 @@ const Skills = () => {
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
+            if (!event.target) return; 
             const isSkillItem = event.target.closest(".skill-item");
             const isPopup = popupRef.current && popupRef.current.contains(event.target);
             
