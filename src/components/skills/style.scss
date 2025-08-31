@@ -297,6 +297,15 @@
     visibility: hidden;
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
     z-index: 100;
+    
+    @media (max-width: 600px) {
+        width: 90vw;
+        max-width: 400px;
+        max-height: 80vh;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
 
     &::before {
         content: '';
@@ -309,19 +318,9 @@
         border-bottom: 10px solid transparent;
         border-right: 10px solid $black-lighter;
         transform: translateY(-50%);
-    }
-}
-
-@media (max-width: 600px) {
-    .skill-topics-fixed-overlay {
-        &::before {
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid $black-lighter;
-            border-top: none;
+        
+        @media (max-width: 600px) {
+            content: none;
         }
     }
 }

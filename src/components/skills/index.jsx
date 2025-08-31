@@ -114,38 +114,48 @@ const Skills = () => {
             return;
         }
 
-        const rect = node.getBoundingClientRect();
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        const popupWidth = 250;
-        const popupHeight = Math.min(topics.length * 20 + 70, 300);
-
         let newStyle = {};
-        
-        let leftPos = rect.right + 20;
-        let topPos = rect.top + rect.height / 2 - popupHeight / 2;
 
-        if (leftPos + popupWidth > viewportWidth) {
-            leftPos = rect.left - popupWidth - 20;
-        }
-        if (topPos < 0) {
-            topPos = 10;
-        } else if (topPos + popupHeight > viewportHeight) {
-            topPos = viewportHeight - popupHeight - 10;
-        }
+        if (isTouchDevice || viewportWidth < 600) {
+            newStyle = {
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                opacity: 1,
+                visibility: 'visible',
+            };
+        } else {
+            const rect = node.getBoundingClientRect();
+            const popupWidth = 250;
+            const popupHeight = Math.min(topics.length * 20 + 70, 300);
 
-        newStyle = {
-            ...newStyle,
-            left: `${leftPos}px`,
-            top: `${topPos}px`,
-            opacity: 1,
-            visibility: 'visible',
-        };
+            let leftPos = rect.right + 20;
+            let topPos = rect.top + rect.height / 2 - popupHeight / 2;
+
+            if (leftPos + popupWidth > viewportWidth) {
+                leftPos = rect.left - popupWidth - 20;
+            }
+            if (topPos < 0) {
+                topPos = 10;
+            } else if (topPos + popupHeight > viewportHeight) {
+                topPos = viewportHeight - popupHeight - 10;
+            }
+
+            newStyle = {
+                left: `${leftPos}px`,
+                top: `${topPos}px`,
+                opacity: 1,
+                visibility: 'visible',
+            };
+        }
 
         setPopupStyle(newStyle);
         setPopupContent(topics);
-    }, []);
+    }, [isTouchDevice]);
+
 
     const handleMouseEnter = useCallback((skill, name) => {
         if (isTouchDevice) return;
