@@ -1,0 +1,99 @@
+:root {
+    --primary-purple: #bb66ff;
+    --section-dark-bg: #121212; 
+    --box-dark: #1a0f30; 
+    --text-light: #d1d1d1;
+    --text-white: #ffffff;
+}
+
+.experience-section {
+    background-color: var(--section-dark-bg); 
+    padding-bottom: 80px;
+    color: var(--text-light);
+
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 1000px;
+        margin: 40px auto 0;
+    }
+
+    .timeline-item {
+        width: 100%;
+        background-color: var(--box-dark); 
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 30px;
+        position: relative;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(187, 102, 255, 0.2); 
+        transition: border-color 0.3s ease;
+
+        &:hover {
+            border-color: var(--primary-purple);
+        }
+
+        .job-header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+
+            .job-title {
+                font-size: 1.6em;
+                font-weight: 700;
+                color: var(--primary-purple); 
+                margin-bottom: 5px;
+            }
+
+            .job-company, .job-duration {
+                font-size: 1em;
+                color: var(--text-light);
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+                .icon {
+                    margin-right: 8px;
+                    color: rgba(187, 102, 255, 0.8);
+                }
+            }
+        }
+
+        .job-details {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            
+            li {
+                display: flex;
+                align-items: flex-start;
+                margin-bottom: 10px;
+                line-height: 1.5;
+                font-size: 0.95em;
+                color: var(--text-light);
+                
+                .bullet-icon {
+                    color: var(--primary-purple);
+                    font-size: 0.5em;
+                    margin-right: 10px;
+                    margin-top: 7px;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-section {
+        .timeline-item {
+            padding: 20px;
+            .job-header {
+                .job-title {
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+}

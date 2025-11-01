@@ -1,148 +1,55 @@
-@import "../../../style-config/variable.scss";
-@import "../../../style-config/mixins.scss";   
-
-.top-navigation-bar {
-    width: calc(100% - 40px); 
-    max-width: 1200px; 
-    margin: 20px auto; 
-
+.portfolio-top-nav-fixed {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between; 
+    padding: 15px 80px; 
+    background-color: #000000;
+    color: #d1d1d1; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); 
+}
 
-    background-color: rgba($black-lighter, 0.95); 
-    border-radius: 16px; 
-    padding: 15px 30px; 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); 
-    border: 1px solid rgba($white, 0.1); 
+.intro-content-wrapper { 
+    padding-top: 75px; 
+    
+    min-height: 100vh;
+    background-color: var(--dark-bg);
+    background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-white); 
+}
 
-    @include md {
-        padding: 12px 25px;
-        width: calc(100% - 30px); 
-    }
-    @include sm {
-        padding: 10px 20px;
-        width: calc(100% - 20px); 
-    }
-    @include xs {
-        padding: 8px 15px;
-        width: calc(100% - 10px); 
-    }
+.intro-content-wrapper .layout {
+    align-items: center; 
+    
+    gap: 80px; 
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 80px; 
+    min-height: calc(100vh - 75px); 
+}
 
-    .app-logo {
-        height: 40px; 
-        display: flex;
-        align-items: center;
-        cursor: pointer; 
-
-        .logo-text {
-            color: $white; 
-            @include typography(22px, 700, 1); 
-            white-space: nowrap; 
-            @include md {
-                @include typography(18px, 700, 1);
-            }
-            @include sm {
-                @include typography(16px, 700, 1);
-            }
-            @include xs {
-                @include typography(14px, 700, 1);
-            }
-        }
-
-        img {
-            height: 100%; 
-            width: auto; 
-            display: block;
+@media (max-width: 768px) {
+    .portfolio-top-nav-fixed {
+        padding: 15px 20px;
+        .navigation-links {
+            display: none; 
         }
     }
-
-    .navigation {
-        display: flex;
-        align-items: center;
-        flex-wrap: nowrap; 
-        margin-left: auto; 
-
-        @include sm {
-            flex-grow: 1; 
-            justify-content: flex-end; 
-            overflow-x: auto; 
-            -webkit-overflow-scrolling: touch; 
-            scrollbar-width: none; 
-            -ms-overflow-style: none; 
-            &::-webkit-scrollbar {
-                display: none; 
-            }
-        }
-
-        .navigation-item {
-            color: $white;
-            @include typography(18px, 400, 1);
-            margin-left: 25px; 
-            padding: 5px 8px; 
-            border-radius: 6px; 
-            transition: background-color 0.3s ease, color 0.3s ease; 
-            cursor: pointer;
-            white-space: nowrap; 
-
-            &:first-child {
-                margin-left: 0; 
-            }
-
-            &:hover {
-                background-color: rgba(#8245ec, 0.2); 
-            }
-
-            @include md {
-                @include typography(16px, 400, 1);
-                margin-left: 20px;
-                padding: 4px 7px;
-            }
-            @include sm {
-                @include typography(15px, 400, 1);
-                margin-left: 15px;
-                padding: 3px 6px;
-            }
-            @include xs {
-                @include typography(14px, 400, 1);
-                margin-left: 10px;
-                padding: 2px 5px;
-            }
-        }
+    
+    .intro-content-wrapper {
+        padding-top: 60px;
     }
-
-    .call-to-action {
-        margin-left: 25px; 
-        padding: 8px 15px; 
-        border-radius: 8px; 
-        background-color: #8245ec; 
-        color: $white;
-        border: none; 
-        font-weight: 600;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease; 
-        white-space: nowrap;
-
-        &:hover {
-            background-color: darken(#8245ec, 10%); 
-            transform: translateY(-2px); 
-        }
-
-        @include md {
-            margin-left: 15px;
-            padding: 7px 12px;
-            font-size: 0.9em;
-        }
-        @include sm {
-            margin-left: 10px;
-            padding: 6px 10px;
-            font-size: 0.85em;
-        }
-        @include xs {
-            margin-left: 8px;
-            padding: 5px 8px;
-            font-size: 0.8em;
-        }
+    .intro-content-wrapper .layout {
+        padding: 0 20px;
+        min-height: calc(100vh - 60px);
     }
 }

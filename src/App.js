@@ -7,13 +7,15 @@ import Contact from "./components/contact";
 import Footer from "./components/footer";
 import Chatbot from './components/Chatbot';
 import Navigation from "./components/intro/navigation-bar";
+import Experience from "./components/Experience/experience";
 
 const App = () => {
     return (
         <div className="app">
-            <Navigation />
+             <Navigation />
             <Intro />
             <Skills />
+            <Experience />
             <Portfolio />
             <Contact />
             <Footer />

@@ -2,86 +2,72 @@ import React from "react";
 import "./style.scss";
 import handicon from "../../../images/hand.png"; 
 import myimage from "../../../images/me.jpg"; 
-import { BsAwardFill } from "react-icons/bs";
-import { FaReact } from "react-icons/fa";
 import Typewriter from "typewriter-effect";
-import { scrollToSection } from "../../utils/helpers"; 
 import CallToAction from "../../shared/CallToAction";
+import { scrollToSection } from "../../utils/helpers"; 
 import { AiOutlineCloudDownload } from "react-icons/ai";
 
-
 const IntroContent = () => {
-    return (
-        <div className="intro-content">
-            <div className="layout">
     
-                <div className="card card-left">
-                    <h1 className="title">
-                        <span className="small-text">
-                            <span className="text">Hello</span>
-                            <span className="icon">
-                                <img
-                                    src={handicon}
-                                    alt="iconhand"
-                                />
-                            </span>
-                            <span className="text">, I am</span>
-                        </span>
-                        <div
-                            style={{ fontSize: "35px", paddingBottom: "5px" }}
-                        >
+    const handleDownload = () => {
+        const link = document.createElement("a");
+        link.href = "/Arjun_Pratap_SoftwareDeveloper_Resume.pdf";
+        link.download = "Arjun_Pratap_Resume_Full_Stack.pdf"; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        alert("Resume Downloaded!");
+    };
+
+    return (
+        <> 
+            <div id="home" className="intro-content-wrapper">
+                <div className="layout">
+                    
+                    <div className="intro-left-content">
+                        <h1 className="greeting">
+                            Hi, I am
+                            <img src={handicon} alt="hand icon" className="hand-icon" />
+                        </h1>
+                        <h2 className="main-name">Arjun Pratap</h2>
+                        
+                        <h3 className="hero-role-typewriter">
+                            I am a{' '}
                             <Typewriter
                                 options={{
                                     autoStart: true,
                                     loop: true,
                                     delay: 40,
-                                    strings: ["Arjun Pratap"],
+                                    strings: ["Full-Stack Developer", "React.js Expert", "Node.js Specialist", "MERN Stack Developer"],
+                                    wrapperClassName: "typewriter-text",
+                                    cursorClassName: "typewriter-cursor"
                                 }}
                             />
-                        </div>
-                    </h1>
-                    <div className="i-title">
-                        <div className="i-title-wrapper">
-                            <div className="i-title-item">Web Developer</div>
-                            <div className="i-title-item">Frontend Developer</div>
-                            <div className="i-title-item">React Js Developer</div>
-                            <div className="i-title-item">Asp.Net Developer</div>
-                            <div className="i-title-item">Java Developer</div>
-                        </div>
-                    </div>
-                    <p>
-                        I'm a Full Stack Developer who genuinely loves bringing digital ideas to life. My sweet spot is taking a concept and building it out completely, from crafting pixel-perfect front-ends with HTML, CSS, Tailwind CSS, JavaScript, and React.js, to engineering robust back-end systems using ASP.NET ,Node.Js and Kafka. I'm all about creating clean, scalable, and user-friendly applications that truly make an impact, and I rely on Git and GitHub to keep everything running smoothly.
-                    </p>
-                    
-                </div>
-
-                <div className="card card-right">
-                    <img
-                        src={myimage}
-                        alt="imagegirl"
-                        className="profile-image"
-                    />
-                    <div className="highlights horizontal">
-                        <div className="icon">
-                            <BsAwardFill />
-                        </div>
-                        <div className="text">Full Stack Developer</div>
+                        </h3>
+                        
+                        <p className="bio-summary">
+                            I am a full-stack developer with over 3 years of experience in building scalable web applications. Skilled in both front-end and back-end development, I specialize in the MERN stack and other modern technologies to create seamless user experiences and efficient solutions.
+                        </p>
+                        
+                        <CallToAction 
+                            text={<span>DOWNLOAD CV</span>} 
+                            action={handleDownload} 
+                            className="download-cv-button"
+                        />
                     </div>
 
-                    <div className="highlights verticle">
-                        <div className="icon">
-                            <FaReact />
-                        </div>
-                        <div className="text">
-                            <span>React Js </span>
-                            Developer
+                    <div className="intro-right-content">
+                        <div className="profile-image-wrapper">
+                            <img
+                                src={myimage}
+                                alt="Arjun Pratap Profile"
+                                className="profile-image"
+                            />
                         </div>
                     </div>
-                    
                 </div>
             </div>
-           
-        </div>
+        </>
     );
 };
 
