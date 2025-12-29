@@ -61,7 +61,7 @@ const ContactHub = () => {
 
                     <div className="social-pills">
                         <a href="https://github.com/arjunprratap05" target="_blank" rel="noreferrer" className="pill"><FaGithub /> GitHub</a>
-                        <a href="https://linkedin.com/in/arjun-pratap" target="_blank" rel="noreferrer" className="pill"><FaLinkedinIn /> LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noreferrer" className="pill"><FaLinkedinIn /> LinkedIn</a>
                     </div>
                 </div>
 
