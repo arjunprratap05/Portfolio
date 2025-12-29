@@ -5,91 +5,43 @@
     padding: 100px 0;
     background-color: #080118;
     background-image: radial-gradient(at 50% 0%, rgba(130, 69, 236, 0.1) 0px, transparent 50%);
-    color: var(--text-light);
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
     .timeline-wrapper {
         position: relative;
         max-width: 900px;
         margin: 60px auto 0;
-        padding-left: 30px;
+        padding-left: 50px;
         border-left: 2px solid rgba(187, 102, 255, 0.2);
+
+        @include sm {
+            margin: 40px 15px 0 10px; 
+            padding-left: 25px; 
+        }
     }
 
     .timeline-card {
-        position: relative;
-        margin-bottom: 50px;
-        padding: 40px;
         background: rgba(255, 255, 255, 0.02);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
+        padding: 40px;
+        margin-bottom: 50px;
         transition: 0.4s ease;
 
-        &:hover {
-            border-color: var(--primary-purple);
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            
-            .node-inner { transform: scale(1.3); background: #fff; box-shadow: 0 0 15px #fff; }
+        @include sm {
+            padding: 20px;
+            margin-bottom: 30px;
         }
 
-        .timeline-node {
-            position: absolute;
-            left: -41px;
-            top: 45px;
-            width: 20px;
-            height: 20px;
-            background: #080118;
-            border: 2px solid var(--primary-purple);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .node-inner {
-                width: 8px;
-                height: 8px;
-                background: var(--primary-purple);
-                border-radius: 50%;
-                transition: 0.3s;
-            }
+        .job-title { 
+            font-size: 2rem; 
+            @include sm { font-size: 1.4rem; } 
         }
     }
-
-    .job-header {
-        margin-bottom: 25px;
-        .job-title { font-size: 2rem; color: #fff; margin-bottom: 5px; }
-        .specialization { color: var(--primary-purple); font-weight: 600; font-size: 1rem; letter-spacing: 1px; }
-        
-        .job-meta {
-            display: flex; gap: 20px; margin-top: 15px; color: var(--gray);
-            p { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
-            .icon { color: var(--primary-purple); }
-        }
-    }
-
-    .job-details {
-        list-style: none; padding: 0; margin-bottom: 30px;
-        li {
-            display: flex; align-items: flex-start; gap: 12px;
-            color: var(--text-light); margin-bottom: 12px; line-height: 1.6;
-            .bullet { color: var(--primary-purple); font-size: 0.6rem; margin-top: 8px; flex-shrink: 0; }
-        }
-    }
-
-    .skill-tags {
-        display: flex; flex-wrap: wrap; gap: 10px;
-        .tag {
-            padding: 5px 15px; background: rgba(187, 102, 255, 0.1);
-            border: 1px solid rgba(187, 102, 255, 0.3); border-radius: 50px;
-            color: #fff; font-size: 0.8rem; font-weight: 500;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .timeline-wrapper { margin-left: 20px; padding-left: 20px; }
-    .timeline-card { padding: 25px; }
-    .job-header .job-title { font-size: 1.5rem; }
-    .job-meta { flex-direction: column; gap: 5px; }
 }

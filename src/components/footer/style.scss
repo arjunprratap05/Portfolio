@@ -4,6 +4,7 @@
 #footer {
     padding: 80px 0 0 0;
     background: radial-gradient(at 50% 100%, rgba(130, 69, 236, 0.1) 0px, transparent 50%), #080118;
+    overflow: hidden;
 }
 
 .footer-content-wrapper {
@@ -16,22 +17,28 @@
         font-size: 32px;
         font-weight: 700;
         text-align: center;
-        padding-bottom: 40px;
+        padding: 0 20px 40px;
         color: $white;
         max-width: 800px;
         height: 100px;
 
         @include md { font-size: 24px; height: 80px; }
-        @include sm { font-size: 18px; padding: 0 20px 30px; }
+        @include sm { font-size: 18px; height: auto; padding-bottom: 30px; }
     }
 
     .footer-menu-items {
         margin: 0;
-        padding: 0;
+        padding: 0 20px;
         list-style-type: none;
         display: flex;
         gap: 30px;
         margin-bottom: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include sm {
+            gap: 15px 25px;
+        }
 
         .footer-menu-item {
             font-size: 14px;
@@ -41,6 +48,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             transition: 0.3s ease;
+            white-space: nowrap;
             
             &:hover {
                 color: $purple;
@@ -76,14 +84,15 @@
 
     .bottom-bar {
         width: 100%;
-        padding: 25px 0;
+        padding: 25px 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         text-align: center;
         
         .copyright-text {
             color: #555555;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 1px;
+            line-height: 1.5;
         }
     }
 }

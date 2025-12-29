@@ -2,94 +2,91 @@
 @import "../../style-config/mixins.scss";
 
 #skills {
-    padding: 120px 0;
+    padding: 100px 0;
     background-color: #080118; 
     background-image: 
-        radial-gradient(at 0% 0%, rgba(130, 69, 236, 0.18) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(130, 69, 236, 0.12) 0px, transparent 50%),
-        radial-gradient(at 50% 100%, rgba(130, 69, 236, 0.15) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(187, 102, 255, 0.1) 0px, transparent 50%);
     
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-
     .skills-header {
         text-align: center;
-        margin-bottom: 50px;
-        h2 { font-size: 3rem; color: $white; .purple { color: $purple; text-shadow: 0 0 15px $purple; } }
-        .line-glow { width: 60px; height: 3px; background: $purple; margin: 10px auto; box-shadow: 0 0 15px $purple; }
+        margin-bottom: 60px;
+        .expertise-label { color: $purple; letter-spacing: 4px; font-weight: 700; font-size: 0.8rem; }
+        h2 { font-size: 3.5rem; color: $white; .purple { color: $purple; text-shadow: 0 0 15px $purple; } }
+        .line-glow { width: 60px; height: 4px; background: $purple; margin: 15px auto; box-shadow: 0 0 20px $purple; border-radius: 10px; }
     }
 }
 
 .skills-container-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
     max-width: 1200px;
     width: 95%;
+    margin: 0 auto;
 
-    @include md { grid-template-columns: repeat(2, 1fr); }
-    @include sm { grid-template-columns: 1fr; }
+    @include sm { grid-template-columns: 1fr; width: 100%; padding: 0 15px; }
 }
 
 .skill-category-box {
     background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 25px;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 24px;
+    padding: 30px;
+    transition: 0.4s ease;
 
     &:hover {
-        background: rgba(130, 69, 236, 0.04);
-        border-color: rgba($purple, 0.5);
-        transform: translateY(-8px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        border-color: $purple;
+        transform: translateY(-5px);
+        background: rgba(130, 69, 236, 0.03);
     }
 
     .category-header {
         display: flex;
         align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-        h3 { 
-            color: $white; 
-            font-size: 1.1rem; 
-            letter-spacing: 1.5px; 
-            text-transform: uppercase; 
-            font-weight: 700;
-        }
-        .category-icon-dot { 
-            width: 6px; height: 6px; background: $purple; border-radius: 50%; 
-            box-shadow: 0 0 8px $purple; 
-        }
+        gap: 12px;
+        margin-bottom: 25px;
+        h3 { color: #fff; font-size: 1.2rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .category-icon-dot { width: 8px; height: 8px; background: $purple; border-radius: 50%; box-shadow: 0 0 10px $purple; }
     }
 }
 
 .pill-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 12px;
 }
 
 .skill-pill {
-    background: rgba($white, 0.04);
-    border: 1px solid rgba($white, 0.08);
-    padding: 5px 12px; 
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 16px; 
     border-radius: 50px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    transition: 0.3s;
 
-    .pill-logo { width: 18px; height: 18px; object-fit: contain; }
-    .name { color: $white; font-size: 0.75rem; font-weight: 500; }
+    &:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+    .pill-logo { width: 20px; height: 20px; object-fit: contain; }
+    .name { color: #fff; font-size: 0.85rem; font-weight: 600; }
     
-    .mini-progress-bg {
-        width: 30px; 
-        height: 2px; 
-        background: rgba($white, 0.1);
-        .progress-fill { background: $purple; box-shadow: 0 0 5px $purple; }
+    @include sm {
+        padding: 6px 12px;
+        .pill-logo { width: 16px; height: 16px; }
+        .name { font-size: 0.75rem; }
     }
+
+    .mini-progress-bg {
+        width: 40px; 
+        height: 3px; 
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        .progress-fill { height: 100%; background: $purple; box-shadow: 0 0 8px $purple; }
+    }
+    
+    .percent-num { color: $purple; font-size: 0.75rem; font-weight: 700; }
 }
