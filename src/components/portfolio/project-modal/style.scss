@@ -1,0 +1,51 @@
+@import "../../../style-config/variable.scss";
+@import "../../../style-config/mixins.scss";
+
+.project-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;
+}
+
+.project-modal-content {
+    background: #0d0124;
+    border: 1px solid rgba(187, 102, 255, 0.3);
+    border-radius: 20px;
+    width: 90%; max-width: 900px;
+    padding: 40px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(130, 69, 236, 0.2);
+    animation: modalFadeIn 0.3s ease-out;
+
+    .close-btn {
+        position: absolute; top: 20px; right: 20px;
+        background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;
+        &:hover { color: $purple; }
+    }
+
+    .modal-body {
+        display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px;
+        @include md { grid-template-columns: 1fr; }
+    }
+
+    .modal-image-section img { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+
+    .modal-info-section {
+        h3 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
+        .tags { display: flex; gap: 10px; margin-bottom: 20px; .tag { color: $purple; font-weight: 600; } }
+        .desc { color: $gray; line-height: 1.6; font-size: 1.05rem; margin-bottom: 30px; }
+        .modal-footer {
+            display: flex; gap: 15px;
+            .modal-btn {
+                padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s;
+                &.ghost { border: 1px solid $purple; color: $purple; &:hover { background: rgba(130, 69, 236, 0.1); } }
+                &.solid { background: $purple; color: #fff; &:hover { box-shadow: 0 0 15px $purple; transform: translateY(-2px); } }
+            }
+        }
+    }
+}
+
+@keyframes modalFadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import "./style.scss";
 
 const Filters = ({ filterProjects }) => {
     const allTags = ['all', 'web-app', 'product', 'web-page', 'mobile-app']; 
-
     const [activeFilter, setActiveFilter] = useState('all');
 
     const handleFilterClick = (tag) => {
@@ -13,13 +13,13 @@ const Filters = ({ filterProjects }) => {
     return (
         <div className="filters-container">
             {allTags.map((tag) => (
-                <span
+                <button
                     key={tag}
                     className={`filter-btn ${activeFilter === tag ? 'active' : ''}`}
                     onClick={() => handleFilterClick(tag)}
                 >
                     {tag.replace('-', ' ')}
-                </span>
+                </button>
             ))}
         </div>
     );
