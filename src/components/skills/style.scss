@@ -1,79 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
 @import "../../style-config/variable.scss";
 @import "../../style-config/mixins.scss";
 
-#skills {
-    padding: 100px 0;
-    background-color: #080118; 
-    font-family: 'Inter', sans-serif;
-    background-image: 
-        radial-gradient(at 0% 0%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(187, 102, 255, 0.1) 0px, transparent 50%);
-    
-    .skills-header {
-        text-align: center;
-        margin-bottom: 60px;
-        
-        .subtitle { 
-            font-family: 'Inter', sans-serif;
-            color: $purple; 
-            letter-spacing: 0.2em;
-            font-weight: 600; 
-            font-size: 0.75rem; 
-            text-transform: uppercase;
-        }
+.skills-container-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 
-        h2 { 
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem; 
-            font-weight: 800;
-            color: $white; 
-            letter-spacing: -0.03em;
-            margin-top: 10px;
-
-            .purple { 
-                color: $purple; 
-                text-shadow: 0 0 15px rgba(187, 102, 255, 0.4); 
-            }
-
-            @include md { font-size: 2.8rem; }
-            @include sm { font-size: 2.2rem; }
-        }
-
-        .line-glow { 
-            width: 40px; 
-            height: 4px; 
-            background: $purple; 
-            margin: 15px auto; 
-            box-shadow: 0 0 20px $purple; 
-            border-radius: 10px; 
-        }
+    @include sm {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+        padding: 0 15px;
     }
 }
 
-.skills-container-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    width: 95%;
-    margin: 0 auto;
-
-    @include sm { grid-template-columns: 1fr; width: 100%; padding: 0 15px; }
-}
-
 .skill-category-box {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
+    background: rgba(13, 1, 36, 0.4); 
+    backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(187, 102, 255, 0.2); 
+    border-radius: 24px;
     padding: 30px;
-    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 
     &:hover {
-        border-color: rgba(187, 102, 255, 0.4);
+        border-color: rgba(187, 102, 255, 0.5);
+        box-shadow: 0 15px 40px rgba(130, 69, 236, 0.15);
         transform: translateY(-5px);
-        background: rgba(130, 69, 236, 0.03);
     }
 
     .category-header {
@@ -81,75 +37,106 @@
         align-items: center;
         gap: 12px;
         margin-bottom: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        padding-bottom: 15px;
 
         h3 { 
             font-family: 'Outfit', sans-serif;
-            color: #fff; 
-            font-size: 1rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 0.05em; 
+            font-size: 1.1rem;
+            color: $white;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 0;
         }
 
         .category-icon-dot { 
-            width: 6px; 
-            height: 6px; 
+            width: 8px; height: 8px; 
             background: $purple; 
             border-radius: 50%; 
-            box-shadow: 0 0 10px $purple; 
+            box-shadow: 0 0 12px $purple; 
         }
     }
 }
 
-.pill-cloud {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
 .skill-pill {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    padding: 10px 16px; 
-    border-radius: 12px; 
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    padding: 12px 18px; 
+    border-radius: 14px; 
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 
-    &:hover { 
-        background: rgba(255, 255, 255, 0.08); 
-        border-color: rgba(255, 255, 255, 0.15); 
+    .pill-logo { 
+        width: 20px; height: 20px; 
+        transition: 0.3s; 
     }
-
-    .pill-logo { width: 18px; height: 18px; object-fit: contain; }
 
     .name { 
         font-family: 'Inter', sans-serif;
-        color: #e2e8f0; 
         font-size: 0.85rem; 
+        color: #e2e8f0; 
         font-weight: 500; 
-    }
-    
-    @include sm {
-        padding: 8px 12px;
-        .name { font-size: 0.8rem; }
     }
 
     .mini-progress-bg {
-        width: 35px; 
-        height: 2px; 
+        height: 3px; 
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
-        overflow: hidden;
-        margin-top: 2px;
-        .progress-fill { height: 100%; background: $purple; box-shadow: 0 0 8px $purple; }
+        margin-top: 4px;
+        .progress-fill { 
+            height: 100%; 
+            background: $purple; 
+            box-shadow: 0 0 8px $purple; 
+        }
     }
     
     .percent-num { 
-        font-family: 'Inter', sans-serif;
-        color: #94a3b8; 
-        font-size: 0.7rem; 
-        font-weight: 600; 
+        margin-left: auto;
+        color: $purple; 
+        font-size: 0.75rem; 
+        font-weight: 700; 
+        white-space: nowrap;
+    }
+
+    @media (min-width: 1025px) {
+        .mini-progress-bg, .percent-num {
+            opacity: 0;
+            width: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        &:hover { 
+            background: rgba(187, 102, 255, 0.1); 
+            border-color: $purple;
+            padding-right: 25px;
+
+            .mini-progress-bg { width: 45px; opacity: 1; margin-left: 5px; }
+            .percent-num { width: auto; opacity: 1; margin-left: 10px; }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        padding: 10px 14px;
+        justify-content: space-between;
+
+        .mini-progress-bg {
+            display: none;
+        }
+
+        .percent-num {
+            opacity: 1;
+            width: auto;
+            color: $purple;
+            font-size: 0.7rem;
+        }
+
+        &:active {
+            background: rgba(187, 102, 255, 0.15);
+            border-color: $purple;
+        }
     }
 }
