@@ -1,109 +1,91 @@
-import React, { useState } from 'react';
-import { FaPhoneAlt, FaLinkedinIn, FaGithub } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import React, { useState } from "react";
 import "./style.scss";
+import { FaLinkedinIn, FaGithub, FaBars, FaTimes, FaCloudDownloadAlt } from "react-icons/fa"; 
 
-const ContactHub = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', mobile: '', message: '' });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [status, setStatus] = useState({ type: '', msg: '' });
+const Navigation = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setStatus({ type: '', msg: '' });
+    const handleDownload = () => {
+        const link = document.createElement("a");
+        link.href = "/Arjun_Pratap_Resume_GENAI.pdf"; 
+        link.download = "Arjun_Pratap_Resume_GenAI.pdf"; 
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
-        const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
-
-        try {
-            const response = await fetch(`${API_URL}/contact`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                setStatus({ type: 'success', msg: 'Message sent successfully! 🚀' });
-                setFormData({ name: '', email: '', mobile: '', message: '' });
-            } else {
-                throw new Error(data.message || 'Something went wrong on the server.');
-            }
-        } catch (err) {
-            console.error("API Error:", err);
-            setStatus({ type: 'error', msg: 'Failed to connect to the server. Is your backend running?' });
-        } finally {
-            setIsSubmitting(false);
+    const scrollToSection = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            const offset = element.offsetTop - 80; 
+            window.scrollTo({ top: offset, behavior: 'smooth' });
+            setMenuOpen(false); 
         }
     };
 
     return (
-        <section id="contact" className="contact-hub-section">
-            <div className="hub-container">
-                <div className="info-column glass-effect">
-                    <div className="availability-tag">
-                        <span className="dot"></span> Available for GenAI Roles
-                    </div>
-                    <h2 className="hub-title">Let's build something <span className="purple">intelligent.</span></h2>
-                    <p className="hub-desc">Leveraging 3.3 years of experience in MERN and Generative AI.</p>
-
-                    <div className="contact-details">
-                        <a href="tel:+917856953862" className="detail-item">
-                            <FaPhoneAlt className="purple-icon" /> +91 7856953862
-                        </a>
-                        <a href="mailto:arjun.pratap05@gmail.com" className="detail-item">
-                            <MdEmail className="purple-icon" /> arjun.pratap05@gmail.com
-                        </a>
-                    </div>
-
-                    <div className="social-pills">
-                        <a href="https://github.com/arjunprratap05" target="_blank" rel="noreferrer" className="pill"><FaGithub /> GitHub</a>
-                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noreferrer" className="pill"><FaLinkedinIn /> LinkedIn</a>
-                    </div>
+        <nav className="portfolio-top-nav-fixed"> 
+            <div className="nav-wrapper">
+                <div className="app-logo" onClick={() => scrollToSection("home")}>
+                    <span className="logo-text">Arjun<span className="dot">.</span></span>
+                    <span className="logo-badge">Full Stack & GenAI</span>
                 </div>
 
-                <div className="form-column">
-                    <form className="modern-form glass-effect" onSubmit={handleSubmit}>
-                        <div className="input-row">
-                            <input 
-                                type="text" placeholder="Name" required 
-                                value={formData.name} 
-                                onChange={(e) => setFormData({...formData, name: e.target.value})} 
-                            />
-                            <input 
-                                type="email" placeholder="Email" required 
-                                value={formData.email} 
-                                onChange={(e) => setFormData({...formData, email: e.target.value})} 
-                            />
-                        </div>
-                        <input 
-                            type="tel" placeholder="Mobile" required 
-                            value={formData.mobile} 
-                            onChange={(e) => setFormData({...formData, mobile: e.target.value})} 
-                        />
-                        <textarea 
-                            placeholder="Your message..." rows="5" required 
-                            value={formData.message} 
-                            onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        ></textarea>
-                        
-                        <button type="submit" className="submit-btn" disabled={isSubmitting}>
-                            {isSubmitting ? 'Sending...' : 'Send Message'}
-                        </button>
+                <div className="desktop-menu-wrapper">
+                    <div className="navigation-links">
+                        <span className="navigation-item" onClick={() => scrollToSection("skills")}>Skills</span>
+                        <span className="navigation-item" onClick={() => scrollToSection("experience")}>Experience</span>
+                        <span className="navigation-item" onClick={() => scrollToSection("portfolio")}>Projects</span>
+                        <span className="navigation-item" onClick={() => scrollToSection("contact")}>Contact</span>
+                    </div>
+                    
+                    <div className="v-divider"></div>
 
-                        {status.msg && (
-                            <div className={`status-message ${status.type}`}>
-                                {status.msg}
-                            </div>
-                        )}
-                    </form>
+                    <div className="eye-catch-socials">
+                        <a href="https://github.com/arjunprratap05" target="_blank" rel="noopener noreferrer" className="social-icon github">
+                            <FaGithub />
+                        </a>
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
+                            <FaLinkedinIn />
+                        </a>
+                    </div>
+
+                    <button className="nav-resume-btn" onClick={handleDownload}>
+                        <FaCloudDownloadAlt /> Resume
+                    </button>
+                </div>
+
+                <div className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? <FaTimes /> : <FaBars />}
                 </div>
             </div>
-        </section>
+
+            <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
+    
+                <div className="mobile-close-btn" onClick={() => setMenuOpen(false)}>
+                    <FaTimes />
+                </div>
+
+                <div className="drawer-content">
+                    <span onClick={() => scrollToSection("skills")}>Skills</span>
+                    <span onClick={() => scrollToSection("experience")}>Experience</span>
+                    <span onClick={() => scrollToSection("portfolio")}>Projects</span>
+                    <span onClick={() => scrollToSection("contact")}>Contact</span>
+                    
+                    <div className="mobile-social-wrap">
+                        <a href="https://github.com/arjunprratap05" target="_blank" rel="noopener noreferrer">
+                            <FaGithub />
+                        </a>
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noopener noreferrer">
+                            <FaLinkedinIn />
+                        </a>
+                    </div>
+
+                    <button className="drawer-btn" onClick={handleDownload}>Download CV</button>
+                </div>
+            </div>
+        </nav>
     );
 };
 
-export default ContactHub;
+export default Navigation;

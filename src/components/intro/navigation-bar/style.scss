@@ -22,6 +22,12 @@
         justify-content: space-between;
         align-items: center;
         padding: 12px 60px;
+
+        .app-logo {
+            cursor: pointer;
+            .logo-text { font-weight: 800; color: #fff; font-size: 1.5rem; .dot { color: var(--primary-purple); } }
+            .logo-badge { display: block; font-size: 0.7rem; color: var(--text-light); }
+        }
     }
 
     .desktop-menu-wrapper {
@@ -87,6 +93,15 @@
             right: 0;
         }
 
+        .mobile-close-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
         .drawer-content {
             display: flex;
             flex-direction: column;
@@ -96,6 +111,19 @@
             gap: 30px;
             
             span { font-size: 24px; color: #fff; cursor: pointer; }
+
+            .mobile-social-wrap {
+                display: flex;
+                gap: 25px;
+                margin-top: 10px;
+                a { 
+                    color: #fff; 
+                    font-size: 1.8rem; 
+                    transition: 0.3s;
+                    &:hover { color: var(--primary-purple); }
+                }
+            }
+
             .drawer-btn {
                 background: var(--primary-purple);
                 padding: 15px 40px;
@@ -103,23 +131,15 @@
                 border: none;
                 color: #fff;
                 font-weight: 600;
+                cursor: pointer;
             }
         }
     }
 
     @media (max-width: 992px) {
         .nav-wrapper { padding: 12px 25px; }
-
-        .desktop-menu-wrapper {
-            display: none;
-        }
-
-        .mobile-toggle {
-            display: block;
-        }
-
-        .mobile-drawer {
-            display: flex;
-        }
+        .desktop-menu-wrapper { display: none; }
+        .mobile-toggle { display: block; }
+        .mobile-drawer { display: flex; }
     }
 }
