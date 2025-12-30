@@ -31,6 +31,7 @@ const Navigation = () => {
                     <span className="logo-badge">Full Stack & GenAI</span>
                 </div>
 
+                {/* Desktop UI - Untouched */}
                 <div className="desktop-menu-wrapper">
                     <div className="navigation-links">
                         <span className="navigation-item" onClick={() => scrollToSection("skills")}>Skills</span>
@@ -45,7 +46,7 @@ const Navigation = () => {
                         <a href="https://github.com/arjunprratap05" target="_blank" rel="noopener noreferrer" className="social-icon github">
                             <FaGithub />
                         </a>
-                        <a href="https://linkedin.com/in/arjun-pratap" target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noopener noreferrer" className="social-icon linkedin">
                             <FaLinkedinIn />
                         </a>
                     </div>
@@ -61,12 +62,27 @@ const Navigation = () => {
             </div>
 
             <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
+                {/* Cross Icon for Mobile */}
+                <div className="mobile-close-btn" onClick={() => setMenuOpen(false)}>
+                    <FaTimes />
+                </div>
+
                 <div className="drawer-content">
                     <span onClick={() => scrollToSection("skills")}>Skills</span>
                     <span onClick={() => scrollToSection("experience")}>Experience</span>
                     <span onClick={() => scrollToSection("portfolio")}>Projects</span>
                     <span onClick={() => scrollToSection("contact")}>Contact</span>
-                    <button className="drawer-btn" onClick={handleDownload}>Download CV</button>
+                    
+                    <div className="mobile-social-wrap">
+                        <a href="https://github.com/arjunprratap05" target="_blank" rel="noopener noreferrer">
+                            <FaGithub />
+                        </a>
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noopener noreferrer">
+                            <FaLinkedinIn />
+                        </a>
+                    </div>
+
+                    <button className="drawer-btn" onClick={handleDownload}>Resume</button>
                 </div>
             </div>
         </nav>
