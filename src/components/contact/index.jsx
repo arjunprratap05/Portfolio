@@ -18,9 +18,7 @@ const ContactHub = () => {
         try {
             const response = await fetch(`${API_URL}/contact`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
@@ -34,7 +32,7 @@ const ContactHub = () => {
             }
         } catch (err) {
             console.error("API Error:", err);
-            setStatus({ type: 'error', msg: 'Failed to connect to the server. Is your backend running?' });
+            setStatus({ type: 'error', msg: 'Failed to connect to the server.' });
         } finally {
             setIsSubmitting(false);
         }
@@ -46,6 +44,7 @@ const ContactHub = () => {
                 <div className="info-column glass-effect">
                     <div className="availability-tag">
                         <span className="dot"></span> Available for GenAI Roles
+                        <span className="dot"></span> Available for MERN Stack Roles
                     </div>
                     <h2 className="hub-title">Let's build something <span className="purple">intelligent.</span></h2>
                     <p className="hub-desc">Leveraging 3.3 years of experience in MERN and Generative AI.</p>

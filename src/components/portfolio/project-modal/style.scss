@@ -19,6 +19,7 @@
     position: relative;
     box-shadow: 0 0 50px rgba(130, 69, 236, 0.2);
     animation: modalFadeIn 0.3s ease-out;
+    font-family: 'Inter', sans-serif;
 
     .close-btn {
         position: absolute; top: 20px; right: 20px;
@@ -34,13 +35,24 @@
     .modal-image-section img { width: 100%; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
 
     .modal-info-section {
-        h3 { color: #fff; font-size: 2.2rem; margin-bottom: 10px; }
-        .tags { display: flex; gap: 10px; margin-bottom: 20px; .tag { color: $purple; font-weight: 600; } }
-        .desc { color: $gray; line-height: 1.6; font-size: 1.05rem; margin-bottom: 30px; }
+        h3 { 
+            font-family: 'Outfit', sans-serif;
+            color: #fff; 
+            font-size: 2.2rem; 
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 15px; 
+        }
+        .tags { 
+            display: flex; gap: 10px; margin-bottom: 20px; 
+            .tag { color: $purple; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.05em; } 
+        }
+        .desc { color: #cbd5e1; line-height: 1.7; font-size: 1.05rem; margin-bottom: 30px; }
         .modal-footer {
             display: flex; gap: 15px;
             .modal-btn {
-                padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 700; transition: 0.3s;
+                padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s;
+                font-family: 'Inter', sans-serif;
                 &.ghost { border: 1px solid $purple; color: $purple; &:hover { background: rgba(130, 69, 236, 0.1); } }
                 &.solid { background: $purple; color: #fff; &:hover { box-shadow: 0 0 15px $purple; transform: translateY(-2px); } }
             }

@@ -31,7 +31,6 @@ const Navigation = () => {
                     <span className="logo-badge">Full Stack & GenAI</span>
                 </div>
 
-                {/* Desktop UI - Untouched */}
                 <div className="desktop-menu-wrapper">
                     <div className="navigation-links">
                         <span className="navigation-item" onClick={() => scrollToSection("skills")}>Skills</span>
@@ -62,7 +61,6 @@ const Navigation = () => {
             </div>
 
             <div className={`mobile-drawer ${menuOpen ? "open" : ""}`}>
-                {/* Cross Icon for Mobile */}
                 <div className="mobile-close-btn" onClick={() => setMenuOpen(false)}>
                     <FaTimes />
                 </div>

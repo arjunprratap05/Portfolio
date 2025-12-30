@@ -29,7 +29,7 @@ const Footer = () => {
                     <li className="footer-menu-item" onClick={() => scrollToSection("home")}>Home</li>
                     <li className="footer-menu-item" onClick={() => scrollToSection("skills")}>Skills</li>
                     <li className="footer-menu-item" onClick={() => scrollToSection("contact")}>Contact</li>
-                    <li className="footer-menu-item" onClick={() => scrollToSection("experience")}>experience</li>
+                    <li className="footer-menu-item" onClick={() => scrollToSection("experience")}>Experience</li>
                     <li className="footer-menu-item" onClick={() => scrollToSection("portfolio")}>Projects</li>
                 </ul>
 

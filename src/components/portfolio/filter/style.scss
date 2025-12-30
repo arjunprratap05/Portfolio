@@ -1,27 +1,36 @@
-@import "../../../style-config/mixins.scss";
 @import "../../../style-config/variable.scss";
+@import "../../../style-config/mixins.scss";
 
 .filters-container {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 12px;
     margin: 40px 0;
     flex-wrap: wrap;
 
     .filter-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 8px 22px;
-        border-radius: 50px;
-        color: $white;
+        font-family: 'Inter', sans-serif;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 10px 24px;
+        border-radius: 100px;
+        color: #94a3b8;
         cursor: pointer;
         font-weight: 500;
-        transition: 0.3s;
+        font-size: 0.85rem;
+        letter-spacing: 0.02em;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-        &:hover, &.active {
+        &:hover {
+            color: $white;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &.active {
             background: $purple;
             border-color: $purple;
-            box-shadow: 0 0 15px rgba(130, 69, 236, 0.4);
+            color: $white;
+            box-shadow: 0 8px 20px rgba(130, 69, 236, 0.3);
             transform: translateY(-2px);
         }
     }

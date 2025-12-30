@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap');
 @import "../../style-config/variable.scss";
 @import "../../style-config/mixins.scss";
 
@@ -5,13 +6,13 @@
     padding: 100px 0;
     background-color: #080118;
     background-image: radial-gradient(at 50% 0%, rgba(187, 102, 255, 0.08) 0px, transparent 50%);
+    font-family: 'Inter', sans-serif;
 
     .timeline-container {
         max-width: 1000px;
         margin: 60px auto 0;
         display: flex;
         flex-direction: column;
-        gap: 0;
     }
 
     .timeline-item {
@@ -19,9 +20,7 @@
         gap: 30px;
         position: relative;
 
-        @include sm {
-            gap: 15px;
-        }
+        @include sm { gap: 15px; }
 
         &:last-child .timeline-line {
             display: none; 
@@ -35,8 +34,8 @@
         width: 50px;
 
         .timeline-dot {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             background: #1a0b3a;
             border: 2px solid var(--primary-purple);
             border-radius: 50%;
@@ -48,7 +47,7 @@
 
             .dot-icon {
                 color: var(--primary-purple);
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
         }
 
@@ -57,7 +56,7 @@
             flex-grow: 1;
             background: linear-gradient(to bottom, var(--primary-purple), transparent);
             margin: 10px 0;
-            opacity: 0.3;
+            opacity: 0.2;
         }
     }
 
@@ -66,101 +65,94 @@
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 24px;
-        padding: 35px;
-        margin-bottom: 50px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border-radius: 20px;
+        padding: 32px;
+        margin-bottom: 40px;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
-        overflow: hidden;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background: var(--primary-purple);
-            opacity: 0;
-            transition: 0.3s;
-        }
 
         &:hover {
-            transform: translateX(10px);
+            transform: translateX(8px);
             background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(187, 102, 255, 0.3);
-            &::before { opacity: 1; }
+            border-color: rgba(187, 102, 255, 0.2);
         }
 
-        @include sm {
-            padding: 20px;
-            margin-bottom: 30px;
-        }
+        @include sm { padding: 24px; margin-bottom: 30px; }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
 
-            @include sm { flex-direction: column; gap: 10px; }
+            @include sm { flex-direction: column; gap: 12px; }
 
             .job-title {
-                font-size: 1.6rem;
-                color: #fff;
-                margin-bottom: 5px;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.5rem; 
+                color: #ffffff;
+                margin-bottom: 4px;
                 font-weight: 700;
+                letter-spacing: -0.01em;
+                line-height: 1.2;
             }
 
             .specialization {
                 color: var(--primary-purple);
-                font-size: 0.9rem;
+                font-size: 0.875rem;
                 font-weight: 500;
-                display: block;
+                letter-spacing: 0.02em;
             }
 
             .duration-pill {
                 background: rgba(187, 102, 255, 0.1);
                 color: var(--primary-purple);
-                padding: 6px 16px;
-                border-radius: 20px;
-                font-size: 0.85rem;
+                padding: 6px 14px;
+                border-radius: 100px;
+                font-size: 0.8rem;
                 font-weight: 600;
                 display: flex;
                 align-items: center;
                 gap: 8px;
-                white-space: nowrap;
             }
         }
 
         .company-info {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 25px;
-            color: #b0b0b0;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #94a3b8;
             font-size: 0.95rem;
 
             .company-name {
                 font-weight: 600;
-                color: #fff;
+                color: #e2e8f0;
             }
-            .divider { opacity: 0.3; }
+            .divider { color: #334155; }
         }
 
         .job-details {
             list-style: none;
             padding: 0;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
 
             li {
                 display: flex;
                 gap: 12px;
-                margin-bottom: 12px;
-                color: #d1d1d1;
-                font-size: 0.95rem;
-                line-height: 1.6;
+                margin-bottom: 10px;
+                line-height: 1.6; 
+
+                p {
+                    color: #cbd5e1;
+                    font-size: 0.975rem;
+                    font-weight: 400;
+                }
 
                 .bullet {
                     color: var(--primary-purple);
-                    margin-top: 5px;
+                    margin-top: 6px;
+                    font-size: 0.8rem;
                     flex-shrink: 0;
                 }
             }
@@ -169,20 +161,22 @@
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
 
             .tag {
-                background: rgba(255, 255, 255, 0.05);
+                background: rgba(255, 255, 255, 0.04);
                 border: 1px solid rgba(255, 255, 255, 0.1);
-                color: #fff;
-                padding: 4px 12px;
+                color: #94a3b8;
+                padding: 4px 10px;
                 border-radius: 6px;
                 font-size: 0.75rem;
-                transition: 0.3s;
+                font-weight: 500;
+                transition: 0.2s;
 
                 &:hover {
-                    background: var(--primary-purple);
+                    color: #fff;
                     border-color: var(--primary-purple);
+                    background: rgba(187, 102, 255, 0.1);
                 }
             }
         }

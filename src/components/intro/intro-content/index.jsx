@@ -35,7 +35,7 @@ const IntroContent = () => {
                     </h3>
                     
                     <p className="bio-summary">
-                        Full Stack Developer with 3 years and 3 months of experience[cite: 4]. 
+                        Full Stack Developer with 3 years and 3 months of experience. 
                         I specialize in the MERN stack and integrating Generative AI solutions using OpenAI APIs to automate 
                         business processes, reducing manual operational effort by 40%.
                     </p>

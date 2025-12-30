@@ -19,7 +19,6 @@ const experienceData = [
         ],
         tags: ["ASP.NET Core", "React", "Node.js", "GenAI", "CI/CD"]
     },
-    
 ];
 
 const Experience = () => {

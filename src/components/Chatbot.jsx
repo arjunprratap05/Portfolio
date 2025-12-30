@@ -36,70 +36,49 @@ const Chatbot = () => {
                 const now = new Date();
                 const currentHour = now.getHours();
                 let timeOfDayGreeting = "";
-                if (currentHour >= 0 && currentHour < 12) {
-                    timeOfDayGreeting = "Good Morning!";
-                } else if (currentHour >= 12 && currentHour < 17) {
-                    timeOfDayGreeting = "Good Afternoon!";
-                } else if (currentHour >= 17 && currentHour < 21) {
-                    timeOfDayGreeting = "Good Evening!";
-                } else {
-                    timeOfDayGreeting = "Good Night!";
-                }
+                if (currentHour >= 0 && currentHour < 12) timeOfDayGreeting = "Good Morning!";
+                else if (currentHour >= 12 && currentHour < 17) timeOfDayGreeting = "Good Afternoon!";
+                else if (currentHour >= 17 && currentHour < 21) timeOfDayGreeting = "Good Evening!";
+                else timeOfDayGreeting = "Good Night!";
 
-                const initialBotMessage = `${timeOfDayGreeting} 👋 Hello! I’m Arjun’s Verse AI. To start, could you please tell me your name?`;
+                const initialBotMessage = `${timeOfDayGreeting} 👋 I'm Arjun's AI Verse. To get started, what's your name?`;
                 setMessages([{ from: 'bot', text: initialBotMessage, timestamp: new Date() }]);
                 setAwaitingNameInput(true); 
                 setIsBotTyping(false);
-                
             }, 1000);
         }
     }, [isOpen, conversationStarted, messages.length]);
 
     const resetInactivityTimer = useCallback(() => {
-        if (inactivityTimerRef.current) {
-            clearTimeout(inactivityTimerRef.current);
-        }
+        if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
 
         if (isOpen && !showInactivityPrompt && !showAssistPrompt && !isBotTyping && conversationStarted) {
             inactivityTimerRef.current = setTimeout(() => {
                 setShowInactivityPrompt(true);
-                setMessages(prev => [...prev, { from: 'bot', text: 'Do you want to continue the conversation?', isPrompt: true, type: 'continue', timestamp: new Date() }]);
+                setMessages(prev => [...prev, { from: 'bot', text: 'Still there? Do you want to continue?', isPrompt: true, type: 'continue', timestamp: new Date() }]);
             }, INACTIVITY_TIMEOUT_MS);
         }
     }, [isOpen, showInactivityPrompt, showAssistPrompt, isBotTyping, conversationStarted]);
 
     useEffect(() => {
-        if (isOpen) {
-            resetInactivityTimer();
-        } else {
-            
-            if (inactivityTimerRef.current) {
-                clearTimeout(inactivityTimerRef.current);
-            }
+        if (isOpen) resetInactivityTimer();
+        else {
+            if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
             setShowInactivityPrompt(false);
             setShowAssistPrompt(false);
-            
             setUserName('');
             setConversationStarted(false);
             setAwaitingNameInput(false);
             setMessages([]); 
             setConversationHistory([]); 
         }
-        return () => { 
-            if (inactivityTimerRef.current) {
-                clearTimeout(inactivityTimerRef.current);
-            }
-        };
+        return () => { if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current); };
     }, [isOpen, resetInactivityTimer]);
 
     const toggleChat = useCallback(() => {
         setIsOpen(prev => {
-            if (!prev) {
-                
-            } else {
-                if (inactivityTimerRef.current) {
-                    clearTimeout(inactivityTimerRef.current);
-                }
+            if (prev) {
+                if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
                 setShowInactivityPrompt(false);
                 setShowAssistPrompt(false);
                 setUserName('');
@@ -113,32 +92,16 @@ const Chatbot = () => {
     }, []); 
 
     const sendConversationEmail = useCallback(async (name, history) => {
-        console.log("Attempting to send email...", { name, history });
         try {
             const res = await fetch(`${BACKEND_URL}/api/send-chat-summary-email`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ userName: name, conversation: history })
             });
-
-            if (!res.ok) {
-                const errorData = await res.json();
-                const errorMessage = errorData.error || `HTTP error! status: ${res.status}`;
-                throw new Error(errorMessage);
-            }
-
-            console.log("Email sent successfully!");
-            
-            setMessages(prev => [...prev, { from: 'bot', text: 'Thank you for your conversation! I\'ve sent a summary to Arjun.', timestamp: new Date() }]);
-
-            setMessages([]);
-            setConversationHistory([]);
-
+            if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+            setMessages(prev => [...prev, { from: 'bot', text: "Summary sent to Arjun! Thanks for chatting.", timestamp: new Date() }]);
         } catch (err) {
-            console.error("Failed to send conversation email:", err);
-            setMessages(prev => [...prev, { from: 'bot', text: 'Failed to send conversation summary. Please inform Arjun directly.', timestamp: new Date() }]);
+            console.error("Email error:", err);
         }
     }, []);
 
@@ -146,118 +109,65 @@ const Chatbot = () => {
         try {
             const res = await fetch(`${BACKEND_URL}/api/gemini-chat`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: text })
             });
-
-            if (!res.ok) {
-                const errorData = await res.json();
-                const errorMessage = errorData.error || `HTTP error! status: ${res.status}`;
-                throw new Error(errorMessage);
-            }
-
+            if (!res.ok) throw new Error("API Connection Failed");
             const data = await res.json();
-            const reply = data?.response;
-            return reply || "🤖 I'm having trouble connecting to Arjun AI. Please try again.";
+            return data?.response || "I'm having a small glitch. Try again?";
         } catch (err) {
-            console.error("AI API Call Error:", err);
-            return `⚠️ Failed to reach Arjun AI: ${err.message}. Please try again later.`;
+            return "⚠️ Connection error. Please try again later.";
         }
     }, []);
 
     const handleSend = useCallback(async () => {
         if (!input.trim()) return;
-
         const userMessage = input.trim();
         const userTimestamp = new Date();
 
-        
         setMessages(prev => [...prev, { from: 'user', text: userMessage, timestamp: userTimestamp }]);
-        
         setConversationHistory(prev => [...prev, { from: 'User', text: userMessage, timestamp: userTimestamp.toLocaleString() }]);
-
         setInput('');
         setIsBotTyping(true);
-        setShowInactivityPrompt(false);
-        setShowAssistPrompt(false);
         
-        if (conversationStarted) {
-            resetInactivityTimer();
-        }
-
         setTimeout(async () => {
             let botReply = '';
             const botTimestamp = new Date();
-
             if (awaitingNameInput) {
                 setUserName(userMessage);
                 setAwaitingNameInput(false);
                 setConversationStarted(true); 
-                botReply = `Thanks, ${userMessage}! How can I assist you today? Feel free to ask about Arjun's skills, projects, or anything else about his work.`;
-                resetInactivityTimer(); 
+                botReply = `Nice to meet you, ${userMessage}! Ask me about Arjun's skills or projects. How can I help?`;
             } else {
-               
                 botReply = await sendMessageToAI(userMessage);
             }
-
             setIsBotTyping(false);
             setMessages(prev => [...prev, { from: 'bot', text: botReply, timestamp: botTimestamp }]);
-            
             setConversationHistory(prev => [...prev, { from: 'Bot', text: botReply, timestamp: botTimestamp.toLocaleString() }]);
-            
-            if (conversationStarted || awaitingNameInput) { 
-                resetInactivityTimer();
-            }
+            resetInactivityTimer();
         }, 1200);
-    }, [input, awaitingNameInput, conversationStarted, sendMessageToAI, resetInactivityTimer]);
+    }, [input, awaitingNameInput, sendMessageToAI, resetInactivityTimer]);
 
-    const handleKeyPress = useCallback((e) => {
-        if (e.key === 'Enter') {
-            handleSend();
-        }
-    }, [handleSend]);
+    const handleKeyPress = (e) => { if (e.key === 'Enter') handleSend(); };
 
     const handlePromptResponse = useCallback(async (type, choice) => { 
         const userChoiceMessage = choice === 'yes' ? 'Yes' : 'No';
-        const userChoiceTimestamp = new Date();
-
-        setMessages(prev => [...prev, { from: 'user', text: userChoiceMessage, timestamp: userChoiceTimestamp }]);
+        setMessages(prev => [...prev, { from: 'user', text: userChoiceMessage, timestamp: new Date() }]);
         
-        setConversationHistory(prev => [...prev, { from: 'User', text: userChoiceMessage, timestamp: userChoiceTimestamp.toLocaleString() }]);
-
         if (type === 'continue') {
             setShowInactivityPrompt(false);
-            if (choice === 'yes') {
-                resetInactivityTimer();
-            } else {
+            if (choice === 'yes') resetInactivityTimer();
+            else {
                 setShowAssistPrompt(true);
-                const botAssistMessage = 'Thank you. Can I assist with something else?';
-                setMessages(prev => [...prev, { from: 'bot', text: botAssistMessage, isPrompt: true, type: 'assist', timestamp: new Date() }]);
-                setConversationHistory(prev => [...prev, { from: 'Bot', text: botAssistMessage, timestamp: new Date().toLocaleString() }]);
+                setMessages(prev => [...prev, { from: 'bot', text: 'Anything else I can help with?', isPrompt: true, type: 'assist', timestamp: new Date() }]);
             }
         } else if (type === 'assist') {
             setShowAssistPrompt(false);
-            if (choice === 'yes') {
-                resetInactivityTimer();
-            } else {
-                const botFarewellMessage = 'Thank you! Ending the conversation now.';
-                setMessages(prev => [...prev, { from: 'bot', text: botFarewellMessage, timestamp: new Date() }]);
-                setConversationHistory(prev => [...prev, { from: 'Bot', text: botFarewellMessage, timestamp: new Date().toLocaleString() }]);
-
+            if (choice === 'yes') resetInactivityTimer();
+            else {
+                setMessages(prev => [...prev, { from: 'bot', text: 'Closing chat. Have a great day!', timestamp: new Date() }]);
                 await sendConversationEmail(userName, conversationHistory);
-
-                setTimeout(() => {
-                    setIsOpen(false);
-                    if (inactivityTimerRef.current) {
-                        clearTimeout(inactivityTimerRef.current);
-                    }
-                    
-                    setUserName('');
-                    setConversationStarted(false);
-                    setAwaitingNameInput(false);
-                }, 2000);
+                setTimeout(() => setIsOpen(false), 2000);
             }
         }
     }, [resetInactivityTimer, userName, conversationHistory, sendConversationEmail]); 
@@ -271,33 +181,22 @@ const Chatbot = () => {
             {isOpen && (
                 <div className="chatbox">
                     <div className="chat-header">
-                        Arjun's AI Verse Chatbot
-                        <span onClick={toggleChat} className="close-button" role="button" aria-label="Close Chat">×</span>
+                        <div className="header-info">
+                            <span className="dot active"></span>
+                            Arjun's AI Verse
+                        </div>
+                        <span onClick={toggleChat} className="close-button">×</span>
                     </div>
 
                     <div className="chat-messages">
                         {messages.map((msg, idx) => (
-                            <div
-                                key={idx}
-                                className={`chat-bubble ${msg.from === 'user' ? 'user' : 'bot'} ${msg.isPrompt ? 'inactivity-prompt-message' : ''}`}
-                            >
+                            <div key={idx} className={`chat-bubble ${msg.from === 'user' ? 'user' : 'bot'}`}>
                                 {msg.text}
-                                {msg.timestamp && (
-                                    <div className="timestamp">
-                                        {formatTimestamp(msg.timestamp)}
-                                    </div>
-                                )}
-
-                                {msg.isPrompt && msg.type === 'continue' && (
+                                {msg.timestamp && <div className="timestamp">{formatTimestamp(msg.timestamp)}</div>}
+                                {msg.isPrompt && (
                                     <div className="prompt-options">
-                                        <button onClick={() => handlePromptResponse('continue', 'yes')}>Yes</button>
-                                        <button onClick={() => handlePromptResponse('continue', 'no')}>No</button>
-                                    </div>
-                                )}
-                                {msg.isPrompt && msg.type === 'assist' && (
-                                    <div className="prompt-options">
-                                        <button onClick={() => handlePromptResponse('assist', 'yes')}>Yes</button>
-                                        <button onClick={() => handlePromptResponse('assist', 'no')}>No</button>
+                                        <button onClick={() => handlePromptResponse(msg.type, 'yes')}>Yes</button>
+                                        <button onClick={() => handlePromptResponse(msg.type, 'no')}>No</button>
                                     </div>
                                 )}
                             </div>
@@ -305,7 +204,6 @@ const Chatbot = () => {
 
                         {isBotTyping && (
                             <div className="chat-bubble bot typing-indicator">
-                                <img src="/chatbot-typing.jpg" alt="Bot Typing" className="bot-avatar" />
                                 <div className="typing-dots">
                                     <span></span><span></span><span></span>
                                 </div>
@@ -320,18 +218,12 @@ const Chatbot = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            placeholder={awaitingNameInput ? "Type your name here..." : "Type your message..."} 
+                            placeholder={awaitingNameInput ? "Enter your name..." : "Ask me anything..."} 
                             className="chat-input"
                             disabled={isBotTyping || showInactivityPrompt || showAssistPrompt}
-                            aria-label="Message input"
                         />
-                        <button
-                            className="send-button"
-                            onClick={handleSend}
-                            disabled={isBotTyping || !input.trim() || showInactivityPrompt || showAssistPrompt}
-                            aria-label="Send message"
-                        >
-                            <img src="/send.jpg" alt="Send" />
+                        <button className="send-button" onClick={handleSend} disabled={isBotTyping || !input.trim()}>
+                            <img src="/send.jpg" alt="Send" style={{filter: 'invert(1)', width: '20px'}} />
                         </button>
                     </div>
                 </div>

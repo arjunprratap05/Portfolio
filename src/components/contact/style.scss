@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
 @import "../../style-config/mixins.scss";
 @import "../../style-config/variable.scss";
 
 .contact-hub-section {
     padding: 100px 0;
     background-color: #080118;
+    font-family: 'Inter', sans-serif;
     
     .hub-container {
         max-width: 1200px;
@@ -39,19 +41,34 @@
             color: #00ff88;
             padding: 6px 14px;
             border-radius: 50px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
             margin-bottom: 25px;
             .dot { width: 8px; height: 8px; background: #00ff88; border-radius: 50%; animation: blink 2s infinite; }
         }
 
         .hub-title {
-            font-size: 3.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
             color: $white; 
             line-height: 1.1;
+            letter-spacing: -0.03em; 
             margin-bottom: 20px;
             .purple { color: $purple; text-shadow: 0 0 15px rgba(130, 69, 236, 0.3); }
+
+            @include sm { font-size: 2.2rem; }
         }
-        .hub-desc { color: $gray; line-height: 1.6; margin-bottom: 35px; font-size: 1.1rem; }
+
+        .hub-desc { 
+            font-family: 'Inter', sans-serif;
+            color: #94a3b8; 
+            line-height: 1.6; 
+            margin-bottom: 35px; 
+            font-size: 1.05rem; 
+            font-weight: 400;
+        }
     }
 
     .modern-form {
@@ -60,12 +77,15 @@
         gap: 15px;
 
         input, textarea {
+            font-family: 'Inter', sans-serif;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 16px;
             border-radius: 12px;
             color: $white;
+            font-size: 0.95rem;
             transition: 0.3s ease;
+            &::placeholder { color: #64748b; }
             &:focus { border-color: $purple; background: rgba(130, 69, 236, 0.05); outline: none; }
         }
 
@@ -75,12 +95,15 @@
         }
 
         .submit-btn {
+            font-family: 'Inter', sans-serif;
             background: $purple;
             color: $white;
             padding: 16px;
             border-radius: 12px;
             border: none;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
             cursor: pointer;
             transition: 0.4s;
             &:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(130, 69, 236, 0.4); }
@@ -88,7 +111,11 @@
         }
 
         .status-message {
-            text-align: center; font-size: 0.9rem; margin-top: 10px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            text-align: center; 
+            font-size: 0.9rem; 
+            margin-top: 10px;
             &.success { color: #00ff88; }
             &.error { color: #ff4444; }
         }
@@ -97,18 +124,27 @@
     .contact-details {
         margin-bottom: 35px;
         .detail-item {
+            font-family: 'Inter', sans-serif;
             display: flex; align-items: center; gap: 12px;
-            color: $white; text-decoration: none; margin-bottom: 15px;
-            .purple-icon { color: $purple; font-size: 1.3rem; }
-            &:hover { color: $purple; }
+            color: #cbd5e1; 
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none; 
+            margin-bottom: 15px;
+            transition: 0.3s;
+            .purple-icon { color: $purple; font-size: 1.2rem; }
+            &:hover { color: $white; }
         }
     }
 
     .social-pills {
         display: flex; gap: 12px;
         .pill {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
             display: flex; align-items: center; gap: 8px;
-            padding: 10px 20px; border-radius: 50px;
+            padding: 10px 22px; border-radius: 50px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: $white; text-decoration: none;

@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
 @import "../../style-config/mixins.scss";
 @import "../../style-config/variable.scss";
 
 #footer {
     padding: 80px 0 0 0;
-    background: radial-gradient(at 50% 100%, rgba(130, 69, 236, 0.1) 0px, transparent 50%), #080118;
+    background: radial-gradient(at 50% 100%, rgba(130, 69, 236, 0.08) 0px, transparent 50%), #080118;
     overflow: hidden;
+    font-family: 'Inter', sans-serif;
 }
 
 .footer-content-wrapper {
@@ -14,16 +16,19 @@
     width: 100%;
 
     .footer-typewriter {
-        font-size: 32px;
+        font-family: 'Outfit', sans-serif;
+        font-size: 2.2rem;
         font-weight: 700;
         text-align: center;
         padding: 0 20px 40px;
-        color: $white;
-        max-width: 800px;
+        color: #ffffff;
+        max-width: 850px;
         height: 100px;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
 
-        @include md { font-size: 24px; height: 80px; }
-        @include sm { font-size: 18px; height: auto; padding-bottom: 30px; }
+        @include md { font-size: 1.8rem; height: 80px; }
+        @include sm { font-size: 1.4rem; height: auto; padding-bottom: 30px; }
     }
 
     .footer-menu-items {
@@ -31,8 +36,8 @@
         padding: 0 20px;
         list-style-type: none;
         display: flex;
-        gap: 30px;
-        margin-bottom: 40px;
+        gap: 35px;
+        margin-bottom: 45px;
         flex-wrap: wrap;
         justify-content: center;
 
@@ -41,13 +46,14 @@
         }
 
         .footer-menu-item {
-            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
             font-weight: 500;
-            color: $gray;
+            color: #94a3b8; 
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.08em;
             cursor: pointer;
-            transition: 0.3s ease;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
             
             &:hover {
@@ -60,38 +66,44 @@
     .social-icons {
         display: flex;
         align-items: center;
-        gap: 20px;
-        margin-bottom: 50px;
+        gap: 24px;
+        margin-bottom: 60px;
         
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: $white;
-            font-size: 20px;
+            color: #ffffff;
+            font-size: 1.2rem;
             cursor: pointer;
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             
             &:hover {
-                transform: scale(1.2) rotate(10deg);
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+                transform: scale(1.15) translateY(-5px);
+                border-color: rgba(187, 102, 255, 0.5);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             }
         }
     }
 
     .bottom-bar {
         width: 100%;
-        padding: 25px 20px;
+        padding: 30px 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         text-align: center;
+        background: rgba(0, 0, 0, 0.2);
         
         .copyright-text {
-            color: #555555;
-            font-size: 11px;
-            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+            color: #475569;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
             line-height: 1.5;
         }
     }
