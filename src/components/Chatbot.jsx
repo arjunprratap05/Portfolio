@@ -106,19 +106,26 @@ const Chatbot = () => {
     }, []);
 
     const sendMessageToAI = useCallback(async (text) => {
-        try {
-            const res = await fetch(`${BACKEND_URL}/api/gemini-chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: text })
-            });
-            if (!res.ok) throw new Error("API Connection Failed");
-            const data = await res.json();
-            return data?.response || "I'm having a small glitch. Try again?";
-        } catch (err) {
-            return "⚠️ Connection error. Please try again later.";
+    try {
+        const res = await fetch(`${BACKEND_URL}/api/gemini-chat`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: text })
+        });
+
+        const data = await res.json();
+
+        if (res.status === 429) {
+            return "⏳ I'm receiving too many requests. Please wait a few seconds and try again!";
         }
-    }, []);
+
+        if (!res.ok) throw new Error(data.error || "API Connection Failed");
+        return data?.response || "I'm having a small glitch. Try again?";
+    } catch (err) {
+        console.error("Chat Error:", err.message);
+        return "⚠️ Connection error. Please try again later.";
+    }
+}, []);
 
     const handleSend = useCallback(async () => {
         if (!input.trim()) return;
