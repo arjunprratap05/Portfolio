@@ -1,62 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap');
 @import "../../style-config/variable.scss";
 @import "../../style-config/mixins.scss";
 
 #portfolio {
     padding: 100px 0;
-    background-color: #080118; 
-    font-family: 'Inter', sans-serif;
+    background-color: #080118;
     background-image: 
         radial-gradient(at 0% 100%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
         radial-gradient(at 100% 0%, rgba(187, 102, 255, 0.12) 0px, transparent 50%);
     
-    .portfolio-header {
+    .no-projects-fallback {
         text-align: center;
-        margin-bottom: 50px;
-
-        .subtitle { 
-            font-family: 'Inter', sans-serif;
-            color: $purple; 
-            text-transform: uppercase; 
-            letter-spacing: 0.2em; 
-            font-weight: 600; 
-            font-size: 0.75rem; 
+        padding: 60px 20px;
+        border: 1px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.02);
+        max-width: 600px;
+        margin: 40px auto;
+        @include glassmorphism-effect;
+        
+        @include sm {
+            padding: 40px 15px;
+            margin: 20px 10px;
+            h3 { font-size: 1.2rem; }
         }
-
-        h2 { 
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem; 
-            font-weight: 800;
-            color: $white; 
-            margin: 10px 0; 
-            letter-spacing: -0.03em;
-            
-            .purple { 
-                color: $purple; 
-                text-shadow: 0 0 15px rgba(187, 102, 255, 0.4); 
-            }
-
-            @include md { font-size: 2.8rem; }
-            @include sm { font-size: 2.2rem; }
-        }
-
-        .line-glow { 
-            width: 40px; 
-            height: 4px; 
-            background: $purple; 
-            margin: 15px auto; 
-            box-shadow: 0 0 20px $purple; 
-            border-radius: 10px; 
-        }
-
-        .portfolio-subtitle { 
-            font-family: 'Inter', sans-serif;
-            color: #94a3b8; 
-            font-size: 1.05rem; 
-            max-width: 600px; 
-            margin: 0 auto; 
-            line-height: 1.6; 
-            font-weight: 400;
+        
+        h3 { color: $white; font-size: 1.5rem; margin-bottom: 10px; }
+        p { color: #94a3b8; margin-bottom: 25px; }
+        
+        .back-btn {
+            background: transparent;
+            border: 1px solid $purple;
+            color: $purple;
+            padding: 10px 25px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: 0.3s;
+            &:hover { background: $purple; color: $white; }
         }
     }
 }

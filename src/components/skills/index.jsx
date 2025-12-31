@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Section from "../shared/section";
-import "./style.scss";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { SkillsInfo } from "../../constants";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import "./style.scss";
 
 const Skills = () => {
     const [skillsData, setSkillsData] = useState([]);
@@ -11,7 +16,6 @@ const Skills = () => {
             try {
                 const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000/api'}/skills`);
                 const data = await response.json();
-                
                 if (Array.isArray(data)) {
                     const merged = SkillsInfo.map(category => {
                         const apiCat = data.find(c => c.title === category.title);
@@ -24,12 +28,8 @@ const Skills = () => {
                         };
                     });
                     setSkillsData(merged);
-                } else {
-                    setSkillsData(SkillsInfo);
-                }
-            } catch (err) {
-                setSkillsData(SkillsInfo);
-            }
+                } else { setSkillsData(SkillsInfo); }
+            } catch (err) { setSkillsData(SkillsInfo); }
         };
         fetchSkills();
     }, []);
@@ -42,32 +42,45 @@ const Skills = () => {
                 <div className="line-glow"></div>
             </div>
 
-            <div className="skills-container-grid">
-                {skillsData.map((category) => (
-                    <div key={category.title} className="skill-category-box glass-effect">
-                        <div className="category-header">
-                            <span className="category-icon-dot"></span>
-                            <h3>{category.title}</h3>
-                        </div>
-                        <div className="pill-cloud">
-                            {category.skills.map((skill) => (
-                                <div key={skill.name} className="skill-pill">
-                                    <img src={skill.logo} alt={skill.name} className="pill-logo" />
-                                    <div className="pill-info">
-                                        <span className="name">{skill.name}</span>
-                                        <div className="mini-progress-bg">
-                                            <div 
-                                                className="progress-fill" 
-                                                style={{ width: `${skill.percentage}%` }}
-                                            ></div>
-                                        </div>
-                                    </div>
-                                    <span className="percent-num">{skill.percentage}%</span>
+            <div className="skills-slider-wrapper">
+                <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={0}
+                    slidesPerView={1} 
+                    centeredSlides={true}
+                    loop={true}
+                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    pagination={{ clickable: true }}
+                    breakpoints={{
+                
+                        1024: { 
+                            slidesPerView: 3, 
+                            centeredSlides: false, 
+                            spaceBetween: 20 
+                        }
+                    }}
+                    className="skills-swiper"
+                >
+                    {skillsData.map((category) => (
+                        <SwiperSlide key={category.title}>
+                            <div className="skill-category-box">
+                                <div className="category-top">
+                                    <span className="glow-dot"></span>
+                                    <h3>{category.title}</h3>
+                                    <span className="count-pill">{category.skills.length} Skills</span>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-                ))}
+                                <div className="skills-grid-layout">
+                                    {category.skills.map((skill) => (
+                                        <div key={skill.name} className="compact-pill">
+                                            <img src={skill.logo} alt={skill.name} />
+                                            <span>{skill.name}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
             </div>
         </Section>
     );

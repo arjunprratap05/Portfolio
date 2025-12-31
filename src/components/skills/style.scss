@@ -1,142 +1,117 @@
 @import "../../style-config/variable.scss";
 @import "../../style-config/mixins.scss";
 
-.skills-container-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+.skills-slider-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px 80px;
+
+    .skills-swiper {
+        padding: 20px 0 60px;
+    }
 
     @include sm {
-        grid-template-columns: 1fr; 
-        gap: 20px;
-        padding: 0 15px;
+        padding: 0 20px 40px;
+        .swiper-button-next, .swiper-button-prev { display: none !important; }
     }
 }
 
 .skill-category-box {
-    background: rgba(13, 1, 36, 0.4); 
-    backdrop-filter: blur(10px);
+    background: #0f0524; 
+    border: 1px solid rgba(130, 69, 236, 0.4);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+    aspect-ratio: 1 / 1; 
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
-    border: 1px solid rgba(187, 102, 255, 0.2); 
-    border-radius: 24px;
-    padding: 30px;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-
-    &:hover {
-        border-color: rgba(187, 102, 255, 0.5);
-        box-shadow: 0 15px 40px rgba(130, 69, 236, 0.15);
-        transform: translateY(-5px);
+    @include sm {
+        aspect-ratio: auto; 
+        min-height: 280px; 
+        max-height: 60vh; 
+        padding: 12px 14px; 
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
     }
 
-    .category-header {
+    .category-top {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 25px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        padding-bottom: 15px;
+        gap: 6px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 8px;
 
         h3 { 
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.1rem;
-            color: $white;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            font-size: 0.75rem; 
+            color: $white; 
+            text-transform: uppercase; 
+            letter-spacing: 0.8px;
             margin: 0;
         }
 
-        .category-icon-dot { 
-            width: 8px; height: 8px; 
+        .count-pill {
+            margin-left: auto;
+            font-size: 0.6rem;
+            background: rgba(130, 69, 236, 0.2);
+            color: $purple;
+            padding: 1px 6px;
+            border-radius: 100px;
+        }
+
+        .glow-dot { 
+            width: 5px; height: 5px; 
             background: $purple; 
-            border-radius: 50%; 
-            box-shadow: 0 0 12px $purple; 
+            border-radius: 50%;
+            box-shadow: 0 0 8px $purple;
+        }
+    }
+
+    .skills-grid-layout {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 6px;
+        flex: 1;
+        overflow-y: auto; 
+
+        @include md {
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        }
+
+        .compact-pill {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #1a0b3d; 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 6px 10px;
+            border-radius: 6px;
+            
+            img { width: 14px; height: 14px; object-fit: contain; }
+            span { 
+                font-size: 0.65rem; 
+                color: #cbd5e1; 
+                font-weight: 500;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            &:hover {
+                border-color: $purple;
+                background: #25105a;
+            }
         }
     }
 }
 
-.skill-pill {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08); 
-    padding: 12px 18px; 
-    border-radius: 14px; 
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-
-    .pill-logo { 
-        width: 20px; height: 20px; 
-        transition: 0.3s; 
-    }
-
-    .name { 
-        font-family: 'Inter', sans-serif;
-        font-size: 0.85rem; 
-        color: #e2e8f0; 
-        font-weight: 500; 
-    }
-
-    .mini-progress-bg {
-        height: 3px; 
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
-        margin-top: 4px;
-        .progress-fill { 
-            height: 100%; 
-            background: $purple; 
-            box-shadow: 0 0 8px $purple; 
-        }
-    }
-    
-    .percent-num { 
-        margin-left: auto;
-        color: $purple; 
-        font-size: 0.75rem; 
-        font-weight: 700; 
-        white-space: nowrap;
-    }
-
-    @media (min-width: 1025px) {
-        .mini-progress-bg, .percent-num {
-            opacity: 0;
-            width: 0;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        &:hover { 
-            background: rgba(187, 102, 255, 0.1); 
-            border-color: $purple;
-            padding-right: 25px;
-
-            .mini-progress-bg { width: 45px; opacity: 1; margin-left: 5px; }
-            .percent-num { width: auto; opacity: 1; margin-left: 10px; }
-        }
-    }
-
-    @media (max-width: 1024px) {
-        padding: 10px 14px;
-        justify-content: space-between;
-
-        .mini-progress-bg {
-            display: none;
-        }
-
-        .percent-num {
-            opacity: 1;
-            width: auto;
-            color: $purple;
-            font-size: 0.7rem;
-        }
-
-        &:active {
-            background: rgba(187, 102, 255, 0.15);
-            border-color: $purple;
-        }
+.swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.2) !important;
+    opacity: 1 !important;
+    &-active {
+        background: $purple !important;
     }
 }

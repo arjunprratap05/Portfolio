@@ -84,8 +84,10 @@ const Portfolio = () => {
     const [projects, setProjects] = useState(rawProjectsData);
     const [transition, setTransition] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
+    const [activeFilter, setActiveFilter] = useState("all");
 
     const filterProjects = (tag) => {
+        setActiveFilter(tag);
         setTransition("zoomout");
         setTimeout(() => {
             if (tag !== "all") {
@@ -106,17 +108,28 @@ const Portfolio = () => {
                 <h2>RECENT <span className="purple">PROJECTS</span></h2>
                 <div className="line-glow"></div>
                 <p className="portfolio-subtitle">
-                    Explore my technical journey through these live projects.
+                    Full Stack & GenAI journey with 3+ years of impact.
                 </p>
             </div>
 
             <div className="portfolio-content-wrapper">
                 <Filters filterProjects={filterProjects} />
-                <Showcase 
-                    data={projects} 
-                    transition={transition} 
-                    onProjectClick={(project) => setSelectedProject(project)}
-                />
+                
+                {projects.length > 0 ? (
+                    <Showcase 
+                        data={projects} 
+                        transition={transition} 
+                        onProjectClick={(project) => setSelectedProject(project)}
+                    />
+                ) : (
+                    <div className="no-projects-fallback">
+                        <h3>No {activeFilter.replace('-', ' ')} projects found.</h3>
+                        <p>I am actively building! Try another category or view all projects.</p>
+                        <button onClick={() => filterProjects("all")} className="back-btn">
+                            View All Projects
+                        </button>
+                    </div>
+                )}
             </div>
 
             {selectedProject && (
