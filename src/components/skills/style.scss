@@ -4,114 +4,106 @@
 .skills-slider-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 10px 80px;
+    padding: 0 10px;
 
     .skills-swiper {
-        padding: 20px 0 60px;
+        padding: 5px 0 25px; 
     }
 
     @include sm {
-        padding: 0 20px 40px;
-        .swiper-button-next, .swiper-button-prev { display: none !important; }
+        padding: 0 45px; 
     }
 }
 
-.skill-category-box {
+.skill-category-square {
     background: #0f0524; 
     border: 1px solid rgba(130, 69, 236, 0.4);
-    border-radius: 16px;
-    padding: 24px;
+    border-radius: 12px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
     width: 100%;
     
     aspect-ratio: 1 / 1; 
-    transition: transform 0.3s ease;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
     @include sm {
-        aspect-ratio: auto; 
-        min-height: 280px; 
-        max-height: 60vh; 
-        padding: 12px 14px; 
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+        aspect-ratio: 1 / 1;
+        min-height: 240px; 
+        max-height: 50vh; 
+        padding: 10px;
+        margin-top: -15px; 
     }
 
     .category-top {
         display: flex;
         align-items: center;
         gap: 6px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 8px;
+        padding-bottom: 6px;
 
         h3 { 
-            font-size: 0.75rem; 
-            color: $white; 
-            text-transform: uppercase; 
-            letter-spacing: 0.8px;
+            font-size: 0.7rem; 
+            color: #fff; 
+            text-transform: uppercase;
             margin: 0;
         }
 
         .count-pill {
             margin-left: auto;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             background: rgba(130, 69, 236, 0.2);
-            color: $purple;
             padding: 1px 6px;
             border-radius: 100px;
         }
 
         .glow-dot { 
-            width: 5px; height: 5px; 
-            background: $purple; 
+            width: 4px; height: 4px; 
+            background: #8245ec; 
             border-radius: 50%;
-            box-shadow: 0 0 8px $purple;
         }
     }
 
-    .skills-grid-layout {
+    .skills-iphone-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 6px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
         flex: 1;
-        overflow-y: auto; 
-
-        @include md {
-            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-        }
+        overflow-y: hidden; 
 
         .compact-pill {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 5px;
+            justify-content: center;
+            gap: 2px;
             background: #1a0b3d; 
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 4px 2px;
+            border-radius: 4px;
             
-            img { width: 14px; height: 14px; object-fit: contain; }
+            img { width: 12px; height: 12px; object-fit: contain; }
             span { 
-                font-size: 0.65rem; 
+                font-size: 0.5rem; 
                 color: #cbd5e1; 
-                font-weight: 500;
+                text-align: center;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-            }
-
-            &:hover {
-                border-color: $purple;
-                background: #25105a;
+                width: 100%;
             }
         }
     }
 }
 
+.swiper-pagination {
+    bottom: 0px !important;
+}
+
 .swiper-pagination-bullet {
+    width: 5px !important;
+    height: 5px !important;
     background: rgba(255, 255, 255, 0.2) !important;
-    opacity: 1 !important;
-    &-active {
-        background: $purple !important;
-    }
+    &-active { background: #8245ec !important; }
 }
