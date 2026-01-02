@@ -2,7 +2,7 @@ import React from "react";
 import Section from "../shared/section";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { SkillsInfo } from "../../constants";
+import { SkillsInfo } from "../../constants"; 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "./style.scss";
@@ -18,17 +18,21 @@ const Skills = () => {
             <div className="skills-slider-wrapper">
                 <Swiper
                     modules={[Pagination, Autoplay]}
-                    spaceBetween={0}
-                    slidesPerView={1}
+                    spaceBetween={15}
+                    slidesPerView={1.1} 
                     centeredSlides={true}
                     loop={true}
+                
+                    autoHeight={true} 
                     autoplay={{ delay: 4000, disableOnInteraction: false }}
                     pagination={{ clickable: true }}
                     breakpoints={{
+                    
                         1024: { 
                             slidesPerView: 3, 
                             centeredSlides: false, 
-                            spaceBetween: 20 
+                            spaceBetween: 30,
+                            autoHeight: false
                         }
                     }}
                     className="skills-swiper"

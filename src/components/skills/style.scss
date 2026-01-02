@@ -4,106 +4,75 @@
 .skills-slider-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 10px;
-
-    .skills-swiper {
-        padding: 5px 0 25px; 
-    }
-
-    @include sm {
-        padding: 0 45px; 
-    }
-}
-
-.skill-category-square {
-    background: #0f0524; 
-    border: 1px solid rgba(130, 69, 236, 0.4);
-    border-radius: 12px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    
-    aspect-ratio: 1 / 1; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+
+    @include lg {
+        padding: 0 40px;
+        .skill-category-square {
+            aspect-ratio: 1 / 1;
+            padding: 30px;
+            
+            .skills-iphone-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+            }
+        }
+    }
 
     @include sm {
-        aspect-ratio: 1 / 1;
-        min-height: 240px; 
-        max-height: 50vh; 
-        padding: 10px;
-        margin-top: -15px; 
-    }
-
-    .category-top {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 6px;
-
-        h3 { 
-            font-size: 0.7rem; 
-            color: #fff; 
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .count-pill {
-            margin-left: auto;
-            font-size: 0.55rem;
-            background: rgba(130, 69, 236, 0.2);
-            padding: 1px 6px;
-            border-radius: 100px;
-        }
-
-        .glow-dot { 
-            width: 4px; height: 4px; 
-            background: #8245ec; 
-            border-radius: 50%;
-        }
-    }
-
-    .skills-iphone-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 4px;
-        flex: 1;
-        overflow-y: hidden; 
-
-        .compact-pill {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            background: #1a0b3d; 
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 4px 2px;
-            border-radius: 4px;
+        padding: 0 8vw;
+        
+        .skill-category-square {
+            aspect-ratio: auto; 
+            padding: 25px 15px;
+            min-height: 320px; 
+            justify-content: center; 
             
-            img { width: 12px; height: 12px; object-fit: contain; }
-            span { 
-                font-size: 0.5rem; 
-                color: #cbd5e1; 
-                text-align: center;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                width: 100%;
+            .category-top {
+                margin-bottom: 20px;
+                border-bottom: 1px solid rgba(130, 69, 236, 0.2);
+                padding-bottom: 10px;
+            }
+
+            .skills-iphone-grid {
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 12px;
+                align-items: center;
             }
         }
     }
 }
 
-.swiper-pagination {
-    bottom: 0px !important;
+.skill-category-square {
+    background: linear-gradient(145deg, #13072e 0%, #0f0524 100%); 
+    border: 1.5px solid rgba(130, 69, 236, 0.4); // Purple branding
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+
+    h3 { color: white; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+
+    .compact-pill {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: rgba(130, 69, 236, 0.05);
+        border: 1px solid rgba(130, 69, 236, 0.1);
+        padding: 12px 5px;
+        border-radius: 12px;
+
+        img { width: 24px; height: 24px; margin-bottom: 5px; object-fit: contain; }
+        span { font-size: 0.6rem; color: #94a3b8; text-align: center; }
+    }
 }
 
 .swiper-pagination-bullet {
-    width: 5px !important;
-    height: 5px !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    &-active { background: #8245ec !important; }
+    background: rgba(130, 69, 236, 0.3) !important;
+    &-active {
+        background: #8245ec !important;
+        width: 20px !important;
+        border-radius: 10px !important;
+    }
 }
