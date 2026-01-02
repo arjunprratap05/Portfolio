@@ -10,29 +10,20 @@ import "./style.scss";
 const Showcase = ({ data, onProjectClick }) => {
     return (
         <div className="showcase-slider-wrapper">
-            <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={15} 
-                slidesPerView={1} 
-                centeredSlides={true}
-                loop={true}
-                pagination={{ clickable: true }}
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
-                breakpoints={{
-                
-                    1024: { 
-                        slidesPerView: 3, 
-                        spaceBetween: 30, 
-                        centeredSlides: false 
-                    },
-                    768: { 
-                        slidesPerView: 2, 
-                        spaceBetween: 20, 
-                        centeredSlides: false 
-                    }
-                }}
-                className="projects-swiper"
-            >
+           <Swiper
+    modules={[Navigation, Pagination, Autoplay]}
+    spaceBetween={10} 
+    slidesPerView={1.2} 
+    centeredSlides={true}
+    loop={true}
+    pagination={{ clickable: true }}
+    autoplay={{ delay: 4000, disableOnInteraction: false }}
+    breakpoints={{
+        1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false },
+        768: { slidesPerView: 2, spaceBetween: 20, centeredSlides: false }
+    }}
+    className="projects-swiper"
+>
                 {data.map((project) => (
                     <SwiperSlide key={project.id}>
                         <div 
