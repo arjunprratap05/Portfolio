@@ -19,6 +19,7 @@ const Showcase = ({ data, onProjectClick }) => {
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 breakpoints={{
+                
                     1024: { 
                         slidesPerView: 3, 
                         spaceBetween: 30, 

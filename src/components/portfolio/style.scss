@@ -2,40 +2,31 @@
 @import "../../style-config/mixins.scss";
 
 #portfolio {
-    padding: 100px 0;
+    padding: 80px 0; 
     background-color: #080118;
-    background-image: 
-        radial-gradient(at 0% 100%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(187, 102, 255, 0.12) 0px, transparent 50%);
-    
-    .no-projects-fallback {
+    position: relative;
+    overflow: visible;
+
+    @include sm {
+        padding: 20px 0 40px;
+    }
+
+    .portfolio-header {
         text-align: center;
-        padding: 60px 20px;
-        border: 1px dashed rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.02);
-        max-width: 600px;
-        margin: 40px auto;
-        @include glassmorphism-effect;
-        
+        margin-bottom: 25px;
+
         @include sm {
-            padding: 40px 15px;
-            margin: 20px 10px;
-            h3 { font-size: 1.2rem; }
-        }
-        
-        h3 { color: $white; font-size: 1.5rem; margin-bottom: 10px; }
-        p { color: #94a3b8; margin-bottom: 25px; }
-        
-        .back-btn {
-            background: transparent;
-            border: 1px solid $purple;
-            color: $purple;
-            padding: 10px 25px;
-            border-radius: 100px;
-            cursor: pointer;
-            transition: 0.3s;
-            &:hover { background: $purple; color: $white; }
+            margin-bottom: 10px; 
+            
+            h2 { 
+                font-size: 1.5rem; 
+                margin: 5px 0;
+            }
+            .portfolio-subtitle {
+                font-size: 0.75rem;
+                max-width: 90%;
+                margin: 0 auto;
+            }
         }
     }
 }

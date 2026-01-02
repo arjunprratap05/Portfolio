@@ -4,34 +4,33 @@
 .filters-container {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    margin: 40px 0;
-    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+
+    @include sm {
+        gap: 8px;
+        margin-bottom: 20px; 
+    }
 
     .filter-btn {
-        font-family: 'Inter', sans-serif;
+        padding: 12px 30px; 
+        font-size: 1rem;
+        border-radius: 100px;
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 10px 24px;
-        border-radius: 100px;
         color: #94a3b8;
         cursor: pointer;
-        font-weight: 500;
-        font-size: 0.85rem;
-        letter-spacing: 0.02em;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: 0.3s;
 
-        &:hover {
-            color: $white;
-            border-color: rgba(255, 255, 255, 0.2);
+        @include sm {
+            padding: 6px 14px;
+            font-size: 0.75rem; 
         }
 
         &.active {
             background: $purple;
-            border-color: $purple;
             color: $white;
-            box-shadow: 0 8px 20px rgba(130, 69, 236, 0.3);
-            transform: translateY(-2px);
+            border-color: $purple;
         }
     }
 }

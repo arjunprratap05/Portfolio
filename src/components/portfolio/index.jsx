@@ -6,7 +6,7 @@ import Showcase from "./showcase";
 import ProjectModal from "./project-modal";
 
 const rawProjectsData = [ 
-    {
+     {
         id: 1,
         name: "Mega-Blog",
         tags: ["web-app", "product"],
@@ -84,10 +84,8 @@ const Portfolio = () => {
     const [projects, setProjects] = useState(rawProjectsData);
     const [transition, setTransition] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
-    const [activeFilter, setActiveFilter] = useState("all");
 
     const filterProjects = (tag) => {
-        setActiveFilter(tag);
         setTransition("zoomout");
         setTimeout(() => {
             if (tag !== "all") {
@@ -106,7 +104,6 @@ const Portfolio = () => {
             <div className="portfolio-header">
                 <span className="subtitle">Showcase</span>
                 <h2>RECENT <span className="purple">PROJECTS</span></h2>
-                <div className="line-glow"></div>
                 <p className="portfolio-subtitle">
                     Full Stack & GenAI journey with 3+ years of impact.
                 </p>
@@ -114,22 +111,11 @@ const Portfolio = () => {
 
             <div className="portfolio-content-wrapper">
                 <Filters filterProjects={filterProjects} />
-                
-                {projects.length > 0 ? (
-                    <Showcase 
-                        data={projects} 
-                        transition={transition} 
-                        onProjectClick={(project) => setSelectedProject(project)}
-                    />
-                ) : (
-                    <div className="no-projects-fallback">
-                        <h3>No {activeFilter.replace('-', ' ')} projects found.</h3>
-                        <p>I am actively building! Try another category or view all projects.</p>
-                        <button onClick={() => filterProjects("all")} className="back-btn">
-                            View All Projects
-                        </button>
-                    </div>
-                )}
+                <Showcase 
+                    data={projects} 
+                    transition={transition} 
+                    onProjectClick={(project) => setSelectedProject(project)}
+                />
             </div>
 
             {selectedProject && (
