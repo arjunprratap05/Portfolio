@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
-import handicon from "../../../images/hand.png"; 
-import myimage from "../../../images/me.jpg"; 
+import handicon from "../../../images/hand.png";
+import myimage from "../../../images/me.jpg";
 import Typewriter from "typewriter-effect";
 
 const IntroContent = () => {
@@ -14,7 +14,7 @@ const IntroContent = () => {
                         <img src={handicon} alt="hand icon" className="hand-icon" />
                     </h1>
                     <h2 className="main-name">Arjun Pratap</h2>
-                    
+
                     <h3 className="hero-role-typewriter">
                         I am a{' '}
                         <Typewriter
@@ -23,9 +23,9 @@ const IntroContent = () => {
                                 loop: true,
                                 delay: 40,
                                 strings: [
-                                    "Full Stack Developer (MERN)", 
-                                    "Generative AI Engineer", 
-                                    "LLM & Agentic AI Specialist", 
+                                    "Full Stack Developer (MERN)",
+                                    "Generative AI Engineer",
+                                    "LLM & Agentic AI Specialist",
                                     "Cloud & DevOps Enthusiast"
                                 ],
                                 wrapperClassName: "typewriter-text",
@@ -33,10 +33,10 @@ const IntroContent = () => {
                             }}
                         />
                     </h3>
-                    
+
                     <p className="bio-summary">
-                        Full Stack Developer with 3 years and 3 months of experience. 
-                        I specialize in the MERN stack and integrating Generative AI solutions using OpenAI APIs to automate 
+                        Full Stack Developer with 3 years and 3 months of experience.
+                        I specialize in the MERN stack and integrating Generative AI solutions using OpenAI APIs to automate
                         business processes, reducing manual operational effort by 40%.
                     </p>
                 </div>

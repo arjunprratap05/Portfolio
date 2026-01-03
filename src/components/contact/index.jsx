@@ -67,28 +67,28 @@ const ContactHub = () => {
                 <div className="form-column">
                     <form className="modern-form glass-effect" onSubmit={handleSubmit}>
                         <div className="input-row">
-                            <input 
-                                type="text" placeholder="Name" required 
-                                value={formData.name} 
-                                onChange={(e) => setFormData({...formData, name: e.target.value})} 
+                            <input
+                                type="text" placeholder="Name" required
+                                value={formData.name}
+                                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                             />
-                            <input 
-                                type="email" placeholder="Email" required 
-                                value={formData.email} 
-                                onChange={(e) => setFormData({...formData, email: e.target.value})} 
+                            <input
+                                type="email" placeholder="Email" required
+                                value={formData.email}
+                                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                             />
                         </div>
-                        <input 
-                            type="tel" placeholder="Mobile" required 
-                            value={formData.mobile} 
-                            onChange={(e) => setFormData({...formData, mobile: e.target.value})} 
+                        <input
+                            type="tel" placeholder="Mobile" required
+                            value={formData.mobile}
+                            onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                         />
-                        <textarea 
-                            placeholder="Your message..." rows="5" required 
-                            value={formData.message} 
-                            onChange={(e) => setFormData({...formData, message: e.target.value})}
+                        <textarea
+                            placeholder="Your message..." rows="5" required
+                            value={formData.message}
+                            onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                         ></textarea>
-                        
+
                         <button type="submit" className="submit-btn" disabled={isSubmitting}>
                             {isSubmitting ? 'Sending...' : 'Send Message'}
                         </button>

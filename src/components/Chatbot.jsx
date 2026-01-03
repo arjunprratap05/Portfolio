@@ -54,12 +54,12 @@ const Chatbot = () => {
         if (!showInactivityPrompt && !showAssistPrompt && !isBotTyping && conversationStarted) {
             inactivityTimerRef.current = setTimeout(() => {
                 setShowInactivityPrompt(true);
-                setMessages(prev => [...prev, { 
-                    from: 'bot', 
-                    text: 'Still there? Do you want to continue?', 
-                    isPrompt: true, 
-                    type: 'continue', 
-                    timestamp: new Date() 
+                setMessages(prev => [...prev, {
+                    from: 'bot',
+                    text: 'Still there? Do you want to continue?',
+                    isPrompt: true,
+                    type: 'continue',
+                    timestamp: new Date()
                 }]);
             }, INACTIVITY_TIMEOUT_MS);
         }
@@ -77,7 +77,7 @@ const Chatbot = () => {
     const endConversationManually = useCallback(async () => {
         if (inactivityTimerRef.current) clearTimeout(inactivityTimerRef.current);
         await sendConversationEmail(userName, conversationHistory);
-        
+
         setMessages([]);
         setConversationHistory([]);
         setUserName('');
@@ -123,14 +123,14 @@ const Chatbot = () => {
         setConversationHistory(prev => [...prev, { from: 'User', text: userMessage, timestamp: userTimestamp.toLocaleString() }]);
         setInput('');
         setIsBotTyping(true);
-        
+
         setTimeout(async () => {
             let botReply = '';
             const botTimestamp = new Date();
             if (awaitingNameInput) {
                 setUserName(userMessage);
                 setAwaitingNameInput(false);
-                setConversationStarted(true); 
+                setConversationStarted(true);
                 botReply = `Nice to meet you, ${userMessage}! Ask me about Arjun's skills or projects.`;
             } else {
                 botReply = await sendMessageToAI(userMessage);
@@ -142,9 +142,9 @@ const Chatbot = () => {
         }, 1000);
     };
 
-    const handlePromptResponse = async (type, choice) => { 
+    const handlePromptResponse = async (type, choice) => {
         setMessages(prev => [...prev, { from: 'user', text: choice === 'yes' ? 'Yes' : 'No', timestamp: new Date() }]);
-        
+
         if (type === 'continue') {
             setShowInactivityPrompt(false);
             if (choice === 'yes') {
@@ -207,12 +207,12 @@ const Chatbot = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                            placeholder={awaitingNameInput ? "Enter your name..." : "Ask me anything..."} 
+                            placeholder={awaitingNameInput ? "Enter your name..." : "Ask me anything..."}
                             className="chat-input"
                             disabled={isBotTyping || showInactivityPrompt || showAssistPrompt}
                         />
                         <button className="send-button" onClick={handleSend} disabled={isBotTyping || !input.trim()}>
-                            <img src="/send.jpg" alt="Send" style={{filter: 'invert(1)', width: '20px'}} />
+                            <img src="/send.jpg" alt="Send" style={{ filter: 'invert(1)', width: '20px' }} />
                         </button>
                     </div>
                 </div>

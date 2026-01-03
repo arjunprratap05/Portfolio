@@ -9,9 +9,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    background-color: #080118; 
-    background-image: 
+
+    background-color: #080118;
+    background-image:
         radial-gradient(at 0% 0%, rgba(187, 102, 255, 0.2) 0px, transparent 50%),
         radial-gradient(at 100% 0%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(187, 102, 255, 0.1) 0px, transparent 50%),
@@ -27,8 +27,8 @@
         background-size: cover;
         background-position: center;
         z-index: 0;
-        opacity: 0.15; 
-        filter: hue-rotate(250deg) brightness(0.8); 
+        opacity: 0.15;
+        filter: hue-rotate(250deg) brightness(0.8);
     }
 
     .cloud-soft {
@@ -39,7 +39,7 @@
         z-index: 1;
         opacity: 0.4;
         mix-blend-mode: screen;
-        filter: hue-rotate(260deg) saturate(1.5); 
+        filter: hue-rotate(260deg) saturate(1.5);
     }
 
     .content {
@@ -66,7 +66,14 @@
         z-index: 1;
         pointer-events: none;
 
-        &.top-left { top: -150px; left: -150px; }
-        &.bottom-right { bottom: -150px; right: -150px; }
+        &.top-left {
+            top: -150px;
+            left: -150px;
+        }
+
+        &.bottom-right {
+            bottom: -150px;
+            right: -150px;
+        }
     }
 }

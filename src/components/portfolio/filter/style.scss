@@ -4,33 +4,45 @@
 .filters-container {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 50px;
 
     @include sm {
-        gap: 8px;
-        margin-bottom: 20px; 
+        gap: 10px;
+        margin-bottom: 30px;
+        padding: 0 10px;
     }
 
     .filter-btn {
-        padding: 12px 30px; 
-        font-size: 1rem;
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-transform: capitalize;
         border-radius: 100px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #09021a;
+        border: 1px solid rgba(130, 69, 236, 0.3);
         color: #94a3b8;
         cursor: pointer;
-        transition: 0.3s;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 
         @include sm {
-            padding: 6px 14px;
-            font-size: 0.75rem; 
+            padding: 8px 16px;
+            font-size: 0.7rem;
+        }
+
+        &:hover {
+            border-color: #8245ec;
+            color: white;
+            transform: translateY(-2px);
         }
 
         &.active {
-            background: $purple;
-            color: $white;
-            border-color: $purple;
+            background: #8245ec;
+            color: white;
+            border-color: #8245ec;
+            box-shadow: 0 0 15px rgba(130, 69, 236, 0.5);
         }
     }
 }

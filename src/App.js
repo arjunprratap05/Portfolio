@@ -12,7 +12,7 @@ import Experience from "./components/Experience/experience";
 const App = () => {
     return (
         <div className="app">
-             <Navigation />
+            <Navigation />
             <Intro />
             <Skills />
             <Experience />

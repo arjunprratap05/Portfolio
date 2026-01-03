@@ -7,7 +7,7 @@ const Intro = () => {
     return (
         <div className="Intro-section" id="home">
             <div className="vector-bg" id="parallax"></div>
-            
+
             <div className="purple-glow-orb top-left"></div>
             <div className="purple-glow-orb bottom-right"></div>
 

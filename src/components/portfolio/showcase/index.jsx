@@ -10,13 +10,22 @@ import "./style.scss";
 const Showcase = ({ data, onProjectClick }) => {
     return (
         <div className="showcase-slider-wrapper">
+            <div className="section-header">
+                <span className="subtitle">Showcase</span>
+                <h2 className="underlined-title">Recent Projects</h2>
+                <p className="description">Full Stack & GenAl journey with 3+ years of impact.</p>
+            </div>
+
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={10}
-                slidesPerView={1.2}
+                spaceBetween={20}
+                slidesPerView={1.1}
                 centeredSlides={true}
                 loop={true}
-                pagination={{ clickable: true }}
+                pagination={{
+                    clickable: true,
+                    el: '.projects-pagination'
+                }}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 breakpoints={{
                     1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false },
@@ -59,6 +68,7 @@ const Showcase = ({ data, onProjectClick }) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
+            <div className="projects-pagination"></div>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import Section from "../shared/section";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { SkillsInfo } from "../../constants"; 
+import { SkillsInfo } from "../../constants";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "./style.scss";
@@ -11,28 +11,28 @@ const Skills = () => {
     return (
         <Section background="dark" id="skills">
             <div className="skills-header">
-                <span className="subtitle">Expertise</span>
-                <h2>Tech <span className="purple">Architecture</span></h2>
+                <h2 className="underlined-title">Tech Architecture</h2>
+
             </div>
 
             <div className="skills-slider-wrapper">
                 <Swiper
                     modules={[Pagination, Autoplay]}
                     spaceBetween={15}
-                    slidesPerView={1.1} 
+                    slidesPerView={1.1}
                     centeredSlides={true}
                     loop={true}
-                
-                    autoHeight={true} 
+                    autoHeight={false}
                     autoplay={{ delay: 4000, disableOnInteraction: false }}
-                    pagination={{ clickable: true }}
+                    pagination={{
+                        clickable: true,
+                        el: '.custom-pagination'
+                    }}
                     breakpoints={{
-                    
-                        1024: { 
-                            slidesPerView: 3, 
-                            centeredSlides: false, 
-                            spaceBetween: 30,
-                            autoHeight: false
+                        1024: {
+                            slidesPerView: 3,
+                            centeredSlides: false,
+                            spaceBetween: 30
                         }
                     }}
                     className="skills-swiper"
@@ -57,6 +57,7 @@ const Skills = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
+                <div className="custom-pagination"></div>
             </div>
         </Section>
     );

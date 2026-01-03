@@ -27,8 +27,16 @@
         letter-spacing: -0.02em;
         line-height: 1.2;
 
-        @include md { font-size: 1.8rem; height: 80px; }
-        @include sm { font-size: 1.4rem; height: auto; padding-bottom: 30px; }
+        @include md {
+            font-size: 1.8rem;
+            height: 80px;
+        }
+
+        @include sm {
+            font-size: 1.4rem;
+            height: auto;
+            padding-bottom: 30px;
+        }
     }
 
     .footer-menu-items {
@@ -49,13 +57,13 @@
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
             font-weight: 500;
-            color: #94a3b8; 
+            color: #94a3b8;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             cursor: pointer;
             transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
-            
+
             &:hover {
                 color: $purple;
                 transform: translateY(-2px);
@@ -68,7 +76,7 @@
         align-items: center;
         gap: 24px;
         margin-bottom: 60px;
-        
+
         .social-icon {
             width: 48px;
             height: 48px;
@@ -82,7 +90,7 @@
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            
+
             &:hover {
                 transform: scale(1.15) translateY(-5px);
                 border-color: rgba(187, 102, 255, 0.5);
@@ -97,7 +105,7 @@
         border-top: 1px solid rgba(255, 255, 255, 0.05);
         text-align: center;
         background: rgba(0, 0, 0, 0.2);
-        
+
         .copyright-text {
             font-family: 'Inter', sans-serif;
             color: #475569;

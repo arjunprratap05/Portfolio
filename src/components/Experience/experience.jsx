@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import SectionTitle from "../shared/SectionTitle";
 import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
-import { GoDotFill } from "react-icons/go"; 
+import { GoDotFill } from "react-icons/go";
 
 const experienceData = [
     {
@@ -25,8 +25,8 @@ const Experience = () => {
     return (
         <section id="experience" className="experience-section">
             <div className="layout">
-                <SectionTitle 
-                    title="EXPERIENCE" 
+                <SectionTitle
+                    title="EXPERIENCE"
                     tagline="My professional journey in software development."
                 />
 
@@ -60,7 +60,7 @@ const Experience = () => {
                                 <ul className="job-details">
                                     {job.details.map((detail, dIndex) => (
                                         <li key={dIndex}>
-                                            <GoDotFill className="bullet" /> 
+                                            <GoDotFill className="bullet" />
                                             <p>{detail}</p>
                                         </li>
                                     ))}

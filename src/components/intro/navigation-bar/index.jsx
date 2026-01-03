@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import "./style.scss";
-import { FaLinkedinIn, FaGithub, FaBars, FaTimes, FaCloudDownloadAlt } from "react-icons/fa"; 
+import { FaLinkedinIn, FaGithub, FaBars, FaTimes, FaCloudDownloadAlt } from "react-icons/fa";
 
 const Navigation = () => {
     const [menuOpen, setMenuOpen] = useState(false);
 
     const handleDownload = () => {
         const link = document.createElement("a");
-        link.href = "/Arjun_Pratap_Resume_GENAI.pdf"; 
-        link.download = "Arjun_Pratap_Resume_GenAI.pdf"; 
+        link.href = "/Arjun_Pratap_Resume_GENAI.pdf";
+        link.download = "Arjun_Pratap_Resume_GenAI.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -17,14 +17,14 @@ const Navigation = () => {
     const scrollToSection = (id) => {
         const element = document.getElementById(id);
         if (element) {
-            const offset = element.offsetTop - 80; 
+            const offset = element.offsetTop - 80;
             window.scrollTo({ top: offset, behavior: 'smooth' });
-            setMenuOpen(false); 
+            setMenuOpen(false);
         }
     };
 
     return (
-        <nav className="portfolio-top-nav-fixed"> 
+        <nav className="portfolio-top-nav-fixed">
             <div className="nav-wrapper">
                 <div className="app-logo" onClick={() => scrollToSection("home")}>
                     <span className="logo-text">Arjun<span className="dot">.</span></span>
@@ -38,7 +38,7 @@ const Navigation = () => {
                         <span className="navigation-item" onClick={() => scrollToSection("portfolio")}>Projects</span>
                         <span className="navigation-item" onClick={() => scrollToSection("contact")}>Contact</span>
                     </div>
-                    
+
                     <div className="v-divider"></div>
 
                     <div className="eye-catch-socials">
@@ -70,7 +70,7 @@ const Navigation = () => {
                     <span onClick={() => scrollToSection("experience")}>Experience</span>
                     <span onClick={() => scrollToSection("portfolio")}>Projects</span>
                     <span onClick={() => scrollToSection("contact")}>Contact</span>
-                    
+
                     <div className="mobile-social-wrap">
                         <a href="https://github.com/arjunprratap05" target="_blank" rel="noopener noreferrer">
                             <FaGithub />

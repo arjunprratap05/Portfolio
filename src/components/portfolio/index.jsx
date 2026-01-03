@@ -5,14 +5,14 @@ import Filters from "./filter";
 import Showcase from "./showcase";
 import ProjectModal from "./project-modal";
 
-const rawProjectsData = [ 
-     {
+const rawProjectsData = [
+    {
         id: 1,
         name: "Mega-Blog",
         tags: ["web-app", "product"],
         description: "A comprehensive blogging platform built with modern web technologies, enabling users to create and manage their own content.",
         media: { thumbnail: require("../../images/portfolio/appwrite.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -21,7 +21,7 @@ const rawProjectsData = [
         tags: ["web-page"],
         description: "Secure user authentication interface for the blogging platform, ensuring seamless login experiences.",
         media: { thumbnail: require("../../images/portfolio/appwriteLogin.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -30,7 +30,7 @@ const rawProjectsData = [
         tags: ["product"],
         description: "User registration interface for creating new accounts on the blogging platform, designed for ease of use.",
         media: { thumbnail: require("../../images/portfolio/appwritesignIN.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -39,7 +39,7 @@ const rawProjectsData = [
         tags: ["product"],
         description: "Detailed view of individual blog posts with rich content display and commenting features.",
         media: { thumbnail: require("../../images/portfolio/MegaBlogPost.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -48,7 +48,7 @@ const rawProjectsData = [
         tags: ["web-app", "web-page"],
         description: "Another iteration of a blog post display, focusing on responsive design and content readability.",
         media: { thumbnail: require("../../images/portfolio/BlogPost.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -57,7 +57,7 @@ const rawProjectsData = [
         tags: ["product", "web-app"],
         description: "Database management system project showcasing data handling and retrieval capabilities for complex datasets.",
         media: { thumbnail: require("../../images/portfolio/DbData.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -66,7 +66,7 @@ const rawProjectsData = [
         tags: ["web-page", "web-app", "mobile-app", "product"],
         description: "Entity-Relationship Diagram visualization tool for database design, simplifying complex data models.",
         media: { thumbnail: require("../../images/portfolio/DbAttributes.png") },
-        codeUrl: "https://github.com/arjunprratap05/appwriteBlog", 
+        codeUrl: "https://github.com/arjunprratap05/appwriteBlog",
         liveUrl: "https://appwrite-blog-rho-eosin.vercel.app/",
     },
     {
@@ -75,8 +75,8 @@ const rawProjectsData = [
         tags: ["web-page", "web-app", "mobile-app", "product"],
         description: "A github profile analysis tool that provides insights into user contributions, repositories, and activity patterns.",
         media: { thumbnail: require("../../images/portfolio/GitHub-Profile-Search-App.png") },
-        codeUrl: "https://github.com/arjunprratap05/SocialMedia", 
-        liveUrl: "https://social-media-kappa-pearl.vercel.app/",          
+        codeUrl: "https://github.com/arjunprratap05/SocialMedia",
+        liveUrl: "https://social-media-kappa-pearl.vercel.app/",
     },
 ];
 
@@ -111,17 +111,17 @@ const Portfolio = () => {
 
             <div className="portfolio-content-wrapper">
                 <Filters filterProjects={filterProjects} />
-                <Showcase 
-                    data={projects} 
-                    transition={transition} 
+                <Showcase
+                    data={projects}
+                    transition={transition}
                     onProjectClick={(project) => setSelectedProject(project)}
                 />
             </div>
 
             {selectedProject && (
-                <ProjectModal 
-                    project={selectedProject} 
-                    onClose={() => setSelectedProject(null)} 
+                <ProjectModal
+                    project={selectedProject}
+                    onClose={() => setSelectedProject(null)}
                 />
             )}
         </Section>
