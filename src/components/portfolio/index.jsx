@@ -100,22 +100,21 @@ const Portfolio = () => {
     };
 
     return (
-        <Section id="portfolio" background="dark">
-            <div className="portfolio-header">
-                <span className="subtitle">Showcase</span>
-                <h2>RECENT <span className="purple">PROJECTS</span></h2>
-                <p className="portfolio-subtitle">
-                    Full Stack & GenAI journey with 3+ years of impact.
-                </p>
-            </div>
+        <Section id="portfolio" className="light-shade-purple">
+            <div className="portfolio-inner-container">
+                <div className="section-header">
+                    <h2 className="underlined-title">Recent Projects</h2>
+                    <p className="description">Full Stack & GenAI journey with 3+ years of impact.</p>
+                </div>
 
-            <div className="portfolio-content-wrapper">
-                <Filters filterProjects={filterProjects} />
-                <Showcase
-                    data={projects}
-                    transition={transition}
-                    onProjectClick={(project) => setSelectedProject(project)}
-                />
+                <div className="portfolio-content-wrapper">
+                    <Filters filterProjects={filterProjects} />
+                    <Showcase
+                        data={projects}
+                        transition={transition}
+                        onProjectClick={(project) => setSelectedProject(project)}
+                    />
+                </div>
             </div>
 
             {selectedProject && (

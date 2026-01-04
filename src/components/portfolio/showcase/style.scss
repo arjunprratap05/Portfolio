@@ -5,8 +5,6 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-
-    background: linear-gradient(180deg, #1a0b3c 0%, #0d0421 100%);
     padding: 60px 0;
     display: flex;
     flex-direction: column;
@@ -14,19 +12,9 @@
     .section-header {
         text-align: center;
         margin-bottom: 40px;
-        z-index: 5;
 
-        .subtitle {
-            color: rgba(130, 69, 236, 0.8);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .description {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
+        .subtitle { color: rgba(130, 69, 236, 0.8); font-size: 0.9rem; text-transform: uppercase; }
+        .description { color: #94a3b8; font-size: 0.9rem; margin-top: 10px; }
 
         .underlined-title {
             color: white;
@@ -37,9 +25,7 @@
             text-transform: uppercase;
             font-weight: 800;
 
-            @include sm {
-                font-size: 1.8rem;
-            }
+            @include sm { font-size: 1.8rem; }
 
             &::after {
                 content: '';
@@ -56,52 +42,42 @@
     }
 
     .projects-swiper {
-        padding: 20px 0;
+        padding: 10px 0;
         width: 100%;
     }
 
     .project-square-card {
         background: #09021a;
-        border: 1.5px solid rgba(130, 69, 236, 0.4);
+        border: 1.5px solid rgba(130, 69, 236, 0.4); 
         border-radius: 20px;
         width: 100%;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 1 / 1; 
         overflow: hidden;
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 
         @include sm {
-
-            height: 320px;
+            height: 350px; 
             aspect-ratio: auto;
         }
 
         .project-thumbnail-container {
-            height: 60%;
+            height: 60%; 
             position: relative;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+            img { width: 100%; height: 100%; object-fit: cover; }
         }
 
         .project-info {
             padding: 15px;
-            background: #09021a;
             text-align: center;
-
-            .project-title {
-                color: white;
-                font-size: 1rem;
-                margin-bottom: 5px;
-            }
-
-            .tag-item {
-                color: #8245ec;
-                font-size: 0.7rem;
-                font-weight: 600;
-                margin: 0 4px;
+            .project-title { color: white; font-size: 1rem; font-weight: 600; }
+            .tag-item { 
+                color: #8245ec; 
+                background: rgba(130, 69, 236, 0.1);
+                padding: 2px 8px;
+                border-radius: 100px;
+                font-size: 0.65rem; 
+                font-weight: 600; 
+                margin: 0 4px; 
             }
         }
     }
@@ -110,16 +86,14 @@
 .projects-pagination {
     display: flex;
     justify-content: center;
-    margin-top: 30px;
-    z-index: 10;
+    margin-top: 35px;
 
     .swiper-pagination-bullet {
         background: rgba(255, 255, 255, 0.2) !important;
         opacity: 1 !important;
-
         &-active {
             background: #8245ec !important;
-            width: 22px !important;
+            width: 25px !important;
             border-radius: 10px !important;
         }
     }

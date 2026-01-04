@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./style.scss";
 
 const Filters = ({ filterProjects }) => {
-    const allTags = ['all', 'web-app', 'product', 'web-page', 'mobile-app'];
+    const allTags = ['web-app', 'product', 'web-page',];
     const [activeFilter, setActiveFilter] = useState('all');
 
     const handleFilterClick = (tag) => {
