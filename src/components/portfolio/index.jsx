@@ -100,7 +100,7 @@ const Portfolio = () => {
     };
 
     return (
-        <Section id="portfolio" className="light-shade-purple">
+        <Section id="portfolio" className="purple">
             <div className="portfolio-inner-container">
                 <div className="section-header">
                     <h2 className="underlined-title">Recent Projects</h2>

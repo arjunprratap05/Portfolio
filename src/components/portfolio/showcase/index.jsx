@@ -14,13 +14,16 @@ const Showcase = ({ data, onProjectClick, transition }) => {
                 slidesPerView={1.1}
                 centeredSlides={true}
                 loop={true}
+                autoHeight={true}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
                 pagination={{
                     clickable: true,
                     el: '.custom-projects-pagination'
                 }}
-                autoplay={{ delay: 4000, disableOnInteraction: false }}
                 breakpoints={{
+
                     1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false },
+
                     768: { slidesPerView: 2, spaceBetween: 20, centeredSlides: false }
                 }}
                 className="projects-swiper"
@@ -34,7 +37,7 @@ const Showcase = ({ data, onProjectClick, transition }) => {
                             <div className="project-info">
                                 <h4 className="project-title">{project.name}</h4>
                                 <div className="project-tags">
-                                    {project.tags.slice(0, 2).map((tag) => (
+                                    {project.tags.slice(0, 3).map((tag) => (
                                         <span key={tag} className="tag-item">#{tag}</span>
                                     ))}
                                 </div>
@@ -43,7 +46,6 @@ const Showcase = ({ data, onProjectClick, transition }) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
             <div className="custom-projects-pagination"></div>
         </div>
     );

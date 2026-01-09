@@ -39,8 +39,21 @@ import jiraLogo from './assets/tech_logo/jira.png';
 import aspnetLogo from './assets/tech_logo/aspnet.png';
 import aspnetcoreLogo from './assets/tech_logo/aspnetcore.png';
 import powerBiLogo from './assets/tech_logo/powerBi.png';
+import openaiLogo from './assets/tech_logo/OpenAI.png';
+import langchainLogo from './assets/tech_logo/langchain.png';
+import aiLogo from './assets/tech_logo/ai.jpeg';
 
 export const SkillsInfo = [
+  {
+    title: 'Generative AI',
+    skills: [
+      { name: 'OpenAI API', logo: openaiLogo, percentage: 90 },
+      { name: 'LangChain', logo: langchainLogo, percentage: 85 },
+      { name: 'Agentic AI', logo: aiLogo, percentage: 80 },
+      { name: 'Prompt Engineering', logo: aiLogo, percentage: 95 },
+      { name: 'LLM Orchestration', logo: aiLogo, percentage: 88 },
+    ],
+  },
   {
     title: 'Frontend',
     skills: [

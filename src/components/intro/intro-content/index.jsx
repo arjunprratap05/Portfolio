@@ -24,9 +24,10 @@ const IntroContent = () => {
                                 delay: 40,
                                 strings: [
                                     "Full Stack Developer (MERN)",
+                                    "Backend & Microservices Engineer",
                                     "Generative AI Engineer",
                                     "LLM & Agentic AI Specialist",
-                                    "Cloud & DevOps Enthusiast"
+                                    "Cloud & DevOps Engineer"
                                 ],
                                 wrapperClassName: "typewriter-text",
                                 cursorClassName: "typewriter-cursor"
@@ -35,9 +36,11 @@ const IntroContent = () => {
                     </h3>
 
                     <p className="bio-summary">
-                        Full Stack Developer with 3 years and 3 months of experience.
-                        I specialize in the MERN stack and integrating Generative AI solutions using OpenAI APIs to automate
-                        business processes, reducing manual operational effort by 40%.
+                        Full Stack Developer with 3+ years of experience  building scalable
+                        web applications and AI-driven solutions. I specialize in
+                        Microservices architecture  and integrating LLMs to automate
+                        complex business processes, successfully reducing operational effort
+                        by 40%.
                     </p>
                 </div>
 

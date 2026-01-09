@@ -2,32 +2,22 @@
 @import "../../style-config/mixins.scss";
 
 #portfolio {
-    background: #64587b !important; 
-    padding: 60px 0 !important;
+    background: #060210 !important;
+    padding: 80px 0 !important;
     width: 100% !important;
-
-    @include sm { padding: 40px 0 !important; }
 
     .section-header {
         text-align: center;
-        margin-bottom: 40px;
-
-        .subtitle { 
-            color: #8245ec !important; 
-            font-weight: 700 !important;
-            text-transform: uppercase;
-        }
+        margin-bottom: 50px;
 
         .underlined-title {
-            color: #0f172a !important; 
+            color: white !important;
             display: inline-block;
             position: relative;
             padding-bottom: 15px;
             font-size: 2.5rem;
             font-weight: 800;
             text-transform: uppercase;
-
-            @include sm { font-size: 1.8rem; }
 
             &::after {
                 content: '';
@@ -36,73 +26,110 @@
                 right: 20%;
                 bottom: 0;
                 height: 4px;
-                background: #8245ec !important; 
+                background: #8245ec !important;
                 border-radius: 10px;
-                box-shadow: 0 2px 10px rgba(130, 69, 236, 0.3);
+                box-shadow: 0 0 15px rgba(130, 69, 236, 0.6);
             }
         }
 
-        .description { 
-            color: #334155 !important; 
-            font-size: 1rem !important;
-            margin-top: 10px;
+        .description {
+            color: #94a3b8 !important;
+            font-size: 1rem;
+            margin-top: 15px;
         }
     }
 }
 
-.filters-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap !important; 
-    gap: 12px;
-    margin-bottom: 30px;
-    padding: 0 15px;
+.showcase-slider-wrapper {
+    width: 100%;
+    position: relative;
+}
 
-    .filter-btn {
-        background: white !important;
-        border: 1px solid #d1d5db !important;
-        color: #475569 !important; 
-        padding: 8px 18px !important;
-        border-radius: 100px !important;
-        font-size: 0.75rem !important;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        
-        &.active {
-            background: #8245ec !important;
+.projects-swiper {
+    width: 100%;
+    overflow: hidden;
+
+    .swiper-wrapper {
+        display: flex !important;
+        flex-direction: row !important;
+    }
+}
+
+.project-square-card {
+    background: #0d0620 !important;
+    border: 1px solid rgba(130, 69, 236, 0.3) !important;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease;
+
+    @media (min-width: 1024px) {
+        aspect-ratio: 1 / 1;
+    }
+
+    @media (max-width: 1023px) {
+        height: auto;
+        min-height: 420px;
+    }
+
+    .project-thumbnail-container {
+        width: 100%;
+        height: 60%;
+
+        @media (max-width: 1023px) {
+            height: 220px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .project-info {
+        padding: 20px 15px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .project-title {
             color: white !important;
-            border-color: #8245ec !important;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .tag-item {
+            background: rgba(130, 69, 236, 0.15) !important;
+            color: #8245ec !important;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            margin: 0 4px;
+            font-weight: 600;
         }
     }
 }
 
 .custom-projects-pagination {
-    display: flex !important;
-    justify-content: center !important;
-    margin-top: 35px !important;
-    z-index: 10;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
 
     .swiper-pagination-bullet {
-        background: #d1d5db !important;
+        background: #334155 !important;
         opacity: 1 !important;
+
         &-active {
             background: #8245ec !important;
             width: 25px !important;
             border-radius: 10px !important;
         }
-    }
-}
-
-.project-square-card {
-    background: #080118 !important; 
-    border-radius: 20px !important;
-    overflow: hidden;
-    
-    @include sm { height: 350px !important; }
-    .project-info {
-        background: #09021a !important;
-        padding: 15px;
-        text-align: center;
-        .project-title { color: white !important; font-weight: 600 !important; }
-        .tag-item { color: #8245ec !important; font-size: 0.7rem !important; }
     }
 }

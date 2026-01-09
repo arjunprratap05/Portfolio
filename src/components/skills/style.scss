@@ -2,117 +2,128 @@
 @import "../../style-config/mixins.scss";
 
 #skills {
-    background: linear-gradient(180deg, #341d69 0%, #0d0421 100%) !important;
-    padding: 60px 0;
+    background: #060210 !important;
+    padding: 80px 20px;
 }
 
 .skills-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 
     .underlined-title {
         color: white;
+        font-size: 2.5rem;
+        font-weight: 700;
         display: inline-block;
         position: relative;
-        padding-bottom: 12px;
-        font-size: 2.2rem;
+        padding-bottom: 15px;
 
         &::after {
             content: '';
             position: absolute;
-            left: 20%;
-            right: 20%;
+            left: 25%;
+            right: 25%;
             bottom: 0;
             height: 4px;
             background: #8245ec;
             border-radius: 10px;
-        }
-    }
-}
-
-.skills-slider-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .skills-swiper {
-        width: 100%;
-        padding-bottom: 20px;
-    }
-}
-
-.skill-category-square {
-    background: #09021a;
-    border: 1.5px solid rgba(130, 69, 236, 0.4);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-
-    @include lg {
-        aspect-ratio: 1 / 1;
-        padding: 30px;
-    }
-
-    @include sm {
-        height: 400px;
-        padding: 20px;
-        justify-content: center;
-    }
-}
-
-.skills-iphone-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-
-    @include sm {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-    }
-}
-
-.custom-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 25px;
-    gap: 8px;
-    z-index: 10;
-
-    .swiper-pagination-bullet {
-        background: rgba(255, 255, 255, 0.3) !important;
-        opacity: 1 !important;
-        margin: 0 !important;
-
-        &-active {
-            background: #8245ec !important;
-            width: 22px !important;
-            border-radius: 10px !important;
             box-shadow: 0 0 10px rgba(130, 69, 236, 0.5);
         }
     }
 }
 
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.skill-category-square {
+    background: #0d0620;
+    border: 1px solid rgba(130, 69, 236, 0.3);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    @media (min-width: 1024px) {
+        width: calc(33.33% - 20px);
+        aspect-ratio: 1 / 1;
+    }
+
+    @media (max-width: 1023px) {
+        height: auto;
+    }
+}
+
+.category-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+
+    h3 {
+        color: white;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .count-pill {
+        background: #2d1b4d;
+        color: #a855f7;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 0.85rem;
+        font-weight: bold;
+    }
+}
+
+.skills-iphone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
 .compact-pill {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(130, 69, 236, 0.1);
-    padding: 10px 5px;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 15px 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        background: rgba(130, 69, 236, 0.15);
+        border: 1px solid rgba(130, 69, 236, 0.4);
+    }
 
     img {
-        width: 22px;
-        height: 22px;
-        margin-bottom: 5px;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 8px;
+        object-fit: contain;
     }
 
     span {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
         color: #cbd5e1;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
     }
 }
