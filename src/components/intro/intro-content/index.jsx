@@ -10,7 +10,7 @@ const IntroContent = () => {
             <div className="layout">
                 <div className="intro-left-content">
                     <h1 className="greeting">
-                        Hi, I am
+                        HI, I AM 
                         <img src={handicon} alt="hand icon" className="hand-icon" />
                     </h1>
                     <h2 className="main-name">Arjun Pratap</h2>
@@ -36,17 +36,19 @@ const IntroContent = () => {
                     </h3>
 
                     <p className="bio-summary">
-                        Full Stack Developer with 3+ years of experience  building scalable
+                        Full Stack Developer with <strong>3+ years of experience</strong> building scalable
                         web applications and AI-driven solutions. I specialize in
-                        Microservices architecture  and integrating LLMs to automate
-                        complex business processes, successfully reducing operational effort
-                        by 40%.
+                        <strong> Microservices architecture</strong> and integrating LLMs to automate
+                        complex business processes, successfully <strong>reducing operational effort
+                        by 40%</strong>.
                     </p>
                 </div>
 
                 <div className="intro-right-content">
-                    <div className="profile-image-wrapper">
-                        <img src={myimage} alt="Arjun Pratap Profile" className="profile-image" />
+                    <div className="profile-image-container">
+                        <div className="blob-border">
+                            <img src={myimage} alt="Arjun Pratap Profile" className="profile-image" />
+                        </div>
                     </div>
                 </div>
             </div>
