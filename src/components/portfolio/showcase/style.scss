@@ -1,29 +1,22 @@
 @import "../../../style-config/mixins.scss";
 @import "../../../style-config/variable.scss";
 
+#portfolio {
+    background: #060210 !important; 
+    padding: 80px 0 !important;
+}
+
 .showcase-slider-wrapper {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 60px 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     .section-header {
         text-align: center;
-        margin-bottom: 40px;
-
-        .subtitle {
-            color: rgba(130, 69, 236, 0.8);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-        }
-
-        .description {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
+        margin-bottom: 50px;
 
         .underlined-title {
             color: white;
@@ -31,93 +24,93 @@
             position: relative;
             padding-bottom: 15px;
             font-size: 2.5rem;
-            text-transform: uppercase;
             font-weight: 800;
-
-            @include sm {
-                font-size: 1.8rem;
-            }
+            text-transform: uppercase;
 
             &::after {
                 content: '';
                 position: absolute;
-                left: 20%;
-                right: 20%;
+                left: 25%;
+                right: 25%;
                 bottom: 0;
                 height: 4px;
                 background: #8245ec;
                 border-radius: 10px;
-                box-shadow: 0 0 10px #8245ec;
+                box-shadow: 0 0 15px rgba(130, 69, 236, 0.6);
             }
         }
     }
 
     .projects-swiper {
-        padding: 10px 0;
         width: 100%;
+        overflow: hidden;
+
+        // CRITICAL MOBILE FIX: Row alignment
+        .swiper-wrapper {
+            display: flex !important;
+            flex-direction: row !important;
+        }
     }
 
     .project-square-card {
-        background: #09021a;
-        border: 1.5px solid rgba(130, 69, 236, 0.4);
+        background: #0d0620;
+        border: 1px solid rgba(130, 69, 236, 0.3);
         border-radius: 20px;
         width: 100%;
-        aspect-ratio: 1 / 1;
+        position: relative;
         overflow: hidden;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        display: flex;
+        flex-direction: column;
 
-        @include sm {
-            height: 350px;
-            aspect-ratio: auto;
+        @media (min-width: 1024px) { aspect-ratio: 1 / 1; }
+        @media (max-width: 1023px) { height: auto; min-height: 400px; }
+
+        .solo-architect-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #8245ec;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            z-index: 2;
         }
 
         .project-thumbnail-container {
-            height: 60%;
-            position: relative;
-
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+            height: 220px;
+            img { width: 100%; height: 100%; object-fit: cover; }
         }
 
         .project-info {
-            padding: 15px;
-            text-align: center;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-            .project-title {
-                color: white;
-                font-size: 1rem;
+            .project-title { color: white; font-size: 1.1rem; margin-bottom: 10px; text-align: center; }
+            .tag-item { 
+                color: #8245ec; 
+                background: rgba(130, 69, 236, 0.1); 
+                padding: 4px 12px; 
+                border-radius: 100px; 
+                font-size: 0.7rem; 
                 font-weight: 600;
-            }
-
-            .tag-item {
-                color: #8245ec;
-                background: rgba(130, 69, 236, 0.1);
-                padding: 2px 8px;
-                border-radius: 100px;
-                font-size: 0.65rem;
-                font-weight: 600;
-                margin: 0 4px;
             }
         }
     }
 }
 
-.projects-pagination {
+.custom-projects-pagination {
     display: flex;
     justify-content: center;
-    margin-top: 35px;
-
+    margin-top: 40px;
     .swiper-pagination-bullet {
-        background: rgba(255, 255, 255, 0.2) !important;
+        background: #334155 !important;
         opacity: 1 !important;
-
-        &-active {
-            background: #8245ec !important;
-            width: 25px !important;
-            border-radius: 10px !important;
-        }
+        &-active { background: #8245ec !important; width: 25px !important; border-radius: 10px !important; }
     }
 }

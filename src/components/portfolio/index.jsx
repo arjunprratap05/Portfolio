@@ -78,6 +78,16 @@ const rawProjectsData = [
         codeUrl: "https://github.com/arjunprratap05/SocialMedia",
         liveUrl: "https://social-media-kappa-pearl.vercel.app/",
     },
+   {
+        id: 9,
+        name: "Expert Computer Academy",
+        tags: ["Full Stack", "Admin Architecture", "Security"],
+        description: "Independently engineered a complete AI educational ecosystem. Designed a custom Admin Dashboard architecture for institutional management and implemented secure registration workflows featuring JWT authentication and OTP-based email verification.",
+        media: { thumbnail: require("../../images/portfolio/expert-academy.png") },
+        codeUrl: "https://github.com/arjunprratap05/expertcomputer", 
+        liveUrl: "https://www.expertcomputeracademy.in",
+        techStack: ["MongoDB", "Express.js", "React.js", "Node.js", "JWT", "OTP Service,Generic Email Service,Generative AI"]
+    },
 ];
 
 const Portfolio = () => {
@@ -100,7 +110,7 @@ const Portfolio = () => {
     };
 
     return (
-        <Section id="portfolio" className="purple">
+        <Section id="portfolio">
             <div className="portfolio-inner-container">
                 <div className="section-header">
                     <h2 className="underlined-title">Recent Projects</h2>
@@ -126,5 +136,4 @@ const Portfolio = () => {
         </Section>
     );
 };
-
 export default Portfolio;

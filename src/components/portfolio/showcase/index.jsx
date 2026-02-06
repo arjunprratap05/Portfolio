@@ -14,16 +14,14 @@ const Showcase = ({ data, onProjectClick, transition }) => {
                 slidesPerView={1.1}
                 centeredSlides={true}
                 loop={true}
-                autoHeight={true}
+                autoHeight={true} 
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 pagination={{
                     clickable: true,
                     el: '.custom-projects-pagination'
                 }}
                 breakpoints={{
-
                     1024: { slidesPerView: 3, spaceBetween: 30, centeredSlides: false },
-
                     768: { slidesPerView: 2, spaceBetween: 20, centeredSlides: false }
                 }}
                 className="projects-swiper"
@@ -31,6 +29,7 @@ const Showcase = ({ data, onProjectClick, transition }) => {
                 {data.map((project) => (
                     <SwiperSlide key={project.id}>
                         <div className="project-square-card" onClick={() => onProjectClick(project)}>
+                            {project.id === 9 && <div className="solo-architect-badge">Solo Architect</div>}
                             <div className="project-thumbnail-container">
                                 <img src={project.media.thumbnail} alt={project.name} />
                             </div>

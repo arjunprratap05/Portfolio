@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 import handicon from "../../../images/hand.png";
-import myimage from "../../../images/me.jpg";
+import myimage from "../../../images/me.jpeg";
 import Typewriter from "typewriter-effect";
 
 const IntroContent = () => {
