@@ -59,10 +59,12 @@ export const SkillsInfo = [
     skills: [
       { name: 'HTML', logo: htmlLogo, percentage: 95 },
       { name: 'CSS', logo: cssLogo, percentage: 90 },
+      { name: 'Sass', logo: sassLogo, percentage: 85 }, // Restored sassLogo
       { name: 'JavaScript', logo: javascriptLogo, percentage: 85 },
       { name: 'React JS', logo: reactjsLogo, percentage: 88 },
       { name: 'Redux', logo: reduxLogo, percentage: 80 },
       { name: 'Tailwind CSS', logo: tailwindcssLogo, percentage: 82 },
+      { name: 'GSAP', logo: gsapLogo, percentage: 75 }, // Restored gsapLogo
       { name: 'Material UI', logo: materialuiLogo, percentage: 75 },
       { name: 'Bootstrap', logo: bootstrapLogo, percentage: 70 },
       { name: 'Angular', logo: angularLogo, percentage: 70 },
@@ -100,6 +102,7 @@ export const SkillsInfo = [
       { name: 'Git', logo: gitLogo, percentage: 90 },
       { name: 'GitHub', logo: githubLogo, percentage: 85 },
       { name: 'VS Code', logo: vscodeLogo, percentage: 95 },
+      { name: 'Figma', logo: figmaLogo, percentage: 80 }, // Restored figmaLogo
       { name: 'Postman', logo: postmanLogo, percentage: 80 },
       { name: 'Compass', logo: mcLogo, percentage: 70 },
       { name: 'Vercel', logo: vercelLogo, percentage: 75 },
