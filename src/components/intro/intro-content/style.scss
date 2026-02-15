@@ -10,7 +10,7 @@
     align-items: center;
     background-color: #060210; // Deeper purple-black
     
-    // Modern Gradient Lighting
+    // Modern Ambient Lighting
     background-image: 
         radial-gradient(at 0% 0%, rgba(130, 69, 236, 0.15) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(187, 102, 255, 0.1) 0px, transparent 50%);
@@ -52,11 +52,12 @@
 
         .main-name {
             font-family: 'Outfit', sans-serif;
-            font-size: 5.5rem; // Bold high-end typography
+            font-size: 5.5rem; // Ultra-bold Market Standard
             font-weight: 900;
             color: #fff;
             letter-spacing: -2px;
             margin: 0;
+            line-height: 1.1;
 
             @include sm { font-size: 3.5rem; }
         }

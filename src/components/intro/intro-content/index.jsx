@@ -36,8 +36,8 @@ const IntroContent = () => {
                     </h3>
 
                     <p className="bio-summary">
-                        Full Stack Developer with <strong>3+ years of experience</strong> building scalable
-                        web applications and AI-driven solutions. I specialize in
+                        Full Stack Engineer with <strong>3.3+ years of impact</strong> building scalable
+                        MERN applications and <strong>production-grade AI solutions</strong>. I specialize in
                         <strong> Microservices architecture</strong> and integrating LLMs to automate
                         complex business processes, successfully <strong>reducing operational effort
                         by 40%</strong>.
