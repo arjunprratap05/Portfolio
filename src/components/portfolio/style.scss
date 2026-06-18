@@ -2,7 +2,8 @@
 @import "../../style-config/mixins.scss";
 
 #portfolio {
-    background: #060210 !important;
+    /* Matches the exact dark background of your overall portfolio */
+    background: #060210 !important; 
     padding: 80px 0 !important;
     width: 100% !important;
 
@@ -11,7 +12,7 @@
         margin-bottom: 50px;
 
         .underlined-title {
-            color: white !important;
+            color: white !important; 
             display: inline-block;
             position: relative;
             padding-bottom: 15px;
@@ -33,7 +34,7 @@
         }
 
         .description {
-            color: #94a3b8 !important;
+            color: #94a3b8 !important; 
             font-size: 1rem;
             margin-top: 15px;
         }
@@ -55,15 +56,18 @@
     }
 }
 
+/* Modern Dark Mode Card Styling */
 .project-square-card {
-    background: #0d0620 !important;
-    border: 1px solid rgba(130, 69, 236, 0.3) !important;
+    /* Deep tinted dark background instead of stark white */
+    background: linear-gradient(145deg, #0d0620 0%, #150a30 100%) !important; 
+    border: 1px solid rgba(130, 69, 236, 0.2) !important;
     border-radius: 20px;
     overflow: hidden;
     cursor: pointer;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 
     @media (min-width: 1024px) {
         aspect-ratio: 1 / 1;
@@ -74,19 +78,49 @@
         min-height: 420px;
     }
 
+    /* Modern Hover Effect: Lift and Purple Glow */
+    &:hover {
+        transform: translateY(-8px);
+        border: 1px solid rgba(130, 69, 236, 0.6) !important;
+        box-shadow: 0 12px 30px rgba(130, 69, 236, 0.25);
+    }
+
     .project-thumbnail-container {
         width: 100%;
         height: 60%;
+        position: relative;
+        overflow: hidden;
 
         @media (max-width: 1023px) {
             height: 220px;
+        }
+
+        /* Subtle dark overlay over the images so they don't blind the user */
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(6, 2, 16, 0.1);
+            transition: background 0.3s ease;
         }
 
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s ease;
         }
+    }
+
+    &:hover .project-thumbnail-container img {
+        transform: scale(1.08);
+    }
+
+    &:hover .project-thumbnail-container::after {
+        background: transparent;
     }
 
     .project-info {
@@ -96,23 +130,39 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        /* Slight inner glow at the top edge of the text container */
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
 
         .project-title {
-            color: white !important;
-            font-size: 1.1rem;
+            color: #ffffff !important; 
+            font-size: 1.15rem;
             font-weight: 600;
             margin-bottom: 12px;
             text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .tags-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
 
         .tag-item {
             background: rgba(130, 69, 236, 0.15) !important;
-            color: #8245ec !important;
-            padding: 4px 12px;
+            color: #b084f5 !important; /* Lighter shade purple for text readability */
+            padding: 5px 14px;
             border-radius: 100px;
-            font-size: 0.7rem;
-            margin: 0 4px;
+            font-size: 0.75rem;
             font-weight: 600;
+            border: 1px solid rgba(130, 69, 236, 0.3);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(130, 69, 236, 0.3) !important;
+                color: #ffffff !important;
+            }
         }
     }
 }
@@ -123,13 +173,16 @@
     margin-top: 40px;
 
     .swiper-pagination-bullet {
-        background: #334155 !important;
-        opacity: 1 !important;
+        background: #334155 !important; 
+        opacity: 0.6 !important;
+        transition: all 0.3s ease;
 
         &-active {
             background: #8245ec !important;
-            width: 25px !important;
+            opacity: 1 !important;
+            width: 30px !important;
             border-radius: 10px !important;
+            box-shadow: 0 0 10px rgba(130, 69, 236, 0.5);
         }
     }
 }

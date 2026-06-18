@@ -96,25 +96,78 @@
             }
         }
 
-        .nav-resume-btn {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-purple);
-            color: white;
-            border: none;
-            padding: 9px 20px;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(187, 102, 255, 0.3);
+        /* Desktop Resume Dropdown Container */
+        .resume-dropdown-container {
+            position: relative;
 
-            &:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(187, 102, 255, 0.5);
+            .nav-resume-btn {
+                font-family: 'Inter', sans-serif;
+                background: var(--primary-purple);
+                color: white;
+                border: none;
+                padding: 9px 20px;
+                border-radius: 100px;
+                font-size: 0.85rem;
+                font-weight: 600;
+                cursor: pointer;
+                transition: 0.3s;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                box-shadow: 0 4px 15px rgba(187, 102, 255, 0.3);
+
+                &:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 6px 20px rgba(187, 102, 255, 0.5);
+                }
+
+                .chevron {
+                    transition: transform 0.3s ease;
+                    &.open { 
+                        transform: rotate(180deg); 
+                    }
+                }
+            }
+
+            .resume-dropdown-menu {
+                position: absolute;
+                top: calc(100% + 15px);
+                right: 0;
+                background: rgba(13, 1, 36, 0.95);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(187, 102, 255, 0.2);
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+                padding: 8px;
+                min-width: 220px;
+                z-index: 100;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                animation: fadeIn 0.2s ease-out;
+
+                .dropdown-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    padding: 12px 15px;
+                    color: var(--text-white);
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+
+                    .dropdown-icon { 
+                        color: var(--primary-purple); 
+                        font-size: 1.1rem;
+                    }
+
+                    &:hover {
+                        background: rgba(187, 102, 255, 0.15);
+                        transform: translateX(5px);
+                    }
+                }
             }
         }
     }
@@ -157,7 +210,7 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            gap: 35px;
+            gap: 30px;
 
             span {
                 font-family: 'Outfit', sans-serif;
@@ -166,29 +219,72 @@
                 color: #fff;
                 cursor: pointer;
                 letter-spacing: -0.02em;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: var(--primary-purple);
+                }
             }
 
             .mobile-social-wrap {
                 display: flex;
                 gap: 30px;
-                margin-top: 10px;
+                margin-top: 5px;
 
                 a {
                     color: #fff;
                     font-size: 1.8rem;
                     transition: 0.3s;
+
+                    &:hover {
+                        color: var(--primary-purple);
+                        transform: translateY(-3px);
+                    }
                 }
             }
 
-            .drawer-btn {
-                font-family: 'Inter', sans-serif;
-                background: var(--primary-purple);
-                padding: 14px 45px;
-                border-radius: 100px;
-                border: none;
-                color: #fff;
-                font-weight: 600;
-                font-size: 1rem;
+            /* Mobile Resume Options */
+            .mobile-resume-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 15px;
+                width: 100%;
+                
+                .resume-title {
+                    font-family: 'Inter', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                }
+
+                .drawer-btn {
+                    font-family: 'Inter', sans-serif;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    background: var(--primary-purple);
+                    padding: 14px 40px;
+                    border-radius: 100px;
+                    border: none;
+                    color: #fff;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    transition: all 0.3s ease;
+                    width: 80%;
+                    max-width: 300px;
+                    cursor: pointer;
+
+                    &.outline {
+                        background: transparent;
+                        border: 1px solid rgba(187, 102, 255, 0.4);
+                        
+                        &:hover {
+                            background: rgba(187, 102, 255, 0.15);
+                            border-color: var(--primary-purple);
+                        }
+                    }
+                }
             }
         }
     }
@@ -209,5 +305,16 @@
         .mobile-drawer {
             display: flex;
         }
+    }
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
     }
 }

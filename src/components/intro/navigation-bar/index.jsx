@@ -1,17 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./style.scss";
-import { FaLinkedinIn, FaGithub, FaBars, FaTimes, FaCloudDownloadAlt } from "react-icons/fa";
+import { FaLinkedinIn, FaGithub, FaBars, FaTimes, FaCloudDownloadAlt, FaBuilding, FaRocket, FaChevronDown } from "react-icons/fa";
 
 const Navigation = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [resumeDropdownOpen, setResumeDropdownOpen] = useState(false);
+    const dropdownRef = useRef(null);
 
-    const handleDownload = () => {
+    // Close the dropdown if the user clicks outside of it
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setResumeDropdownOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    const handleDownload = (type) => {
         const link = document.createElement("a");
-        link.href = "/Arjun_Pratap_Resume_GENAI.pdf";
-        link.download = "Arjun_Pratap_Resume_GenAI.pdf";
+        
+        // Target the specific PDFs based on the user's selection
+        if (type === 'mnc') {
+            link.href = "/Arjun_Pratap_MNC_Enterprise_Software_Engineer_Resume.pdf";
+            link.download = "Arjun_Pratap_MNC_Enterprise_Software_Engineer_Resume.pdf";
+        } else {
+            link.href = "/Arjun_Pratap_Startup_Product_AI_Resume.pdf";
+            link.download = "Arjun_Pratap_Startup_Product_AI_Resume.pdf";
+        }
+        
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        
+        setResumeDropdownOpen(false);
+        setMenuOpen(false);
     };
 
     const scrollToSection = (id) => {
@@ -50,9 +74,29 @@ const Navigation = () => {
                         </a>
                     </div>
 
-                    <button className="nav-resume-btn" onClick={handleDownload}>
-                        <FaCloudDownloadAlt /> Resume
-                    </button>
+                    {/* Desktop Resume Dropdown Container */}
+                    <div className="resume-dropdown-container" ref={dropdownRef}>
+                        <button 
+                            className="nav-resume-btn" 
+                            onClick={() => setResumeDropdownOpen(!resumeDropdownOpen)}
+                        >
+                            <FaCloudDownloadAlt /> Resume <FaChevronDown className={`chevron ${resumeDropdownOpen ? 'open' : ''}`} style={{ fontSize: '0.7em', marginLeft: '5px' }} />
+                        </button>
+                        
+                        {/* Dropdown Menu */}
+                        {resumeDropdownOpen && (
+                            <div className="resume-dropdown-menu">
+                                <div className="dropdown-item" onClick={() => handleDownload('mnc')}>
+                                    <FaBuilding className="dropdown-icon" />
+                                    <span>MNC / Enterprise</span>
+                                </div>
+                                <div className="dropdown-item" onClick={() => handleDownload('startup')}>
+                                    <FaRocket className="dropdown-icon" />
+                                    <span>Startup / Product</span>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 <div className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)}>
@@ -80,7 +124,16 @@ const Navigation = () => {
                         </a>
                     </div>
 
-                    <button className="drawer-btn" onClick={handleDownload}>Resume</button>
+                    {/* Mobile Resume Options */}
+                    <div className="mobile-resume-section">
+                        <p className="resume-title" style={{ color: '#fff', fontSize: '0.9rem', marginBottom: '10px', opacity: 0.7 }}>Download Resume</p>
+                        <button className="drawer-btn outline" onClick={() => handleDownload('mnc')} style={{ marginBottom: '10px' }}>
+                            <FaBuilding /> Enterprise Profile
+                        </button>
+                        <button className="drawer-btn outline" onClick={() => handleDownload('startup')}>
+                            <FaRocket /> Startup Profile
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>

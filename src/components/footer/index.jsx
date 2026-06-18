@@ -58,7 +58,7 @@ const Footer = () => {
 
                 <div className="bottom-bar">
                     <div className="copyright-text">
-                        Copyright All Rights Reserved, 2025 | Arjun Pratap
+                        Copyright All Rights Reserved, 2026 | Arjun Pratap
                     </div>
                 </div>
             </div>

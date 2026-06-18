@@ -23,11 +23,11 @@ const IntroContent = () => {
                                 loop: true,
                                 delay: 40,
                                 strings: [
-                                    "Full Stack Developer (MERN)",
-                                    "Backend & Microservices Engineer",
+                                    "Software Engineer",
+                                    "Full Stack Developer",
+                                    "Backend API Specialist",
                                     "Generative AI Engineer",
-                                    "LLM & Agentic AI Specialist",
-                                    "Cloud & DevOps Engineer"
+                                    "AI Workflow Automator"
                                 ],
                                 wrapperClassName: "typewriter-text",
                                 cursorClassName: "typewriter-cursor"
@@ -36,11 +36,11 @@ const IntroContent = () => {
                     </h3>
 
                     <p className="bio-summary">
-                        Full Stack Engineer with <strong>3.3+ years of impact</strong> building scalable
-                        MERN applications and <strong>production-grade AI solutions</strong>. I specialize in
-                        <strong> Microservices architecture</strong> and integrating LLMs to automate
-                        complex business processes, successfully <strong>reducing operational effort
-                        by 40%</strong>.
+                        Software Engineer with <strong>4 years of experience</strong> building scalable 
+                        web applications, backend APIs, and <strong>AI-supported product features</strong>. 
+                        I specialize in cross-functional development using React.js, Node.js, ASP.NET Core, 
+                        and integrating Generative AI (LLMs) to automate complex workflows, successfully 
+                        <strong> reducing manual operational effort by 40%</strong>.
                     </p>
                 </div>
 

@@ -6,19 +6,20 @@ import { GoDotFill } from "react-icons/go";
 
 const experienceData = [
     {
-        title: "Software Developer Full Stack",
-        specialization: "ASP.NET Core • ReactJS • Node.js",
+        title: "Software Developer Full Stack and AI Solutions",
+        specialization: "ASP.NET Core • React.js • Node.js • OpenAI API",
         company: "NIIT Ltd",
         location: "Gurugram, India",
         duration: "Sep 2022 - Present",
         details: [
-            "Architected Excel bulk upload system using ASP.NET Core, reducing workflow time by 40%.",
-            "Delivered batch dashboard saving 8 hours/week for 50+ staff.",
-            "Created reusable UI components, reducing redundancy across 4+ projects.",
-            "Achieved 99.9% uptime with CI/CD pipelines using GitHub Actions.",
+            "Engineered 12+ enterprise modules using ASP.NET Core, React.js, Node.js, MongoDB, and SQL Server for internal business applications.",
+            "Improved API response time by 35% through SQL indexing, query tuning, payload optimization, and service-layer refactoring.",
+            "Automated Excel upload and export workflows, reducing manual data handling effort by 40% for business and operations teams.",
+            "Added OpenAI API and LangChain features to support contextual search, content assistance, and faster knowledge access.",
+            "Maintained Docker and GitHub Actions CI/CD pipelines, reducing manual deployment tasks by 30%."
         ],
-        tags: ["ASP.NET Core", "React", "Node.js", "GenAI", "CI/CD"]
-    },
+        tags: ["ASP.NET Core", "React.js", "Node.js", "OpenAI API", "SQL Server", "MongoDB", "CI/CD"]
+    }
 ];
 
 const Experience = () => {

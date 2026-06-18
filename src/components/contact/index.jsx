@@ -47,7 +47,8 @@ const ContactHub = () => {
                         <span className="dot"></span> Available for MERN Stack Roles
                     </div>
                     <h2 className="hub-title">Let's build something <span className="purple">intelligent.</span></h2>
-                    <p className="hub-desc">Leveraging 3.3 years of experience in MERN and Generative AI.</p>
+                    {/* Updated to reflect 4 years of experience based on your resume */}
+                    <p className="hub-desc">Leveraging 4 years of experience in Full Stack Development and Generative AI.</p>
 
                     <div className="contact-details">
                         <a href="tel:+917856953862" className="detail-item">
@@ -60,7 +61,7 @@ const ContactHub = () => {
 
                     <div className="social-pills">
                         <a href="https://github.com/arjunprratap05" target="_blank" rel="noreferrer" className="pill"><FaGithub /> GitHub</a>
-                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6/" target="_blank" rel="noreferrer" className="pill"><FaLinkedinIn /> LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/arjun-pratap-6132941a6" target="_blank" rel="noreferrer" className="pill"><FaLinkedinIn /> LinkedIn</a>
                     </div>
                 </div>
 
