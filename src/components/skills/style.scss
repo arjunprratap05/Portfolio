@@ -120,3 +120,65 @@
         }
     }
 }
+
+/* Mobile Responsiveness for Tech Architecture */
+@media (max-width: 768px) {
+    #skills {
+        padding: 60px 0 !important;
+
+        .skills-header {
+            margin-bottom: 35px;
+
+            .underlined-title {
+                font-size: 2rem !important; /* Scale down title for mobile */
+            }
+        }
+
+        .skills-container {
+            /* Force a single, centered column on mobile */
+            display: grid;
+            grid-template-columns: 1fr; 
+            gap: 20px;
+            padding: 0 15px;
+            width: 100%;
+        }
+
+        .skill-category-square {
+            padding: 20px; 
+            width: 100%;
+            
+            .category-top {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+
+                h3 {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .skills-iphone-grid {
+                justify-content: center; /* Center the skill pills naturally */
+                gap: 10px;
+            }
+
+            .compact-pill {
+                padding: 6px 12px;
+                
+                span {
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+/* Extra tweak for very small phones (like iPhone SE) */
+@media (max-width: 380px) {
+    #skills .skills-container {
+        padding: 0 10px;
+    }
+    
+    #skills .skill-category-square {
+        padding: 15px;
+    }
+}
